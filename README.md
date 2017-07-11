@@ -9,5 +9,6 @@ Git cheatsheet
 
 **IMPORTANT:** 
 * Always make certain that your branch is up-to-date with the `master` branch.
+* All active coding will be done separately on each developer's `dev` branch.
 * To submit your code to be merged with master branch, submit a pull request.
-* Manage merge conflicts BEFORE submitting pull request.
+* If possible, manage merge conflicts BEFORE submitting pull request.

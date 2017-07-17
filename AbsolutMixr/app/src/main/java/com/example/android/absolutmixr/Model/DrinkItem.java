@@ -84,4 +84,5 @@ public class DrinkItem {
     public void setRating(int rating) {
         this.rating = rating;
     }
+    
 }

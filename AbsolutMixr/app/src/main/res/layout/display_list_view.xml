@@ -5,11 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.absolutmixr.DisplayList">
-    
-    <ListView
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id = "@+id/list_view"
-    />
+        android:textSize="20sp"
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:id="@+id/rating"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:id="@+id/color"/>
 
 </android.support.constraint.ConstraintLayout>

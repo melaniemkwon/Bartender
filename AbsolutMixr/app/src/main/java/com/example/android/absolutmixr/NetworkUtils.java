@@ -61,7 +61,7 @@ public class NetworkUtils {
             urlConnection.disconnect();
         }
     }
-
+// gets the parsed values and places them into the DrinkItem constructor
     public static ArrayList<DrinkItem> parseJSON(String json)throws JSONException {
         ArrayList<DrinkItem> result = new ArrayList<>();
         JSONObject main = new JSONObject(json);

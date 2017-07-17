@@ -69,17 +69,20 @@ public class NetworkUtils {
         //JSONArray skills = main.getJSONArray("skill");
 
         for(int i=0; i < items.length(); i++){
-            JSONObject item = items.getJSONObject(i);
+            JSONObject drink = items.getJSONObject(i);
 
-            String id =item.getString("id");
-            String name =item.getString("name");
-            String description =item.getString("descriptionPlain");
-            String skill =item.getString("skill");
-            String color =item.getString("color");
-            int rating =item.getInt("rating");
+            String id =drink.getString("id");
+            String name =drink.getString("name");
+            String description =drink.getString("descriptionPlain");
+            String color =drink.getString("color");
+            int rating =drink.getInt("rating");
 
-            DrinkItem drink = new DrinkItem(id,name,description,color,skill,rating);
-            result.add(drink);
+            //Skill node is a json object
+            JSONObject skill = drink.getJSONObject("skill");
+            String skillname =skill.getString("name");
+
+            DrinkItem info = new DrinkItem(id,name,description,color,skillname,rating);
+            result.add(info);
         }
         return result;
     }

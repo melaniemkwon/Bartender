@@ -23,6 +23,8 @@ public class DrinkItem {
     //rating of the drink
     private int rating;
 
+    //array list for the ingredients
+
 
     //Constructor
     public DrinkItem(String id, String name, String description, String color, String skill

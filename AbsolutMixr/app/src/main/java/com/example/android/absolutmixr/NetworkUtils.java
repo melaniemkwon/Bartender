@@ -1,6 +1,7 @@
 package com.example.android.absolutmixr;
 
 import android.net.Uri;
+import android.util.Log;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
 
@@ -21,6 +22,8 @@ import java.util.Scanner;
  */
 
 public class NetworkUtils {
+    private static final String TAG = NetworkUtils.class.getSimpleName();
+
     //The url for the ADDb -> lists in JSON
     public static final String Base_Url = "https://addb.absolutdrinks.com/drinks/?apiKey=bb66369811204fb395a943c7008414df";
     //Will be used to call the picture to display using the id from Drink Item and add .png at the end
@@ -38,6 +41,8 @@ public class NetworkUtils {
         }catch(MalformedURLException e){
             e.printStackTrace();
         }
+
+        Log.v(TAG, "Built URI " + url);
         return url;
     }
 

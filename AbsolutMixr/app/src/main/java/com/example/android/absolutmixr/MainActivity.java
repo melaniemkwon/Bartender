@@ -1,17 +1,12 @@
 package com.example.android.absolutmixr;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
 
@@ -75,16 +70,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected ArrayList<DrinkItem> doInBackground(URL... params) {
             ArrayList<DrinkItem> result =null;
-            URL url = NetworkUtils.makeURL(query);
+            URL url = NetworkUtils.makeURL();
             try{
                 String json =NetworkUtils.getResponseFromHttpUrl(url);
                 result = NetworkUtils.parseJSON(json);
+
+                return result;
             }catch (IOException e){
                 e.printStackTrace();
+                return null;
             }catch(JSONException e){
                 e.printStackTrace();
+                return null;
             }
-            return result;
         }
 
         @Override
@@ -92,9 +90,8 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
             Log.v(TAG, "Made it to onPost");
             if(result !=null){
-                mAdapter.setDrinkData(result);
                 displayDrinkData();
-            }else{
+                mAdapter.setDrinkData(result);
 
             }
         }

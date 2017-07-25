@@ -30,9 +30,9 @@ public class NetworkUtils {
     public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/transparent-background-white/soft-shadow/floor-reflection/100x200/";
     public static final String Query_Param = "q";
 
-    public static URL makeURL (String searchQuery){
+    public static URL makeURL (){
         Uri uri = Uri.parse(Base_Url).buildUpon()
-                .appendQueryParameter(Query_Param,searchQuery).build();
+                .build();
         URL url = null;
         try {
             String urlString = uri.toString();
@@ -42,7 +42,7 @@ public class NetworkUtils {
             e.printStackTrace();
         }
 
-        Log.v(TAG, "Built URI " + url);
+        Log.v(TAG, "Built URI " + url +")(*&^%$#@!)(*&^%$#@*&^%$#@*&^%$#@)(*&^%$#@(*&^%$#@)(*&^%$#@");
         return url;
     }
 
@@ -85,6 +85,12 @@ public class NetworkUtils {
             //Skill node is a json object
             JSONObject skill = drink.getJSONObject("skill");
             String skillname =skill.getString("name");
+
+            Log.v(TAG,"We made it to parsing");
+            Log.v(TAG,"Drink Name: " + name);
+            Log.v(TAG,"Drink description: " + description);
+            Log.v(TAG,"Drink Color: " + color);
+            Log.v(TAG,"Drink rating: " + rating);
 
             DrinkItem info = new DrinkItem(id,name,description,color,skillname,rating);
             result.add(info);

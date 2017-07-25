@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrinkViewHolder>{
     private Context context;
     private LayoutInflater inflater;
-    ArrayList<DrinkItem>data;
+    private ArrayList<DrinkItem> data;
     private static final String TAG = AdapterDrink.class.getSimpleName();
 
 
@@ -57,12 +56,16 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
     @Override
     public void onBindViewHolder(AdapterDrinkViewHolder holder, int position) {
-        DrinkItem Drinkcount = data.get(position);
+        DrinkItem drinkcount = data.get(position);
 
-        holder.mDrinkName.setText(Drinkcount.getName());
         Log.v(TAG, "Made it to onBind name");
-        holder.mDrinkRating.setText(Drinkcount.getRating());
-        holder.mDrinkColor.setText(Drinkcount.getColor());
+
+        Log.v(TAG, drinkcount.getName());
+        //Log.v(TAG, );
+
+        holder.mDrinkName.setText(drinkcount.getName());
+        holder.mDrinkRating.setText((drinkcount.getDescription()));
+        holder.mDrinkColor.setText(drinkcount.getColor());
     }
 
     @Override

@@ -21,14 +21,16 @@ public class DrinkItem {
     private String id;
 
     //rating of the drink
-    private int rating;
+    //Changed to a string because there was problems with adding it to the text view
+    private String rating;
 
     //array list for the ingredients
 
 
     //Constructor
+    //Changed to a string because there was problems with adding it to the text view
     public DrinkItem(String id, String name, String description, String color, String skill
-            , int rating){
+            , String rating){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -79,11 +81,11 @@ public class DrinkItem {
         this.id = id;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
     

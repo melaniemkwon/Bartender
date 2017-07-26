@@ -80,7 +80,7 @@ public class NetworkUtils {
             String name =drink.getString("name");
             String description =drink.getString("descriptionPlain");
             String color =drink.getString("color");
-            int rating =drink.getInt("rating");
+            String rating =drink.getString("rating");
 
             //Skill node is a json object
             JSONObject skill = drink.getJSONObject("skill");

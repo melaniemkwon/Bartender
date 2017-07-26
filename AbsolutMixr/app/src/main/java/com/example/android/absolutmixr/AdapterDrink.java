@@ -33,6 +33,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         public final TextView mDrinkRating;
         public final TextView mDrinkColor;
 
+        //creating the TextView to make it easier to bind in the onBindViewHolder
         public AdapterDrinkViewHolder(View view){
             super(view);
             mDrinkName = (TextView) view.findViewById(R.id.name);
@@ -48,9 +49,9 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         Context context = parent.getContext();
         int layoutIdForListItem = R.layout.display_list_view;
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImmedietly = false;
+        boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(layoutIdForListItem,parent,shouldAttachToParentImmedietly);
+        View view = inflater.inflate(layoutIdForListItem,parent,shouldAttachToParentImmediately);
         return new AdapterDrinkViewHolder(view);
     }
 
@@ -58,13 +59,13 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     public void onBindViewHolder(AdapterDrinkViewHolder holder, int position) {
         DrinkItem drinkcount = data.get(position);
 
+        //Logs to see if it can make it here used for debugging.
         Log.v(TAG, "Made it to onBind name");
-
         Log.v(TAG, drinkcount.getName());
-        //Log.v(TAG, );
 
+        //Binding the info from the arraylist to the Textview.
         holder.mDrinkName.setText(drinkcount.getName());
-        holder.mDrinkRating.setText((drinkcount.getDescription()));
+        holder.mDrinkRating.setText((drinkcount.getRating()));
         holder.mDrinkColor.setText(drinkcount.getColor());
     }
 

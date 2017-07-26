@@ -1,9 +1,8 @@
 package com.example.android.absolutmixr;
-
+/*This code is not used in the program but may be used later when implementing the search functions.*/
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import java.util.ArrayList;
 
 public class DisplayList extends RecyclerView.Adapter<DisplayList.ItemHolder> {
 
+    private static final String TAG = DisplayList.class.getSimpleName();
 
     private ArrayList<DrinkItem> data;
 
@@ -24,6 +24,7 @@ public class DisplayList extends RecyclerView.Adapter<DisplayList.ItemHolder> {
 
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType){
+        Log.d(TAG,"Does it make it here?");
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImediately = false;
@@ -44,6 +45,7 @@ public class DisplayList extends RecyclerView.Adapter<DisplayList.ItemHolder> {
     }
 
     public class ItemHolder extends RecyclerView.ViewHolder{
+
         TextView name;
         TextView rating;
         TextView color;

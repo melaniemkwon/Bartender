@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:checkedButton="@+id/maleRadio">
+
+            <TextView
+                android:id="@+id/genderTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:text="Gender" />
+
+            <RadioButton
+                android:id="@+id/maleRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/weightTextView"
+            android:layout_below="@id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="Weight"/>
+
+        <Spinner
+            android:id="@+id/weightSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/weightTextView"
+            android:layout_below="@id/radioGroup"
+            android:entries="@array/weight_array"/>
+
+        <TextView
+            android:id="@+id/numDrinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weightTextView"
+            android:paddingLeft="20dp"
+            android:text="Drinks (0.60 oz of Alcohol)"/>
+
+        <Spinner
+            android:id="@+id/drinkSpinner"
+            android:layout_below="@+id/weightTextView"
+            android:layout_toRightOf="@id/numDrinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/num_drinks_array"/>
+
+        <TextView
+            android:id="@+id/hourTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/numDrinkTextView"
+            android:paddingLeft="20dp"
+            android:text="Hours Drinking"/>
+
+        <Spinner
+            android:id="@+id/hourSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hourTextView"
+            android:layout_below="@id/numDrinkTextView"
+            android:entries="@array/num_drinks_array"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/estimate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:background="#5c98e2"
+        android:text="Estimate"/>
+
+    <TextView
+        android:id="@+id/bac"
+        android:layout_marginLeft="20dp"
+        android:text="0.00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

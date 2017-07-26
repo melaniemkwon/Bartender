@@ -1,8 +1,12 @@
 package com.example.android.absolutmixr;
 
+        import android.content.Intent;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.util.SparseArray;
+        import android.view.Menu;
+        import android.view.MenuInflater;
+        import android.view.MenuItem;
         import android.view.SurfaceHolder;
         import android.view.SurfaceView;
         import android.widget.TextView;
@@ -21,73 +25,39 @@ public class MyCabinetActivity extends AppCompatActivity {
     private TextView barcodeValue;
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        setContentView(R.layout.activity_main);
-
-        cameraView = (SurfaceView) findViewById(R.id.surface_view);
-        barcodeValue = (TextView) findViewById(R.id.barcode_value);
-        cameraView.getHolder();
-        barcodeDetector = new BarcodeDetector.Builder(this)
-                .build();
-
-        cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(1600, 1024)
-                //you should add this feature
-                .build();
-
-
+    public void onCreate(Bundle onSavedInstanceState) {
+        super.onCreate(onSavedInstanceState);
+        setContentView(R.layout.activity_my_cabinet);
     }
 
+    //inflate menu so it is seen by user
     @Override
-    public void onResume(){
-        super.onResume();
-        cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                try {
-                    //noinspection MissingPermission
-                    cameraSource.start(cameraView.getHolder());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource.stop();
-            }
-        });
-
-        barcodeDetector.setProcessor(new Detector.Processor() {
-            @Override
-            public void release() {
-            }
-
-            @Override
-            public void receiveDetections(Detector.Detections detections) {
-                final SparseArray barcodes = detections.getDetectedItems();
-                if (barcodes.size() != 0) {
-                    barcodeValue.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //Update barcode value to TextView
-                            barcodeValue.setText(barcodes.valueAt(0).toString());
-                        }
-                    });
-                }
-            }
-        });
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        cameraSource.release();
-        barcodeDetector.release();
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.drinks:
+                Intent myIntent = new Intent(MyCabinetActivity.this, MainActivity.class);
+                MyCabinetActivity.this.startActivity(myIntent);
+                return true;
+            case R.id.wishlist:
+
+
+                return true;
+            case R.id.cabinet:
+
+            case R.id.bac:
+
+                return true;
+
+        }return true;
+
     }
+
+
 }

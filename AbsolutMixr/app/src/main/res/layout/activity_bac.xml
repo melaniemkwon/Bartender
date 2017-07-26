@@ -6,7 +6,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:background="#c1c0c0">
 
         <RadioGroup
             android:id="@+id/radioGroup"
@@ -21,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
                 android:paddingTop="20dp"
+                android:textSize="20sp"
                 android:text="Gender" />
 
             <RadioButton
@@ -41,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
+            android:textSize="20sp"
             android:text="Weight"/>
 
         <Spinner
@@ -48,8 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/weightTextView"
-            android:layout_below="@id/radioGroup"
-            android:entries="@array/weight_array"/>
+            android:layout_below="@id/radioGroup"/>
 
         <TextView
             android:id="@+id/numDrinkTextView"
@@ -57,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/weightTextView"
             android:paddingLeft="20dp"
+            android:textSize="20sp"
             android:text="Drinks (0.60 oz of Alcohol)"/>
 
         <Spinner
@@ -72,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/numDrinkTextView"
+            android:textSize="20sp"
             android:paddingLeft="20dp"
             android:text="Hours Drinking"/>
 
@@ -91,12 +95,21 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="#5c98e2"
-        android:text="Estimate"/>
+        android:text="Estimate"
+        android:textSize="20sp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="263dp"
+        android:layout_height="192dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/standard_drink" />
 
     <TextView
         android:id="@+id/bac"
         android:layout_marginLeft="20dp"
         android:text="0.00"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

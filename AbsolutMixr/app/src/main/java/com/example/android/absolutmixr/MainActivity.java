@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toBac(View v) {
-        Intent intent = new Intent(this,BacActivity.class);
+        Intent intent = new Intent(this, BacActivity.class);
         startActivity(intent);
 
     }

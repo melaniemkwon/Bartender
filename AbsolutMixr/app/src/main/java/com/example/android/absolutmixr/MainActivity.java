@@ -2,7 +2,9 @@ package com.example.android.absolutmixr;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mDrink;
     private AdapterDrink mAdapter;
+    private ViewPager viewPager;    // submenu
+    private TabLayout tabLayout;    // submenu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         mAdapter= new AdapterDrink();
 
         mDrink.setAdapter(mAdapter);
+
+        // Implement Material Design Tab Layout
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
         Log.v(TAG, "Made it here okay");
         loadDrinkData();
@@ -66,6 +76,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     // ##### END MENU #####
+
+    // ##### SUBMENU #####
+    public void setupViewPager(ViewPager viewPager){
+        AdapterViewPager pagerAdapter = new AdapterViewPager(getSupportFragmentManager());
+        pagerAdapter.addFragment(new FragCocktails(),"Cocktails");
+        pagerAdapter.addFragment(new FragCabinet(),"Cabinet");
+        pagerAdapter.addFragment(new FragWishlist(), "Wishlist");
+        pagerAdapter.addFragment(new FragBAC(), "BAC Calc");
+        viewPager.setAdapter(pagerAdapter);
+    }
+    // ##### END SUBMENU #####
 
     private void loadDrinkData(){
         displayDrinkData();

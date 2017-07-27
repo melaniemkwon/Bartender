@@ -3,7 +3,10 @@ package com.example.android.absolutmixr;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,11 +24,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>> {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private RecyclerView mDrink;
     private AdapterDrink mAdapter;
+
+    private static final int ADDB_LOADER = 111;
+
     private ViewPager viewPager;    // submenu for Material Design Tab Layout
     private TabLayout tabLayout;    // submenu for Material Design Tab Layout
 
@@ -70,10 +76,17 @@ public class MainActivity extends AppCompatActivity {
         switch (itemNumber) {
             case R.id.search:
                 // TODO: launch 'advanced search' fragment
+                launchAdvancedSearch();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void launchAdvancedSearch() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragSearch fragSearch = new FragSearch();
+        fragSearch.show(fm, "searchfragment");
     }
     // ##### END MENU #####
 
@@ -90,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadDrinkData(){
         displayDrinkData();
-        NetworkTask task = new NetworkTask("");
-        task.execute();
+//        NetworkTask task = new NetworkTask("");
+//        task.execute();
     }
 
     private void displayDrinkData(){
@@ -99,45 +112,84 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, "Made it to displayDrink");
     }
 
-    public class NetworkTask extends AsyncTask<URL, Void, ArrayList<DrinkItem>> {
-        String query;
-        NetworkTask (String s ){
-            query = s;
-        }
+    // ##### AsyncTaskLoader #####
+    //       Implement methods onCreateLoader, onLoadFinished, and onLoaderReset
+    //       for LoaderManager.LoaderCallbacks<Void>
+    @Override
+    public Loader<ArrayList<DrinkItem>> onCreateLoader(int id, Bundle args) {
+        return new AsyncTaskLoader<ArrayList<DrinkItem>>(this) {
 
-        @Override
-        protected void onPreExecute(){
-            Log.v(TAG, "Made it here okay");
-            super.onPreExecute();
-        }
+            @Override
+            public ArrayList<DrinkItem> loadInBackground() {
+                ArrayList<DrinkItem> result = null;
+                URL url = NetworkUtils.makeURL();
 
-        @Override
-        protected ArrayList<DrinkItem> doInBackground(URL... params) {
-            ArrayList<DrinkItem> result =null;
-            URL url = NetworkUtils.makeURL();
-            try{
-                String json =NetworkUtils.getResponseFromHttpUrl(url);
-                result = NetworkUtils.parseJSON(json);
-
-                return result;
-            }catch (IOException e){
-                e.printStackTrace();
-                return null;
-            }catch(JSONException e){
-                e.printStackTrace();
-                return null;
+                try {
+                    String json = NetworkUtils.getResponseFromHttpUrl(url);
+                    result = NetworkUtils.parseJSON(json);
+                    return result;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return null;
+                } catch(JSONException e) {
+                    e.printStackTrace();
+                    return null;
+                }
             }
-        }
+        };
+    }
 
-        @Override
-        protected void onPostExecute (ArrayList<DrinkItem> result){
-            super.onPostExecute(result);
-            Log.v(TAG, "Made it to onPost");
-            if(result !=null){
-                displayDrinkData();
-                mAdapter.setDrinkData(result);
-
-            }
+    @Override
+    public void onLoadFinished(Loader<ArrayList<DrinkItem>> loader, ArrayList<DrinkItem> result) {
+        if(result !=null){
+            displayDrinkData();
+            mAdapter.setDrinkData(result);
         }
     }
+
+    @Override
+    public void onLoaderReset(Loader<ArrayList<DrinkItem>> result) {}
+
+    // TODO: replace this with AsyncTaskLoader
+//    public class NetworkTask extends AsyncTask<URL, Void, ArrayList<DrinkItem>> {
+//        String query;
+//        NetworkTask (String s ){
+//            query = s;
+//        }
+//
+//        @Override
+//        protected void onPreExecute(){
+//            Log.v(TAG, "Made it here okay");
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected ArrayList<DrinkItem> doInBackground(URL... params) {
+//            ArrayList<DrinkItem> result =null;
+//            URL url = NetworkUtils.makeURL();
+//            try{
+//                String json =NetworkUtils.getResponseFromHttpUrl(url);
+//                result = NetworkUtils.parseJSON(json);
+//
+//                return result;
+//            }catch (IOException e){
+//                e.printStackTrace();
+//                return null;
+//            }catch(JSONException e){
+//                e.printStackTrace();
+//                return null;
+//            }
+//        }
+//
+//        @Override
+//        protected void onPostExecute (ArrayList<DrinkItem> result){
+//            super.onPostExecute(result);
+//            Log.v(TAG, "Made it to onPost");
+//            if(result !=null){
+//                displayDrinkData();
+//                mAdapter.setDrinkData(result);
+//
+//            }
+//        }
+//    }
 }

@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mDrink;
     private AdapterDrink mAdapter;
-    private ViewPager viewPager;    // submenu
-    private TabLayout tabLayout;    // submenu
+    private ViewPager viewPager;    // submenu for Material Design Tab Layout
+    private TabLayout tabLayout;    // submenu for Material Design Tab Layout
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
         mDrink.setAdapter(mAdapter);
 
+        loadDrinkData();
+        Log.v(TAG, "Made it here okay");
+
         // Implement Material Design Tab Layout
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-        Log.v(TAG, "Made it here okay");
-        loadDrinkData();
     }
 
     // ##### MENU #####
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // ##### END MENU #####
 
-    // ##### SUBMENU #####
+    // ##### MATERIAL DESIGN TAB #####
     public void setupViewPager(ViewPager viewPager){
         AdapterViewPager pagerAdapter = new AdapterViewPager(getSupportFragmentManager());
         pagerAdapter.addFragment(new FragCocktails(),"Cocktails");
@@ -86,13 +86,12 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter.addFragment(new FragBAC(), "BAC Calc");
         viewPager.setAdapter(pagerAdapter);
     }
-    // ##### END SUBMENU #####
+    // ##### END MATERIAL DESIGN TAB #####
 
     private void loadDrinkData(){
         displayDrinkData();
         NetworkTask task = new NetworkTask("");
         task.execute();
-
     }
 
     private void displayDrinkData(){

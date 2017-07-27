@@ -2,10 +2,13 @@ package com.example.android.absolutmixr;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
@@ -42,6 +45,27 @@ public class MainActivity extends AppCompatActivity {
         Log.v(TAG, "Made it here okay");
         loadDrinkData();
     }
+
+    // ##### MENU #####
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemNumber = item.getItemId();
+
+        switch (itemNumber) {
+            case R.id.search:
+                // TODO: launch 'advanced search' fragment
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    // ##### END MENU #####
 
     private void loadDrinkData(){
         displayDrinkData();

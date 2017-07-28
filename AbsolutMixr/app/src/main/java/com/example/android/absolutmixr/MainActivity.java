@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mDrink.setAdapter(mAdapter);
 
-        loadDrinkData(); //does nothing
+        loadDrinkData();
 
         /*
          * Initialize the loader

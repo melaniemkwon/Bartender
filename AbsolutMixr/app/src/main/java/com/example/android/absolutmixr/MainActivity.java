@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>> {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>>, FragSearch.OnDialogCloseListener {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private RecyclerView mDrink;
@@ -76,14 +76,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         switch (itemNumber) {
             case R.id.search:
                 // TODO: launch 'advanced search' fragment
-                launchAdvancedSearch();
+                openSearch();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void launchAdvancedSearch() {
+    // Open FragSearch fragment dialogue
+    private void openSearch() {
         FragmentManager fm = getSupportFragmentManager();
         FragSearch fragSearch = new FragSearch();
         fragSearch.show(fm, "searchfragment");
@@ -150,7 +151,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<ArrayList<DrinkItem>> result) {}
 
-    // TODO: replace this with AsyncTaskLoader
+    // ##### When FragSearch fragment closes, do api call and update recyclerview #####
+    @Override
+    public void closeDialog(String query) {
+        // TODO: do api call and update recyclerview
+        Log.d(TAG, "closeDialog call");
+    }
+
+    // DONE: replace AsyncTask with AsyncTaskLoader. To be deleted.
 //    public class NetworkTask extends AsyncTask<URL, Void, ArrayList<DrinkItem>> {
 //        String query;
 //        NetworkTask (String s ){

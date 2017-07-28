@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mDrink.setAdapter(mAdapter);
 
-//        loadDrinkData(); //does nothing
+        loadDrinkData(); //does nothing
 
         /*
          * Initialize the loader
@@ -110,9 +110,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // ##### END MATERIAL DESIGN TAB #####
 
     private void loadDrinkData(){
-//        displayDrinkData();
-//        NetworkTask task = new NetworkTask("");
-//        task.execute();
+        // ##########################################################
+        // Request that an AsyncTaskLoader performs the GET request
+        URL addbSearchUrl = NetworkUtils.makeURL(); //TODO: MAKE THIS INCLUDE THE QUERY PARAMS
+
+        Bundle queryBundle = new Bundle();
+
+        LoaderManager loaderManager = getSupportLoaderManager();
+        Loader<String> addbLoader = loaderManager.getLoader(ADDB_LOADER);
+        if (addbLoader == null) {
+            loaderManager.initLoader(ADDB_LOADER, queryBundle, this);
+        } else {
+            loaderManager.restartLoader(ADDB_LOADER, queryBundle, this);
+        }
+        // ##########################################################
     }
 
     private void displayDrinkData(){
@@ -173,8 +184,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<ArrayList<DrinkItem>> loader, ArrayList<DrinkItem> result) {
         if(result != null){
             Log.d(TAG, "calling setDrinkData");
+
             displayDrinkData();
             mAdapter.setDrinkData(result);
+
+            loadDrinkData();
         } else {
             Log.d(TAG, "nothing in result");
         }
@@ -188,17 +202,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void closeDialog(String query) {
         // TODO: do api call and update recyclerview with asynctaskloader
         Log.d(TAG, "closeDialog call");
-        URL addbSearchUrl = NetworkUtils.makeURL(); //TODO: MAKE THIS INCLUDE THE QUERY PARAMS
-
-        Bundle queryBundle = new Bundle();
-
-        LoaderManager loaderManager = getSupportLoaderManager();
-        Loader<String> addbLoader = loaderManager.getLoader(ADDB_LOADER);
-        if (addbLoader == null) {
-            loaderManager.initLoader(ADDB_LOADER, queryBundle, this);
-        } else {
-            loaderManager.restartLoader(ADDB_LOADER, queryBundle, this);
-        }
+        loadDrinkData();
     }
 
     // DONE: replace AsyncTask with AsyncTaskLoader. To be deleted.

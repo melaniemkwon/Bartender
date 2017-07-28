@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private AdapterDrink mAdapter;
 
     private static final int ADDB_LOADER = 111;
-    /* A constant to save and restore the URL that is being displayed */
-    private static final String SEARCH_QUERY_URL_EXTRA = "query";
 
     private ViewPager viewPager;    // submenu for Material Design Tab Layout
     private TabLayout tabLayout;    // submenu for Material Design Tab Layout
@@ -43,14 +41,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         mDrink = (RecyclerView)findViewById(R.id.recycler);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         mDrink.setLayoutManager(layoutManager);
-
         mDrink.setHasFixedSize(true);
-
         mAdapter= new AdapterDrink();
-
         mDrink.setAdapter(mAdapter);
 
         loadDrinkData();
@@ -109,13 +103,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
     // ##### END MATERIAL DESIGN TAB #####
 
-    private void loadDrinkData(){
+    public void loadDrinkData(){
         // ##########################################################
         // Request that an AsyncTaskLoader performs the GET request
         URL addbSearchUrl = NetworkUtils.makeURL(); //TODO: MAKE THIS INCLUDE THE QUERY PARAMS
 
         Bundle queryBundle = new Bundle();
+//        queryBundle.putString(,);
 
+        // Give the LoaderManager an ID and it returns a loader (if one exists)
+        // If it doesn't exist, tell the LoaderManager to create one
+        // If it does exist, tell the LoaderManager to restart it
         LoaderManager loaderManager = getSupportLoaderManager();
         Loader<String> addbLoader = loaderManager.getLoader(ADDB_LOADER);
         if (addbLoader == null) {
@@ -126,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         // ##########################################################
     }
 
+    // TODO: Don't think this method is all that important.. Think we can remove.
     private void displayDrinkData(){
         mDrink.setVisibility(View.VISIBLE);
         Log.v(TAG, "Made it to displayDrink");
@@ -200,12 +199,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // ##### When FragSearch fragment closes, do api call and update recyclerview #####
     @Override
     public void closeDialog(String query) {
-        // TODO: do api call and update recyclerview with asynctaskloader
+        // TODO: do api call with query params and update recyclerview with asynctaskloader
         Log.d(TAG, "closeDialog call");
         loadDrinkData();
     }
 
-    // DONE: replace AsyncTask with AsyncTaskLoader. To be deleted.
+    // DONE: replace AsyncTask with AsyncTaskLoader.
+    // TODO: Delete inner class NetworkTask
 //    public class NetworkTask extends AsyncTask<URL, Void, ArrayList<DrinkItem>> {
 //        String query;
 //        NetworkTask (String s ){

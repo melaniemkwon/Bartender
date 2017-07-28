@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private AdapterDrink mAdapter;
 
     private static final int ADDB_LOADER = 111;
+    /* A constant to save and restore the URL that is being displayed */
+    private static final String SEARCH_QUERY_URL_EXTRA = "query";
 
     private ViewPager viewPager;    // submenu for Material Design Tab Layout
     private TabLayout tabLayout;    // submenu for Material Design Tab Layout
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         switch (itemNumber) {
             case R.id.search:
-                // TODO: launch 'advanced search' fragment
+                // DONE: launch 'advanced search' fragment
                 openSearch();
                 return true;
         }
@@ -184,8 +186,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // ##### When FragSearch fragment closes, do api call and update recyclerview #####
     @Override
     public void closeDialog(String query) {
-        // TODO: do api call and update recyclerview
+        // TODO: do api call and update recyclerview with asynctaskloader
         Log.d(TAG, "closeDialog call");
+        URL addbSearchUrl = NetworkUtils.makeURL(); //TODO: MAKE THIS INCLUDE THE QUERY PARAMS
+
+        Bundle queryBundle = new Bundle();
+
+        LoaderManager loaderManager = getSupportLoaderManager();
+        Loader<String> addbLoader = loaderManager.getLoader(ADDB_LOADER);
+        if (addbLoader == null) {
+            loaderManager.initLoader(ADDB_LOADER, queryBundle, this);
+        } else {
+            loaderManager.restartLoader(ADDB_LOADER, queryBundle, this);
+        }
     }
 
     // DONE: replace AsyncTask with AsyncTaskLoader. To be deleted.

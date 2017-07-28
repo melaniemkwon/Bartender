@@ -40,6 +40,7 @@ public class FragSearch extends DialogFragment {
             public void onClick(View v) {
                 OnDialogCloseListener activity = (OnDialogCloseListener) getActivity();
                 activity.closeDialog(searchEntry.getText().toString());
+                Log.d(TAG, "search button clicked");
                 FragSearch.this.dismiss();
             }
         });

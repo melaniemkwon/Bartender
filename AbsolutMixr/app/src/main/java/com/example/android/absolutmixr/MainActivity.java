@@ -1,6 +1,5 @@
 package com.example.android.absolutmixr;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -52,7 +51,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         mDrink.setAdapter(mAdapter);
 
-        loadDrinkData();
+//        loadDrinkData(); //does nothing
+
+        /*
+         * Initialize the loader
+         */
+        getSupportLoaderManager().initLoader(ADDB_LOADER, null, this);
+
         Log.v(TAG, "Made it here okay");
 
         // Implement Material Design Tab Layout
@@ -103,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     // ##### END MATERIAL DESIGN TAB #####
 
     private void loadDrinkData(){
-        displayDrinkData();
+//        displayDrinkData();
 //        NetworkTask task = new NetworkTask("");
 //        task.execute();
     }
@@ -117,12 +122,28 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     //       Implement methods onCreateLoader, onLoadFinished, and onLoaderReset
     //       for LoaderManager.LoaderCallbacks<Void>
     @Override
-    public Loader<ArrayList<DrinkItem>> onCreateLoader(int id, Bundle args) {
+    public Loader<ArrayList<DrinkItem>> onCreateLoader(int id, final Bundle args) {
+        Log.d(TAG, "Calling AsyncTaskLoader");
         return new AsyncTaskLoader<ArrayList<DrinkItem>>(this) {
+
+            ArrayList<DrinkItem> result;
+
+            @Override
+            protected void onStartLoading() {
+                if (args == null) {
+                    return;
+                }
+
+                if (result != null) {
+                    deliverResult(result);
+                } else {
+                    forceLoad();
+                }
+            }
 
             @Override
             public ArrayList<DrinkItem> loadInBackground() {
-                ArrayList<DrinkItem> result = null;
+
                 URL url = NetworkUtils.makeURL();
 
                 try {
@@ -137,14 +158,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     return null;
                 }
             }
+
+            @Override
+            public void deliverResult(ArrayList<DrinkItem> data) {
+                super.deliverResult(data);
+                result = data;
+            }
         };
     }
 
     @Override
     public void onLoadFinished(Loader<ArrayList<DrinkItem>> loader, ArrayList<DrinkItem> result) {
-        if(result !=null){
+        if(result != null){
+            Log.d(TAG, "calling setDrinkData");
             displayDrinkData();
             mAdapter.setDrinkData(result);
+        } else {
+            Log.d(TAG, "nothing in result");
         }
     }
 

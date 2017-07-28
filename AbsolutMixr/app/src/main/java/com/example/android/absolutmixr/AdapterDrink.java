@@ -77,6 +77,8 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
     public void setDrinkData(ArrayList<DrinkItem> dat){
         data = dat;
+        Log.d(TAG, "setDrinkData called");
+        Log.d(TAG, dat.get(0).toString());
         notifyDataSetChanged();
     }
 }

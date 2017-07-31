@@ -33,6 +33,7 @@
         android:orientation="vertical"
         android:padding="5dp">
 
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,9 +53,12 @@
             android:textSize="18sp"
             android:text="Drink Color"
             android:id="@+id/color"/>
+
+        <!--Adding a separator to make viewing easier-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="#000000" />
     </LinearLayout>
-
-
-
 
 </LinearLayout>

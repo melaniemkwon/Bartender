@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,8 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private LayoutInflater inflater;
     private ArrayList<DrinkItem> data;
     private static final String TAG = AdapterDrink.class.getSimpleName();
+    public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/transparent-background-white/soft-shadow/floor-reflection/100x200/";
+    private static final String type= ".png";
 
 
     //Constructor is default because we will change when we implement search function
@@ -32,6 +36,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         public final TextView mDrinkName;
         public final TextView mDrinkRating;
         public final TextView mDrinkColor;
+        public final ImageView mDrinkpic;
 
         //creating the TextView to make it easier to bind in the onBindViewHolder
         public AdapterDrinkViewHolder(View view){
@@ -39,6 +44,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
             mDrinkName = (TextView) view.findViewById(R.id.name);
             mDrinkRating = (TextView) view.findViewById(R.id.rating);
             mDrinkColor = (TextView) view.findViewById(R.id.color);
+            mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
         }
 
 
@@ -46,7 +52,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
     @Override
     public AdapterDrinkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         int layoutIdForListItem = R.layout.display_list_view;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
@@ -62,11 +68,18 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         //Logs to see if it can make it here used for debugging.
         Log.v(TAG, "Made it to onBind name");
         Log.v(TAG, drinkcount.getName());
+        String url = Picture_url + (drinkcount.getId()+type);
+        Log.v(TAG, "Built URI " + url +")(*&^%$#@!)(*&^%$#@*&^%$#@*&^%$#@)(*&^%$#@(*&^%$#@)(*&^%$#@");
 
         //Binding the info from the arraylist to the Textview.
         holder.mDrinkName.setText(drinkcount.getName());
         holder.mDrinkRating.setText((drinkcount.getRating()));
         holder.mDrinkColor.setText(drinkcount.getColor());
+        if(url != null){
+            Picasso.with(context)
+                    .load(url)
+                    .into(holder.mDrinkpic);
+        }
     }
 
     @Override

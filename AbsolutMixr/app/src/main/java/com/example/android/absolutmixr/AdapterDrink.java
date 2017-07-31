@@ -23,7 +23,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private LayoutInflater inflater;
     private ArrayList<DrinkItem> data;
     private static final String TAG = AdapterDrink.class.getSimpleName();
-    public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/transparent-background-white/soft-shadow/floor-reflection/100x200/";
+    public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/100x100/";
     private static final String type= ".png";
 
 

@@ -135,14 +135,16 @@ public class NetworkUtils {
 
     }
 
-    public static URL makeAdvancedSearchUrl (String with){
+    public static URL makeAdvancedSearchUrl (String with, String skill){
 
         String searchParams = "";
 
         if (!with.equals("")){
-            searchParams= searchParams + "with/" + with + "/";
+            searchParams= searchParams + "with/" + with.toLowerCase() + "/";
         }
-
+        if (!skill.equals("-All Drinks-")){
+            searchParams= searchParams + "skill/" + skill.toLowerCase() + "/";
+        }
 
         Uri builtUri = Uri.parse(BASE_ADV_SEARCH).buildUpon()
                 .appendPath(Uri.decode(searchParams))

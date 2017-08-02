@@ -77,32 +77,18 @@ public class AdvSearch extends Fragment {
     }
 
     private void setSpinners(){
+        spinnerGlass.setAdapter(getArrayAdapter(allGlasses));
+        spinnerTaste.setAdapter(getArrayAdapter(allTastes));
+        spinnerSkill.setAdapter((getArrayAdapter(allSkills)));
+        spinnerTime.setAdapter(getArrayAdapter(allTimes));
+        spinnerIsAlcoholic.setAdapter(getArrayAdapter(allAlcoholic));
 
-        //ArrayAdapter arrayAdapter1 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, allGlasses.toArray());
-        ArrayAdapter arrayAdapter1 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, sortSet(allGlasses));
-        arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGlass.setAdapter(arrayAdapter1);
+    }
 
-        //ArrayAdapter arrayAdapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, allTastes.toArray());
-        ArrayAdapter arrayAdapter2 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, sortSet(allTastes));
-        arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTaste.setAdapter(arrayAdapter2);
-
-        //ArrayAdapter arrayAdapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, allSkills.toArray());
-        ArrayAdapter arrayAdapter3 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, sortSet(allSkills));
-        arrayAdapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerSkill.setAdapter(arrayAdapter3);
-
-        //ArrayAdapter arrayAdapter4 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, allTimes.toArray());
-        ArrayAdapter arrayAdapter4 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, sortSet(allTimes));
-        arrayAdapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTime.setAdapter(arrayAdapter4);
-
-        //ArrayAdapter arrayAdapter5 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, allAlcoholic.toArray());
-        ArrayAdapter arrayAdapter5 = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, sortSet(allAlcoholic));
-        arrayAdapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerIsAlcoholic.setAdapter(arrayAdapter5);
-
+    private ArrayAdapter getArrayAdapter(HashSet<String> set){
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, sortSet(set));
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return arrayAdapter;
     }
 
     @Override
@@ -112,7 +98,7 @@ public class AdvSearch extends Fragment {
             @Override
             public void onClick(View v){
                 String drinkContains = editTextContent.getText().toString();
-                URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains);
+                URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains, spinnerSkill.getSelectedItem().toString());
 
                 try {
                     String urlString = URLDecoder.decode(url.toString(), "utf-8");

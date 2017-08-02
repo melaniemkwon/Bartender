@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
     // Open FragSearch fragment dialogue
     private void openSearch() {
         FragmentManager fm = getSupportFragmentManager();
-        FragSearch fragSearch = new FragSearch();
+        FragSearch fragSearch = new FragSearcgith();
         fragSearch.show(fm, "searchfragment");
     }
     // ##### END MENU #####
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
         pagerAdapter.addFragment(new FragCabinet(),"Cabinet");
         pagerAdapter.addFragment(new FragWishlist(), "Wishlist");
         pagerAdapter.addFragment(new FragBAC(), "BAC Calc");
+        pagerAdapter.addFragment(new AdvSearch(), "Advanced Search");
         viewPager.setAdapter(pagerAdapter);
     }
     // ##### END MATERIAL DESIGN TAB #####

@@ -84,6 +84,14 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
                 try {
                     String json = NetworkUtils.getResponseFromHttpUrl(url);
                     result = NetworkUtils.parseJSON(json);
+
+                    //Advanced search JSON parsing
+                    try {
+                        NetworkUtils.parseJsonAdvancedSearch(json);
+                    } catch (JSONException e){
+                        Log.d(TAG, "crap tje advanced search json parsing no bueno");
+                    }
+
                     return result;
                 } catch (IOException e) {
                     e.printStackTrace();

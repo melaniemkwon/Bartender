@@ -97,4 +97,37 @@ public class NetworkUtils {
         }
         return result;
     }
+
+    public static void parseJsonAdvancedSearch(String json) throws JSONException{
+
+        ArrayList<DrinkItem> result = new ArrayList<>();
+        JSONObject main = new JSONObject(json);
+        JSONArray items = main.getJSONArray("result");
+        //JSONArray skills = main.getJSONArray("skill");
+
+        for(int i=0; i < items.length(); i++){
+            JSONObject drink = items.getJSONObject(i);
+
+            JSONObject glassResult = drink.getJSONObject("servedIn");
+            AdvSearch.allGlasses.add(glassResult.getString("text"));
+
+            JSONArray tasteArray = drink.getJSONArray("tastes");
+            for (int j = 0; j < tasteArray.length(); j++){
+                JSONObject tasteText = tasteArray.getJSONObject(j);
+                AdvSearch.allTastes.add(tasteText.getString("text"));
+            }
+
+            JSONObject skillResult = drink.getJSONObject("skill");
+            AdvSearch.allSkills.add(skillResult.getString("name"));
+
+            JSONArray timeArray = drink.getJSONArray("occasions");
+            for (int j = 0; j < timeArray.length(); j++){
+                JSONObject timeText = timeArray.getJSONObject(j);
+                AdvSearch.allTimes.add(timeText.getString("text"));
+            }
+
+            AdvSearch.allAlcoholic.add(drink.getString("isAlcoholic"));
+        }
+
+    }
 }

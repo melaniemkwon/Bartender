@@ -30,6 +30,10 @@ public class NetworkUtils {
     public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/transparent-background-white/soft-shadow/floor-reflection/100x200/";
     public static final String Query_Param = "q";
 
+    //these two constants used for advanced search url building
+    public static final String BASE_ADV_SEARCH = "https://addb.absolutdrinks.com/drinks/";
+    public static final String apiKey = "bb66369811204fb395a943c7008414df";
+
     public static URL makeURL (){
         Uri uri = Uri.parse(Base_Url).buildUpon()
                 .build();
@@ -129,5 +133,28 @@ public class NetworkUtils {
             AdvSearch.allAlcoholic.add(drink.getString("isAlcoholic"));
         }
 
+    }
+
+    public static URL makeAdvancedSearchUrl (String with){
+
+        String searchParams = "";
+        searchParams= searchParams + "with/" + with + "/";
+
+        Uri builtUri = Uri.parse(BASE_ADV_SEARCH).buildUpon()
+                .appendPath(Uri.decode(searchParams))
+                .appendQueryParameter("apiKey", apiKey).build();
+
+//        builtUri.buildUpon().appendPath("with/" + with +"/").build();
+//        builtUri.buildUpon().appendQueryParameter("apiKey", apiKey).build();
+        URL url = null;
+        try {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.v(TAG, "Built URI " + url);
+
+        return url;
     }
 }

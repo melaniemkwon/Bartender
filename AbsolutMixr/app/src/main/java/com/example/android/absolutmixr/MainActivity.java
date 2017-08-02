@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
     // Open FragSearch fragment dialogue
     private void openSearch() {
         FragmentManager fm = getSupportFragmentManager();
-        FragSearch fragSearch = new FragSearcgith();
+        FragSearch fragSearch = new FragSearch();
         fragSearch.show(fm, "searchfragment");
     }
     // ##### END MENU #####

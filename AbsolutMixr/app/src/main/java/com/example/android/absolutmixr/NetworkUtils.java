@@ -138,7 +138,11 @@ public class NetworkUtils {
     public static URL makeAdvancedSearchUrl (String with){
 
         String searchParams = "";
-        searchParams= searchParams + "with/" + with + "/";
+
+        if (!with.equals("")){
+            searchParams= searchParams + "with/" + with + "/";
+        }
+
 
         Uri builtUri = Uri.parse(BASE_ADV_SEARCH).buildUpon()
                 .appendPath(Uri.decode(searchParams))

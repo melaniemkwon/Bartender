@@ -110,7 +110,10 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 //            displayDrinkData();
             mAdapter.setDrinkData(result);
 
-            loadDrinkData();
+            //not sure if loadDrinkData(); should go in the else
+            //since if there is no data then it should load new data to the result by getting a
+            //new json and parsing.
+            //loadDrinkData();
         } else {
             Log.d(TAG, "nothing in result");
         }

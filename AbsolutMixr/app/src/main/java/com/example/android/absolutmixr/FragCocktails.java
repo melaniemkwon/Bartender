@@ -1,5 +1,6 @@
 package com.example.android.absolutmixr;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -11,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
 
@@ -24,7 +27,7 @@ import java.util.ArrayList;
  * Created by melaniekwon on 7/27/17.
  */
 
-public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>> {
+public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>>,View.OnClickListener {
 
     private static final String TAG = FragCocktails.class.getSimpleName();
     private RecyclerView mDrink;
@@ -110,9 +113,6 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 //            displayDrinkData();
             mAdapter.setDrinkData(result);
 
-            //not sure if loadDrinkData(); should go in the else
-            //since if there is no data then it should load new data to the result by getting a
-            //new json and parsing.
             //loadDrinkData();
         } else {
             Log.d(TAG, "nothing in result");
@@ -141,5 +141,21 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
             loaderManager.restartLoader(ADDB_LOADER2, queryBundle, this);
         }
         // ##########################################################
+    }
+
+    @Override
+    public void onClick(View v) {
+        Context context = getContext();
+        int duration = Toast.LENGTH_SHORT;
+        boolean checked = ((CheckBox)v).isChecked();
+
+        if(checked == true){
+            Toast toast = Toast.makeText(context,"added to wishlist",duration);
+            toast.show();
+        }
+        else{
+            Toast toast = Toast.makeText(context,"added to wishlist",duration);
+            toast.show();
+        }
     }
 }

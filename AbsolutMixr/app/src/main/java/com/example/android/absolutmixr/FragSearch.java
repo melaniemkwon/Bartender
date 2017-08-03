@@ -2,10 +2,12 @@ package com.example.android.absolutmixr;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +56,8 @@ public class FragSearch extends DialogFragment {
     protected static HashMap<String, String> glassMap = new HashMap<String, String>();
     protected static HashMap<String, String> timeMap = new HashMap<String, String>();
 
+    View view;
+
     public FragSearch() {
     }
 
@@ -64,7 +68,8 @@ public class FragSearch extends DialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.advanced_search, container, false);
+        view = inflater.inflate(R.layout.advanced_search, container, false);
+
 
         editTextContent = (EditText) view.findViewById(R.id.drink_content_edit_text);
         spinnerTaste = (Spinner) view.findViewById(R.id.drink_taste_spinner);
@@ -110,6 +115,9 @@ public class FragSearch extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+
         advSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -127,29 +135,11 @@ public class FragSearch extends DialogFragment {
                     e.printStackTrace();
                 }
 
-//                try {
-//                    json = NetworkUtils.getResponseFromHttpUrl(url);
-//                    NetworkUtils.parseJSON(json);
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
 
-                //OnDialogCloseListener activity = (OnDialogCloseListener) getActivity();
-                //activity.closeDialog(searchEntry.getText().toString());
                 Log.d(TAG, "search button clicked");
 
+                viewPager.setCurrentItem(0);
 
-                //getFragmentManager().beginTransaction().replace(R.id.recycler2, new FragCocktails()).commit();
-
-//                Fragment fragment = new FragCocktails();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.recycler2, fragment);
-//                fragmentTransaction.addToBackStack(null);
-//                fragmentTransaction.commit();
 
                 FragSearch.this.dismiss();
 

@@ -5,14 +5,6 @@
     android:id="@+id/activity_second"
     android:gravity="center">
 
-    <!--<TextView-->
-        <!--android:id="@+id/tv_message"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:text="Search Activity"-->
-        <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
-
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -31,12 +23,6 @@
                 android:layout_gravity="left"
                 android:text="Drink Contains: "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <!--<Spinner-->
-                <!--android:id="@+id/drink_content_spinner"-->
-                <!--android:paddingTop="3dp"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"></Spinner>-->
 
             <EditText
                 android:id="@+id/drink_content_edit_text"

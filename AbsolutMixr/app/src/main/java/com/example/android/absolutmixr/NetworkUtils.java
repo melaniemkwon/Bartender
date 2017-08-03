@@ -166,8 +166,6 @@ public class NetworkUtils {
                 .appendPath(Uri.decode(searchParams))
                 .appendQueryParameter("apiKey", apiKey).build();
 
-//        builtUri.buildUpon().appendPath("with/" + with +"/").build();
-//        builtUri.buildUpon().appendQueryParameter("apiKey", apiKey).build();
         URL url = null;
         try {
             url = new URL(builtUri.toString());

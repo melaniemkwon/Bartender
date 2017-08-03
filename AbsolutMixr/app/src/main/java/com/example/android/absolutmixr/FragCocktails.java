@@ -86,6 +86,7 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
                     result = NetworkUtils.parseJSON(json);
 
                     //Advanced search JSON parsing
+                    //TODO: Make sure search spinners are populated only once
                     try {
                         NetworkUtils.parseJsonAdvancedSearch(json);
                     } catch (JSONException e){

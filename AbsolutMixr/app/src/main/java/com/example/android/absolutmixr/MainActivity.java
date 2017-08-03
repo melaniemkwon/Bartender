@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
         pagerAdapter.addFragment(new FragCabinet(),"Cabinet");
         pagerAdapter.addFragment(new FragWishlist(), "Wishlist");
         pagerAdapter.addFragment(new FragBAC(), "BAC Calc");
-        pagerAdapter.addFragment(new AdvSearch(), "Advanced Search");
+        //pagerAdapter.addFragment(new AdvSearch(), "Advanced Search");
         viewPager.setAdapter(pagerAdapter);
     }
     // ##### END MATERIAL DESIGN TAB #####

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -30,16 +31,21 @@ public class AdvSearch extends Fragment {
     private Spinner spinnerSkill;
     private Spinner spinnerGlass;
     private Spinner spinnerTime;
-    private Spinner spinnerIsAlcoholic;
     private Button advSearchButton;
     private TextView urlTestingTV;
 
-
+    //sets are used to auto-populate arrays in spinners without repeats
     protected static HashSet<String> allTastes = new HashSet<String>();
     protected static HashSet<String> allSkills = new HashSet<String>();
     protected static HashSet<String> allGlasses = new HashSet<String>();
     protected static HashSet<String> allTimes = new HashSet<String>();
-    protected static HashSet<String> allAlcoholic = new HashSet<String>();
+
+    //using a map to store key value pairs for contents of strings in array
+    //necessary for search cases such as in occasion spinner,
+    // where "text" : "After-Dinner Drinks" has search parameter "id": "after-dinner"
+    protected static HashMap<String, String> tasteMap = new HashMap<String, String>();
+    protected static HashMap<String, String> glassMap = new HashMap<String, String>();
+    protected static HashMap<String, String> timeMap = new HashMap<String, String>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,14 +56,11 @@ public class AdvSearch extends Fragment {
         spinnerSkill = (Spinner) view.findViewById(R.id.drink_skill_spinner);
         spinnerGlass = (Spinner) view.findViewById(R.id.drink_glass_spinner);
         spinnerTime = (Spinner) view.findViewById(R.id.drink_time_spinner);
-        spinnerIsAlcoholic = (Spinner) view.findViewById(R.id.drink_is_alcoholic_spinner);
         advSearchButton = (Button) view.findViewById(R.id.bt_adv_search);
         urlTestingTV = (TextView) view.findViewById(R.id.url_test_tv);
 
         addAllOptionToSets();
         setSpinners();
-
-
 
         return view;
     }
@@ -67,7 +70,6 @@ public class AdvSearch extends Fragment {
         allSkills.add("-All Drinks-");
         allGlasses.add("-All Drinks-");
         allTimes.add("-All Drinks-");
-        allAlcoholic.add("-All Drinks-");
     }
 
     private Object[] sortSet(HashSet<String> set){
@@ -81,7 +83,6 @@ public class AdvSearch extends Fragment {
         spinnerTaste.setAdapter(getArrayAdapter(allTastes));
         spinnerSkill.setAdapter((getArrayAdapter(allSkills)));
         spinnerTime.setAdapter(getArrayAdapter(allTimes));
-        spinnerIsAlcoholic.setAdapter(getArrayAdapter(allAlcoholic));
 
     }
 
@@ -98,7 +99,9 @@ public class AdvSearch extends Fragment {
             @Override
             public void onClick(View v){
                 String drinkContains = editTextContent.getText().toString();
-                URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains, spinnerSkill.getSelectedItem().toString());
+                URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains,
+                        spinnerSkill.getSelectedItem().toString(), spinnerTaste.getSelectedItem().toString(),
+                        spinnerGlass.getSelectedItem().toString(), spinnerTime.getSelectedItem().toString());
 
                 try {
                     String urlString = URLDecoder.decode(url.toString(), "utf-8");

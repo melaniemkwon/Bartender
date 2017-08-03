@@ -5,28 +5,30 @@
     android:id="@+id/activity_second"
     android:gravity="center">
 
-    <TextView
-        android:id="@+id/tv_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Search Activity"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_message"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="Search Activity"-->
+        <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
 
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="4dp"
+            android:padding="1dp"
             android:weightSum="1"
+            android:layout_gravity="start"
             tools:context=".search">
 
             <TextView
                 android:id="@+id/drink_content_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:text="Drink Contains: "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -38,9 +40,10 @@
 
             <EditText
                 android:id="@+id/drink_content_edit_text"
-                android:paddingTop="3dp"
+                android:paddingTop="1dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Wonder..."/>
 
         </LinearLayout>
 
@@ -50,10 +53,11 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="4dp"
+        android:layout_gravity="start"
+        android:padding="1dp"
         android:weightSum="1"
         tools:context=".search">
 
@@ -66,19 +70,21 @@
 
         <Spinner
             android:id="@+id/drink_taste_spinner"
-            android:paddingTop="2dp"
+            android:paddingTop="0dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.Holo.Light.Spinner"></Spinner>
 
     </LinearLayout>
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="4dp"
+        android:layout_gravity="start"
+        android:padding="1dp"
         android:weightSum="1"
         tools:context=".search">
 
@@ -91,7 +97,7 @@
 
         <Spinner
             android:id="@+id/drink_skill_spinner"
-            android:paddingTop="2dp"
+            style="@android:style/Widget.Holo.Light.Spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></Spinner>
 
@@ -99,10 +105,10 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="4dp"
+        android:padding="1dp"
         android:weightSum="1"
         tools:context=".search">
 
@@ -115,7 +121,7 @@
 
         <Spinner
             android:id="@+id/drink_glass_spinner"
-            android:paddingTop="2dp"
+            style="@android:style/Widget.Holo.Light.Spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></Spinner>
 
@@ -123,10 +129,10 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="4dp"
+        android:padding="1dp"
         android:weightSum="1"
         tools:context=".search">
 
@@ -134,40 +140,40 @@
             android:id="@+id/drink_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Suitable time: "
+            android:text="Occasion: "
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Spinner
             android:id="@+id/drink_time_spinner"
-            android:paddingTop="2dp"
+            style="@android:style/Widget.Holo.Light.Spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></Spinner>
 
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="4dp"
-        android:weightSum="1"
-        tools:context=".search">
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:padding="1dp"-->
+        <!--android:weightSum="1"-->
+        <!--tools:context=".search">-->
 
-        <TextView
-            android:id="@+id/drink_is_alcoholic_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Alcoholic Beverage: "
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <!--<TextView-->
+            <!--android:id="@+id/drink_is_alcoholic_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Alcoholic Beverage: "-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
 
-        <Spinner
-            android:id="@+id/drink_is_alcoholic_spinner"
-            android:paddingTop="2dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Spinner>
+        <!--<Spinner-->
+            <!--android:id="@+id/drink_is_alcoholic_spinner"-->
+            <!--android:paddingTop="1dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"></Spinner>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 
     <Button

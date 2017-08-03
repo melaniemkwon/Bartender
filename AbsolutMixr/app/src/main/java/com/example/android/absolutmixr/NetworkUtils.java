@@ -113,29 +113,33 @@ public class NetworkUtils {
             JSONObject drink = items.getJSONObject(i);
 
             JSONObject glassResult = drink.getJSONObject("servedIn");
-            AdvSearch.allGlasses.add(glassResult.getString("text"));
+            FragSearch.allGlasses.add(glassResult.getString("text"));
+            FragSearch.glassMap.put(glassResult.getString("text"), glassResult.getString("id"));
 
             JSONArray tasteArray = drink.getJSONArray("tastes");
             for (int j = 0; j < tasteArray.length(); j++){
                 JSONObject tasteText = tasteArray.getJSONObject(j);
-                AdvSearch.allTastes.add(tasteText.getString("text"));
+                FragSearch.allTastes.add(tasteText.getString("text"));
+
+                //key ("text, "id")
+                FragSearch.tasteMap.put(tasteText.getString("text"), tasteText.getString("id"));
             }
 
             JSONObject skillResult = drink.getJSONObject("skill");
-            AdvSearch.allSkills.add(skillResult.getString("name"));
+            FragSearch.allSkills.add(skillResult.getString("name"));
 
             JSONArray timeArray = drink.getJSONArray("occasions");
             for (int j = 0; j < timeArray.length(); j++){
                 JSONObject timeText = timeArray.getJSONObject(j);
-                AdvSearch.allTimes.add(timeText.getString("text"));
+                FragSearch.allTimes.add(timeText.getString("text"));
+                FragSearch.timeMap.put(timeText.getString("text"), timeText.getString("id"));
             }
 
-            AdvSearch.allAlcoholic.add(drink.getString("isAlcoholic"));
         }
 
     }
 
-    public static URL makeAdvancedSearchUrl (String with, String skill){
+    public static URL makeAdvancedSearchUrl (String with, String skill, String taste, String glass, String time){
 
         String searchParams = "";
 
@@ -144,6 +148,18 @@ public class NetworkUtils {
         }
         if (!skill.equals("-All Drinks-")){
             searchParams= searchParams + "skill/" + skill.toLowerCase() + "/";
+        }
+        if (!taste.equals("-All Drinks-")){
+            String tasteID = FragSearch.tasteMap.get(taste);
+            searchParams= searchParams + "tasting/" + tasteID + "/";
+        }
+        if (!glass.equals("-All Drinks-")){
+            String glassID = FragSearch.glassMap.get(glass);
+            searchParams= searchParams + "servedin/" + glassID + "/";
+        }
+        if (!time.equals("-All Drinks-")){
+            String timeID = FragSearch.timeMap.get(time);
+            searchParams= searchParams + "for/" + timeID + "/";
         }
 
         Uri builtUri = Uri.parse(BASE_ADV_SEARCH).buildUpon()

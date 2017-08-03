@@ -6,8 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
 import com.squareup.picasso.Picasso;
@@ -37,6 +39,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         public final TextView mDrinkRating;
         public final TextView mDrinkColor;
         public final ImageView mDrinkpic;
+        public final CheckBox mCheck;
 
         //creating the TextView to make it easier to bind in the onBindViewHolder
         public AdapterDrinkViewHolder(View view){
@@ -45,6 +48,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
             mDrinkRating = (TextView) view.findViewById(R.id.rating);
             mDrinkColor = (TextView) view.findViewById(R.id.color);
             mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
+            mCheck = (CheckBox) view.findViewById(R.id.starCheck);
         }
 
 
@@ -63,7 +67,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
     @Override
     public void onBindViewHolder(AdapterDrinkViewHolder holder, int position) {
-        DrinkItem drinkcount = data.get(position);
+        final DrinkItem drinkcount = data.get(position);
 
         //Logs to see if it can make it here used for debugging.
         Log.v(TAG, "Made it to onBind name");
@@ -80,6 +84,25 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                     .load(url)
                     .into(holder.mDrinkpic);
         }
+        holder.mCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int duration = Toast.LENGTH_SHORT;
+                boolean checked = ((CheckBox)v).isChecked();
+                String check = drinkcount.getName();
+
+                if(checked == true){
+                    check = check + " added to wishlist";
+                    Toast toast = Toast.makeText(context,check,duration);
+                    toast.show();
+                }
+                else{
+                    check =  check+ " removed from wishlist";
+                    Toast toast = Toast.makeText(context,check,duration);
+                    toast.show();
+                }
+            }
+        });
     }
 
     @Override

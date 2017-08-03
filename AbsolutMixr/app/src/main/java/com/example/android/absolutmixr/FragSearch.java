@@ -3,6 +3,9 @@ package com.example.android.absolutmixr;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
@@ -107,25 +113,50 @@ public class FragSearch extends DialogFragment {
         advSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                String urlString;
+                String json;
                 String drinkContains = editTextContent.getText().toString();
                 URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains,
                         spinnerSkill.getSelectedItem().toString(), spinnerTaste.getSelectedItem().toString(),
                         spinnerGlass.getSelectedItem().toString(), spinnerTime.getSelectedItem().toString());
 
                 try {
-                    String urlString = URLDecoder.decode(url.toString(), "utf-8");
+                    urlString = URLDecoder.decode(url.toString(), "utf-8");
                     urlTestingTV.setText(urlString);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
 
+//                try {
+//                    json = NetworkUtils.getResponseFromHttpUrl(url);
+//                    NetworkUtils.parseJSON(json);
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+
                 //OnDialogCloseListener activity = (OnDialogCloseListener) getActivity();
                 //activity.closeDialog(searchEntry.getText().toString());
                 Log.d(TAG, "search button clicked");
-                //FragSearch.this.dismiss();
+
+
+                //getFragmentManager().beginTransaction().replace(R.id.recycler2, new FragCocktails()).commit();
+
+//                Fragment fragment = new FragCocktails();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.recycler2, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+
+                FragSearch.this.dismiss();
 
             }
         });
 
     }
+
+
 }

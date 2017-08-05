@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -37,6 +38,7 @@ public class FragSearch extends DialogFragment {
 
     private EditText editTextContent;
     private Spinner spinnerTaste;
+    private Spinner spinnerColor;
     private Spinner spinnerSkill;
     private Spinner spinnerGlass;
     private Spinner spinnerTime;
@@ -48,6 +50,7 @@ public class FragSearch extends DialogFragment {
     protected static HashSet<String> allSkills = new HashSet<String>();
     protected static HashSet<String> allGlasses = new HashSet<String>();
     protected static HashSet<String> allTimes = new HashSet<String>();
+    protected static HashSet<String> allColors = new HashSet<String>();
 
     //using a map to store key value pairs for contents of strings in array
     //necessary for search cases such as in occasion spinner,
@@ -73,11 +76,13 @@ public class FragSearch extends DialogFragment {
 
         editTextContent = (EditText) view.findViewById(R.id.drink_content_edit_text);
         spinnerTaste = (Spinner) view.findViewById(R.id.drink_taste_spinner);
+        spinnerColor = (Spinner) view.findViewById(R.id.drink_color_spinner);
         spinnerSkill = (Spinner) view.findViewById(R.id.drink_skill_spinner);
         spinnerGlass = (Spinner) view.findViewById(R.id.drink_glass_spinner);
         spinnerTime = (Spinner) view.findViewById(R.id.drink_time_spinner);
         advSearchButton = (Button) view.findViewById(R.id.bt_adv_search);
         urlTestingTV = (TextView) view.findViewById(R.id.url_test_tv);
+
 
         addAllOptionToSets();
         setSpinners();
@@ -86,10 +91,11 @@ public class FragSearch extends DialogFragment {
     }
 
     private void addAllOptionToSets(){
-        allTastes.add("-All Drinks-");
-        allSkills.add("-All Drinks-");
-        allGlasses.add("-All Drinks-");
-        allTimes.add("-All Drinks-");
+        allTastes.add("-Show All-");
+        allColors.add("-Show All-");
+        allSkills.add("-Show All-");
+        allGlasses.add("-Show All-");
+        allTimes.add("-Show All-");
     }
 
     private Object[] sortSet(HashSet<String> set){
@@ -100,6 +106,7 @@ public class FragSearch extends DialogFragment {
 
     private void setSpinners(){
         spinnerGlass.setAdapter(getArrayAdapter(allGlasses));
+        spinnerColor.setAdapter(getArrayAdapter(allColors));
         spinnerTaste.setAdapter(getArrayAdapter(allTastes));
         spinnerSkill.setAdapter((getArrayAdapter(allSkills)));
         spinnerTime.setAdapter(getArrayAdapter(allTimes));
@@ -126,20 +133,15 @@ public class FragSearch extends DialogFragment {
                 String drinkContains = editTextContent.getText().toString();
                 URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains,
                         spinnerSkill.getSelectedItem().toString(), spinnerTaste.getSelectedItem().toString(),
-                        spinnerGlass.getSelectedItem().toString(), spinnerTime.getSelectedItem().toString());
+                        spinnerGlass.getSelectedItem().toString(), spinnerTime.getSelectedItem().toString(),
+                        spinnerColor.getSelectedItem().toString());
 
-                try {
-                    urlString = URLDecoder.decode(url.toString(), "utf-8");
-                    urlTestingTV.setText(urlString);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-
+                FragCocktails fg = (FragCocktails) getActivity().getSupportFragmentManager().getFragments().get(0);
+                getActivity().getSupportFragmentManager().beginTransaction().detach(fg).attach(fg).commit();
 
                 Log.d(TAG, "search button clicked");
 
                 viewPager.setCurrentItem(0);
-
 
                 FragSearch.this.dismiss();
 

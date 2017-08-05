@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
         pagerAdapter.addFragment(new FragCabinet(),"Cabinet");
         pagerAdapter.addFragment(new FragWishlist(), "Wishlist");
         pagerAdapter.addFragment(new FragBAC(), "BAC Calc");
-        //pagerAdapter.addFragment(new AdvSearch(), "Advanced Search");
         viewPager.setAdapter(pagerAdapter);
     }
     // ##### END MATERIAL DESIGN TAB #####
@@ -81,4 +80,5 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
     }
 
     // DONE: replace AsyncTask with AsyncTaskLoader (which is implemented in FragCocktails)
+
 }

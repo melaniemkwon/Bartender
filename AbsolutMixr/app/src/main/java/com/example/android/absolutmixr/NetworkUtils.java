@@ -33,9 +33,30 @@ public class NetworkUtils {
     //these two constants used for advanced search url building
     public static final String BASE_ADV_SEARCH = "https://addb.absolutdrinks.com/drinks/";
     public static final String apiKey = "bb66369811204fb395a943c7008414df";
+    protected static URL storedUrl = null;
 
     public static URL makeURL (){
+        if (!(storedUrl == null)){
+            return storedUrl;
+        }
+
         Uri uri = Uri.parse(Base_Url).buildUpon()
+                .build();
+        URL url = null;
+        try {
+            String urlString = uri.toString();
+            url = new URL(uri.toString());
+
+        }catch(MalformedURLException e){
+            e.printStackTrace();
+        }
+
+        Log.v(TAG, "Built URI " + url +")(*&^%$#@!)(*&^%$#@*&^%$#@*&^%$#@)(*&^%$#@(*&^%$#@)(*&^%$#@");
+        return url;
+    }
+
+    public static URL encodeToUrl(String string){
+        Uri uri = Uri.parse(string).buildUpon()
                 .build();
         URL url = null;
         try {
@@ -135,46 +156,60 @@ public class NetworkUtils {
                 FragSearch.timeMap.put(timeText.getString("text"), timeText.getString("id"));
             }
 
+            FragSearch.allColors.add(drink.getString("color"));
+
         }
 
     }
 
-    public static URL makeAdvancedSearchUrl (String with, String skill, String taste, String glass, String time){
+    public static URL makeAdvancedSearchUrl (String with, String skill, String taste, String glass, String time, String color){
 
         String searchParams = "";
 
         if (!with.equals("")){
             searchParams= searchParams + "with/" + with.toLowerCase() + "/";
         }
-        if (!skill.equals("-All Drinks-")){
+        if (!skill.equals("-Show All-")){
             searchParams= searchParams + "skill/" + skill.toLowerCase() + "/";
         }
-        if (!taste.equals("-All Drinks-")){
+        if (!color.equals("-Show All-")){
+            searchParams= searchParams + "colored/" + color.toLowerCase() + "/";
+        }
+        if (!taste.equals("-Show All-")){
             String tasteID = FragSearch.tasteMap.get(taste);
             searchParams= searchParams + "tasting/" + tasteID + "/";
         }
-        if (!glass.equals("-All Drinks-")){
+        if (!glass.equals("-Show All-")){
             String glassID = FragSearch.glassMap.get(glass);
             searchParams= searchParams + "servedin/" + glassID + "/";
         }
-        if (!time.equals("-All Drinks-")){
+        if (!time.equals("-Show All-")){
             String timeID = FragSearch.timeMap.get(time);
             searchParams= searchParams + "for/" + timeID + "/";
         }
 
         Uri builtUri = Uri.parse(BASE_ADV_SEARCH).buildUpon()
-                .appendPath(Uri.decode(searchParams))
+                .appendPath(searchParams)//(Uri.decode(searchParams))
                 .appendQueryParameter("apiKey", apiKey).build();
 
         URL url = null;
         try {
             url = new URL(builtUri.toString());
+            storedUrl = url;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
-        Log.v(TAG, "Built URI " + url);
+        Log.d(TAG, "Built URI " + url);
 
         return url;
+    }
+
+    public static URL getStoredUrl(){
+        return storedUrl;
+    }
+
+    public static void resetStoredUrl(){
+        storedUrl = null;
     }
 }

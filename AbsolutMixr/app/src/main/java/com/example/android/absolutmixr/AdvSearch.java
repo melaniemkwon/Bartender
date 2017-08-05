@@ -29,6 +29,7 @@ public class AdvSearch extends Fragment {
     private EditText editTextContent;
     private Spinner spinnerTaste;
     private Spinner spinnerSkill;
+    private Spinner spinnerColor;
     private Spinner spinnerGlass;
     private Spinner spinnerTime;
     private Button advSearchButton;
@@ -37,6 +38,7 @@ public class AdvSearch extends Fragment {
     //sets are used to auto-populate arrays in spinners without repeats
     protected static HashSet<String> allTastes = new HashSet<String>();
     protected static HashSet<String> allSkills = new HashSet<String>();
+    protected static HashSet<String> allColors = new HashSet<String>();
     protected static HashSet<String> allGlasses = new HashSet<String>();
     protected static HashSet<String> allTimes = new HashSet<String>();
 
@@ -53,6 +55,7 @@ public class AdvSearch extends Fragment {
 
         editTextContent = (EditText) view.findViewById(R.id.drink_content_edit_text);
         spinnerTaste = (Spinner) view.findViewById(R.id.drink_taste_spinner);
+        spinnerColor = (Spinner) view.findViewById(R.id.drink_color_spinner);
         spinnerSkill = (Spinner) view.findViewById(R.id.drink_skill_spinner);
         spinnerGlass = (Spinner) view.findViewById(R.id.drink_glass_spinner);
         spinnerTime = (Spinner) view.findViewById(R.id.drink_time_spinner);
@@ -68,6 +71,7 @@ public class AdvSearch extends Fragment {
     private void addAllOptionToSets(){
         allTastes.add("-All Drinks-");
         allSkills.add("-All Drinks-");
+        allColors.add("-All Drinks-");
         allGlasses.add("-All Drinks-");
         allTimes.add("-All Drinks-");
     }
@@ -80,6 +84,7 @@ public class AdvSearch extends Fragment {
 
     private void setSpinners(){
         spinnerGlass.setAdapter(getArrayAdapter(allGlasses));
+        spinnerColor.setAdapter(getArrayAdapter(allColors));
         spinnerTaste.setAdapter(getArrayAdapter(allTastes));
         spinnerSkill.setAdapter((getArrayAdapter(allSkills)));
         spinnerTime.setAdapter(getArrayAdapter(allTimes));
@@ -101,7 +106,7 @@ public class AdvSearch extends Fragment {
                 String drinkContains = editTextContent.getText().toString();
                 URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains,
                         spinnerSkill.getSelectedItem().toString(), spinnerTaste.getSelectedItem().toString(),
-                        spinnerGlass.getSelectedItem().toString(), spinnerTime.getSelectedItem().toString());
+                        spinnerGlass.getSelectedItem().toString(), spinnerTime.getSelectedItem().toString(), spinnerColor.getSelectedItem().toString());
 
                 try {
                     String urlString = URLDecoder.decode(url.toString(), "utf-8");

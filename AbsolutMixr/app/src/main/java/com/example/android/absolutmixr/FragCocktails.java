@@ -25,10 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-/**
- * Created by melaniekwon on 7/27/17.
- */
-
 public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>>,View.OnClickListener {
 
     private static final String TAG = FragCocktails.class.getSimpleName();
@@ -39,6 +35,8 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_cocktails,container,false);
+
+        //Log.d(TAG, "TAG: "+TAG);
 
         // Get reference to RecyclerView
         mDrink = (RecyclerView) view.findViewById(R.id.recycler2);
@@ -57,6 +55,7 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 
         return view;
     }
+
 
     // ##### AsyncTaskLoader #####
     //       Implement methods onCreateLoader, onLoadFinished, and onLoaderReset
@@ -91,7 +90,6 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
                     result = NetworkUtils.parseJSON(json);
 
                     //Advanced search JSON parsing
-                    //TODO: Make sure search spinners are populated only once
                     try {
                         NetworkUtils.parseJsonAdvancedSearch(json);
                     } catch (JSONException e){
@@ -123,6 +121,7 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 
 //            displayDrinkData();
             mAdapter.setDrinkData(result);
+            NetworkUtils.resetStoredUrl();
 
             //loadDrinkData();
         } else {
@@ -169,4 +168,5 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
             toast.show();
         }
     }
+
 }

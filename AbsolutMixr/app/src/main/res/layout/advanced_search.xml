@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="Drink Contains: "
+                android:text="Ingredient: "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <EditText
@@ -29,7 +29,7 @@
                 android:paddingTop="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Wonder..."/>
+                android:hint="Show All"/>
 
         </LinearLayout>
 
@@ -60,6 +60,31 @@
 
     </LinearLayout>
 
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="start"
+        android:padding="1dp"
+        android:weightSum="1"
+        tools:context=".search">
+
+        <TextView
+            android:id="@+id/drink_color_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Spinner
+            android:id="@+id/drink_color_spinner"
+            style="@android:style/Widget.Holo.Light.Spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Spinner>
+
+    </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

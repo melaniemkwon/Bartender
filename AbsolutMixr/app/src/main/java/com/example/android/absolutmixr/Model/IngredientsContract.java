@@ -1,4 +1,4 @@
-package com.example.android.absolutmixr.models;
+package com.example.android.absolutmixr.Model;
 
 import android.provider.BaseColumns;
 

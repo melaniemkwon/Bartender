@@ -3,7 +3,7 @@ package com.example.android.absolutmixr;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.android.absolutmixr.models.Ingredient;
+import com.example.android.absolutmixr.Model.Ingredient;
 
 import org.json.JSONArray;
 import org.json.JSONException;

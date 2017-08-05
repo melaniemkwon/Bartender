@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:weightSum="1">
+    <EditText
+        android:id="@+id/search_drinks_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search drinks..." />
+
+    <Button
+        android:id="@+id/search_drinks_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search" />
+</LinearLayout>

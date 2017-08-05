@@ -1,34 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginLeft ="32dp"
+        android:layout_marginTop ="32dp"
+        android:layout_marginRight ="32dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="#c1c0c0">
+        android:background="@drawable/graybackground">
+
+        <TextView
+            android:id="@+id/genderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:textSize="22sp"
+            android:text="Gender" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:layout_alignParentRight="true"
             android:checkedButton="@+id/maleRadio">
-
-            <TextView
-                android:id="@+id/genderTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingTop="20dp"
-                android:textSize="20sp"
-                android:text="Gender" />
 
             <RadioButton
                 android:id="@+id/maleRadio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="16dp"
                 android:text="Male"/>
 
             <RadioButton
@@ -42,15 +51,17 @@
             android:layout_below="@id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:textSize="20sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:textSize="22sp"
             android:text="Weight"/>
 
         <Spinner
             android:id="@+id/weightSpinner"
+            android:paddingTop="16dp"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/weightTextView"
             android:layout_below="@id/radioGroup"/>
 
         <TextView
@@ -58,16 +69,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/weightTextView"
-            android:paddingLeft="20dp"
-            android:textSize="20sp"
-            android:text="Drinks (0.60 oz of Alcohol)"/>
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:textSize="22sp"
+            android:text="Standard Drinks"/>
 
         <Spinner
             android:id="@+id/drinkSpinner"
             android:layout_below="@+id/weightTextView"
-            android:layout_toRightOf="@id/numDrinkTextView"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="16dp"
             android:entries="@array/num_drinks_array"/>
 
         <TextView
@@ -75,16 +88,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/numDrinkTextView"
-            android:textSize="20sp"
-            android:paddingLeft="20dp"
+            android:textSize="22sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
             android:text="Hours Drinking"/>
 
         <Spinner
             android:id="@+id/hourSpinner"
+            android:paddingTop="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/hourTextView"
+            android:layout_alignParentRight="true"
             android:layout_below="@id/numDrinkTextView"
+            android:entries="@array/num_drinks_array"/>
+
+        <TextView
+            android:id="@+id/stateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hourTextView"
+            android:textSize="22sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="State"/>
+
+        <Spinner
+            android:id="@+id/stateSpinner"
+            android:paddingTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/hourTextView"
             android:entries="@array/num_drinks_array"/>
     </RelativeLayout>
 
@@ -93,24 +128,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="#5c98e2"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bluebackground"
         android:text="Estimate"
-        android:textSize="20sp"/>
+        android:textColor="#616161"
+        android:textSize="14sp"/>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="263dp"
-        android:layout_height="192dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.80"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:adjustViewBounds="true"
-        android:background="@drawable/standard_drink" />
+        android:background="@drawable/standard_drink"
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/bac"
-        android:layout_marginLeft="20dp"
-        android:text="0.00"
-        android:textSize="20sp"
+        android:layout_marginLeft="16dp"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 </LinearLayout>

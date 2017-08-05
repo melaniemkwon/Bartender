@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(myIntent);
                 return true;
             case R.id.bac:
-
+                Intent myIntent2 = new Intent(MainActivity.this, BarcodeScanner.class);
+                MainActivity.this.startActivity(myIntent2);
                 return true;
 
         }return true;

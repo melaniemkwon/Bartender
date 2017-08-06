@@ -42,8 +42,10 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         public final TextView mDrinkColor;
         public final ImageView mDrinkpic;
         public final CheckBox mCheck;
+
         //instantiating
         public final LinearLayout linearLayout;
+
 
         //creating the TextView to make it easier to bind in the onBindViewHolder
         public AdapterDrinkViewHolder(View view){
@@ -53,8 +55,10 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
             mDrinkColor = (TextView) view.findViewById(R.id.color);
             mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
             mCheck = (CheckBox) view.findViewById(R.id.starCheck);
+
             //creating the layout and getting it
             linearLayout = (LinearLayout) view.findViewById(R.id.clickable);
+
         }
 
 
@@ -120,8 +124,6 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                 context.startActivity(intent);
             }
         });
-
-
     }
 
     @Override

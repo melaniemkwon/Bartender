@@ -2,13 +2,9 @@ package com.example.android.absolutmixr;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -23,8 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
@@ -38,15 +33,16 @@ public class FragBAC extends Fragment {
     private Button estimate;
     private TextView bac;
     private TextView toSober;
+    private TextView drinkMeter;
     private RadioGroup genderGroup;
     private ImageView imageView;
+    private ImageView statusView;
     private String TAG = "fragbac";
     private double bacNumber;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_bac,container,false);
-
 
         Dialog dialog = new AlertDialog.Builder(getContext())
                 .setPositiveButton("Accept", null)
@@ -70,11 +66,13 @@ public class FragBAC extends Fragment {
         genderGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
         imageView = (ImageView) view.findViewById(R.id.imageView);
         toSober = (TextView) view.findViewById(R.id.toSober);
+        statusView = (ImageView) view.findViewById(R.id.statusView);
+        drinkMeter = (TextView) view.findViewById(R.id.drinkMeterTextView);
 
-        String[] weightList = new String[54];
+        String[] weightList = new String[100];
 
         for(int i = 0; i < weightList.length; i++) {
-            weightList[i] = String.valueOf(i * 5 + 85);
+            weightList[i] = String.valueOf(i * 2 + 90);
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_spinner_item, weightList);
@@ -82,6 +80,8 @@ public class FragBAC extends Fragment {
         weightSpinner.setAdapter(adapter);
         bac.setVisibility(view.GONE);
         toSober.setVisibility(view.GONE);
+        statusView.setVisibility(view.GONE);
+        drinkMeter.setVisibility(view.GONE);
 
         estimate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,18 +100,19 @@ public class FragBAC extends Fragment {
 
 
     public void displayBAC(double bac, TextView textView) {
-        DecimalFormat twoPlace = new DecimalFormat("#,##0.00");
+        DecimalFormat df = new DecimalFormat("#,###0.000");
+        df.setRoundingMode(RoundingMode.DOWN);
 
         if(bac == 0)
-            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou are completely sober!");
+            textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're completely sober!");
         else if(bac <= 0.04)
-            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're a buzzing aren't you?");
+            textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're a buzzing aren't you?");
         else if(bac <= 0.08)
-            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're now tipsy. Slow down.");
+            textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're tipsy. Slow down.");
         else if(bac <= 0.15)
-            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're a drunk. Please don't drive.");
+            textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're drunk. Please don't drive.");
         else
-            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're wasted now.");
+            textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're wasted now. Good luck.");
     }
 
     public double calculateBAC(String gender, int numDrinks, int weight, int hours) {
@@ -127,6 +128,7 @@ public class FragBAC extends Fragment {
         imageView.setVisibility(View.GONE);
         bac.setVisibility(View.VISIBLE);
         toSober(bacNumber);
+        status(bacNumber);
 
         if(bacNumber < 0)
             return 0;
@@ -138,15 +140,45 @@ public class FragBAC extends Fragment {
 
         if(timeToSober > 0) {
             Log.d(TAG, String.valueOf(timeToSober));
-            int hours = (int) Math.floor(timeToSober);
-            int mins = (int) ((timeToSober % 1 * 100) * .60);
+            String hours = String.valueOf((int) Math.floor(timeToSober)) + " hour";
+            String minutes = String.valueOf((int) ((timeToSober % 1 * 100) * .60)) + " minute";
 
-            if(mins < 10)
-                toSober.setText("Time Left Until 0% BAC " + hours + ":0" + mins + " hours");
-            else
-                toSober.setText("Time Left Until 0% BAC " + hours + ":" + mins + " hours");
-            
+            if((int) Math.floor(timeToSober) != 1)
+                hours += "s";
+            if((int) ((timeToSober % 1 * 100) * .60) != 1)
+                minutes += "s";
+
+            toSober.setText(hours + " & " + minutes + " until BAC is 0.00");
             toSober.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void status(double bac) {
+        AnimationDrawable statusAnimation;
+
+        if(bac <= 0)
+            statusView.setBackgroundResource(R.drawable.green);
+        else if(bac <= 0.03) {
+            statusView.setBackgroundResource(R.drawable.greenanimation);
+            statusAnimation = (AnimationDrawable) statusView.getBackground();
+            statusAnimation.start();
+        }
+        else if(bac <= 0.07) {
+            statusView.setBackgroundResource(R.drawable.yellowanimation);
+            statusAnimation = (AnimationDrawable) statusView.getBackground();
+            statusAnimation.start();
+        }
+        else if(bac < 0.08)
+            statusView.setBackgroundResource(R.drawable.yellow);
+        else if(bac <= 0.17) {
+            statusView.setBackgroundResource(R.drawable.redanimation);
+            statusAnimation = (AnimationDrawable) statusView.getBackground();
+            statusAnimation.start();
+        }
+        else
+            statusView.setBackgroundResource(R.drawable.red);
+
+        drinkMeter.setVisibility(View.VISIBLE);
+        statusView.setVisibility(View.VISIBLE);
     }
 }

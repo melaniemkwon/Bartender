@@ -100,7 +100,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/numDrinkTextView"
             android:paddingBottom="16dp"
-            android:entries="@array/num_drinks_array"/>
+            android:entries="@array/hour_array"/>
     </RelativeLayout>
 
     <Button
@@ -130,19 +130,48 @@
 
         <TextView
             android:id="@+id/bac"
-            android:layout_marginLeft="32dp"
-            android:textSize="22sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="18sp"
             android:text="0.00"
-            android:layout_width="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/toSober"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:paddingTop="8dp"
             android:layout_below="@id/bac"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/drinkMeterTextView"
+            android:textSize="22sp"
+            android:text="Drive-O-Meter"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:paddingTop="8dp"
+            android:layout_below="@id/toSober"
             android:layout_marginLeft="32dp"
-            android:layout_width="wrap_content"
+            android:layout_marginRight="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/statusView"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/drinkMeterTextView"
+            android:layout_marginLeft="96dp"
+            android:layout_marginRight="96dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>
 </LinearLayout>

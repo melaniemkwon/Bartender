@@ -1,10 +1,15 @@
 package com.example.android.absolutmixr.Model;
 
+//importing serialable to send an object to another activity
+
+import java.io.Serializable;
+
 /**
  * Created by Leonard on 7/12/2017.
  */
 
-public class DrinkItem {
+@SuppressWarnings("serial")
+public class DrinkItem  implements Serializable{
     //the name of the drink
     private String name;
 

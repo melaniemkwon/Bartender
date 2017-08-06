@@ -17,10 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 
@@ -34,8 +37,10 @@ public class FragBAC extends Fragment {
     private Spinner hourSpinner;
     private Button estimate;
     private TextView bac;
+    private TextView toSober;
     private RadioGroup genderGroup;
-    private String TAG = "bacactivity";
+    private ImageView imageView;
+    private String TAG = "fragbac";
     private double bacNumber;
 
     @Override
@@ -46,7 +51,7 @@ public class FragBAC extends Fragment {
         Dialog dialog = new AlertDialog.Builder(getContext())
                 .setPositiveButton("Accept", null)
                 .setTitle("Disclaimer")
-                .setMessage("BAC readings may not be accurate.\nWe are not liable for any choices\nyou make because of the readings.\nDo you accept these terms?")
+                .setMessage("BAC readings may not be accurate. We are not liable for any choices you make because of the readings. Do you accept these terms?")
                 .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -63,6 +68,8 @@ public class FragBAC extends Fragment {
         estimate = (Button) view.findViewById(R.id.estimate);
         bac = (TextView) view.findViewById(R.id.bac);
         genderGroup = (RadioGroup) view.findViewById(R.id.radioGroup);
+        imageView = (ImageView) view.findViewById(R.id.imageView);
+        toSober = (TextView) view.findViewById(R.id.toSober);
 
         String[] weightList = new String[54];
 
@@ -73,11 +80,13 @@ public class FragBAC extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_spinner_item, weightList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         weightSpinner.setAdapter(adapter);
+        bac.setVisibility(view.GONE);
+        toSober.setVisibility(view.GONE);
 
         estimate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RadioButton genderButton = (RadioButton) v.findViewById(genderGroup.getCheckedRadioButtonId());
+                RadioButton genderButton = (RadioButton) getActivity().findViewById(genderGroup.getCheckedRadioButtonId());
                 String gender = genderButton.getText().toString();
 
                 displayBAC(calculateBAC(gender,
@@ -94,13 +103,15 @@ public class FragBAC extends Fragment {
         DecimalFormat twoPlace = new DecimalFormat("#,##0.00");
 
         if(bac == 0)
-            textView.setText(" Sober BAC:" + String.valueOf(twoPlace.format(bac)));
-        else if(bac <= 0.4)
-            textView.setText(" Alright BAC:" + String.valueOf(twoPlace.format(bac)));
-        else if(bac <= 0.8)
-            textView.setText(" Tipsy BAC:" + String.valueOf(twoPlace.format(bac)));
+            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou are completely sober!");
+        else if(bac <= 0.04)
+            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're a buzzing aren't you?");
+        else if(bac <= 0.08)
+            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're now tipsy. Slow down.");
+        else if(bac <= 0.15)
+            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're a drunk. Please don't drive.");
         else
-            textView.setText(" Drunk BAC:" + String.valueOf(twoPlace.format(bac)));
+            textView.setText("BAC:" + String.valueOf(twoPlace.format(bac)) + "\nYou're wasted now.");
     }
 
     public double calculateBAC(String gender, int numDrinks, int weight, int hours) {
@@ -113,13 +124,29 @@ public class FragBAC extends Fragment {
 
         bacNumber = (numDrinks * .6 * 5.14) / (weight * genderConstant) - .015 * hours;
         Log.d(TAG, String.valueOf(bacNumber));
+        imageView.setVisibility(View.GONE);
+        bac.setVisibility(View.VISIBLE);
+        toSober(bacNumber);
+
         if(bacNumber < 0)
             return 0;
-        //drinkSpinner.setVisibility(View.GONE);
         return bacNumber;
     }
 
-    public double toSober(double bac) {
-        return 0;
+    public void toSober(double bac) {
+        double timeToSober = bac / .015;
+
+        if(timeToSober > 0) {
+            Log.d(TAG, String.valueOf(timeToSober));
+            int hours = (int) Math.floor(timeToSober);
+            int mins = (int) ((timeToSober % 1 * 100) * .60);
+
+            if(mins < 10)
+                toSober.setText("Time Left Until 0% BAC " + hours + ":0" + mins + " hours");
+            else
+                toSober.setText("Time Left Until 0% BAC " + hours + ":" + mins + " hours");
+            
+            toSober.setVisibility(View.VISIBLE);
+        }
     }
 }

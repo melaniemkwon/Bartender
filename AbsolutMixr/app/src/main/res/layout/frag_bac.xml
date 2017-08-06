@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:weightSum="1"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -100,26 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/numDrinkTextView"
-            android:entries="@array/num_drinks_array"/>
-
-        <TextView
-            android:id="@+id/stateTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hourTextView"
-            android:textSize="22sp"
-            android:paddingLeft="16dp"
-            android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="State"/>
-
-        <Spinner
-            android:id="@+id/stateSpinner"
-            android:paddingTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/hourTextView"
             android:entries="@array/num_drinks_array"/>
     </RelativeLayout>
 
@@ -134,22 +114,35 @@
         android:textColor="#616161"
         android:textSize="14sp"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="0.80"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/standard_drink"
-        android:scaleType="fitCenter" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/bac"
-        android:layout_marginLeft="16dp"
-        android:textSize="16sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/standard_drink"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/bac"
+            android:layout_marginLeft="32dp"
+            android:textSize="22sp"
+            android:text="0.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/toSober"
+            android:textSize="22sp"
+            android:paddingTop="8dp"
+            android:layout_below="@id/bac"
+            android:layout_marginLeft="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 </LinearLayout>

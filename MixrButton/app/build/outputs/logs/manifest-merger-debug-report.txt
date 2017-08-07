@@ -1,0 +1,103 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:2:1-25:12
+	package
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:3:5-31
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+application
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:5:5-23:19
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Danny\.android\build-cache\14f61d6cb4c3bdc2864df120114be9859c9c291d\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Danny\.android\build-cache\0c2748b91e77b125f920cc78eaa12e2ba76d8b8f\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Danny\.android\build-cache\2b34efa0909cb6e41c8ea96632e811d34e76554a\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Danny\.android\build-cache\4fbe6bbd95b338bcb4588fc72ff6eb99f082de24\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Danny\.android\build-cache\fd78b5c7351e0eeafe33bb178c1dd0113818073e\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Danny\.android\build-cache\62868f3098638d26dfe6cbfe3d02d37fedb9387e\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Danny\.android\build-cache\1f563fcc9f74fa0e225f28d1f712c92266a83337\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Danny\.android\build-cache\af5991b611baa42dbcf68a033ca773500438134b\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Danny\.android\build-cache\beb90f485ab02c56438e87191fd1f5b2372115ed\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Danny\.android\build-cache\85034676b9ae9366a4216bfd0bcbbacfaf42cc0f\output\AndroidManifest.xml:9:5-20
+	android:label
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:8:9-41
+	android:supportsRtl
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:10:9-35
+	android:roundIcon
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:9:9-54
+	android:allowBackup
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:6:9-35
+	android:icon
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:7:9-43
+	android:theme
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:11:9-40
+activity#com.example.mixr.MainActivity
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:12:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:16:27-74
+activity#com.example.mixr.ButtonActivity
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:19:9-61
+	android:name
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:19:19-49
+activity#com.example.mixr.Button2Activity
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:20:9-62
+	android:name
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:20:19-50
+activity#com.example.mixr.Button3Activity
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:21:9-62
+	android:name
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:21:19-50
+activity#com.example.mixr.Button4Activity
+ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:22:9-62
+	android:name
+		ADDED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml:22:19-50
+uses-sdk
+INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Danny\.android\build-cache\14f61d6cb4c3bdc2864df120114be9859c9c291d\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Danny\.android\build-cache\0c2748b91e77b125f920cc78eaa12e2ba76d8b8f\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Danny\.android\build-cache\2b34efa0909cb6e41c8ea96632e811d34e76554a\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Danny\.android\build-cache\4fbe6bbd95b338bcb4588fc72ff6eb99f082de24\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Danny\.android\build-cache\fd78b5c7351e0eeafe33bb178c1dd0113818073e\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Danny\.android\build-cache\62868f3098638d26dfe6cbfe3d02d37fedb9387e\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Danny\.android\build-cache\1f563fcc9f74fa0e225f28d1f712c92266a83337\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Danny\.android\build-cache\af5991b611baa42dbcf68a033ca773500438134b\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Danny\.android\build-cache\beb90f485ab02c56438e87191fd1f5b2372115ed\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Danny\.android\build-cache\85034676b9ae9366a4216bfd0bcbbacfaf42cc0f\output\AndroidManifest.xml:5:5-7:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Danny\.android\build-cache\14f61d6cb4c3bdc2864df120114be9859c9c291d\output\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Danny\Documents\summer17\Android\Bartender\Bartender\MixrButton\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Danny\.android\build-cache\14f61d6cb4c3bdc2864df120114be9859c9c291d\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Danny\.android\build-cache\0c2748b91e77b125f920cc78eaa12e2ba76d8b8f\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Danny\.android\build-cache\2b34efa0909cb6e41c8ea96632e811d34e76554a\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Danny\.android\build-cache\4fbe6bbd95b338bcb4588fc72ff6eb99f082de24\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Danny\.android\build-cache\fd78b5c7351e0eeafe33bb178c1dd0113818073e\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Danny\.android\build-cache\62868f3098638d26dfe6cbfe3d02d37fedb9387e\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Danny\.android\build-cache\1f563fcc9f74fa0e225f28d1f712c92266a83337\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Danny\.android\build-cache\af5991b611baa42dbcf68a033ca773500438134b\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Danny\.android\build-cache\beb90f485ab02c56438e87191fd1f5b2372115ed\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Danny\.android\build-cache\14f61d6cb4c3bdc2864df120114be9859c9c291d\output\AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:appcompat-v7:25.3.1] C:\Users\Danny\.android\build-cache\14f61d6cb4c3bdc2864df120114be9859c9c291d\output\AndroidManifest.xml:26:9-47

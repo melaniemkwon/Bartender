@@ -44,16 +44,14 @@ public class FragWishlist extends Fragment implements LoaderManager.LoaderCallba
         mDrink.setLayoutManager(new LinearLayoutManager(getActivity()));
         mDrink.setHasFixedSize(true);
 
-        // Create and set adapter
-//        mAdapter= new AdapterDrink();
-        mDrink.setAdapter(mAdapter);
-
         // Create WishlistDbHelper instance
         WishlistDbHelper dbHelper = new WishlistDbHelper(this.getContext());
         mDb = dbHelper.getWritableDatabase();
         Cursor cursor = getAllWishlist();
-        // TODO: MAKE NEW ADAPTER FOR WISHLIST
-//        mAdapter = new AdapterDrink(this, cursor.getCount());
+
+        // DONE: MAKE NEW ADAPTER FOR WISHLIST
+        mAdapter = new AdapterWishlist(this.getContext(), cursor);
+        mDrink.setAdapter(mAdapter);
 
 //        loadWishlist();
 
@@ -76,7 +74,7 @@ public class FragWishlist extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onLoadFinished(Loader<ArrayList<DrinkItem>> loader, ArrayList<DrinkItem> data) {
         if(data != null){
-            mAdapter.setDrinkData(data);
+//            mAdapter.setDrinkData(data);
         } else {
             Log.d(TAG, "No drinks in wishlist.");
         }

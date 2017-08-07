@@ -23,6 +23,14 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
     private Context mContext;
     private Cursor mCursor;
 
+    private static final String Picture_url = "http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/100x100/";
+    private static final String type= ".png";
+
+    public AdapterWishlist(Context mContext, Cursor mCursor) {
+        this.mContext = mContext;
+        this.mCursor = mCursor;
+    }
+
     public class WishlistViewHolder extends RecyclerView.ViewHolder{
         public final TextView mDrinkName;
         public final TextView mDrinkRating;
@@ -53,13 +61,11 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             return;
         }
 
+        int id = mCursor.getInt(mCursor.getColumnIndex(WishlistContract.WishlistEntry._ID));
         String name = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_NAME));
         String rating = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_RATING));
         String color = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_COLOR));
-        String pic_URL = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL));
-        if (pic_URL.isEmpty() || pic_URL.equals("")) {
-            pic_URL = Picture_url;
-        }
+        String pic_URL = Picture_url + mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL)) + type;
 
         holder.mDrinkName.setText(name);
         holder.mDrinkRating.setText(rating);

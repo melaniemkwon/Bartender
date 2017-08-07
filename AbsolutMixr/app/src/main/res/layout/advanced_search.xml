@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="5sp"
     android:id="@+id/activity_second"
     android:gravity="center">
 
@@ -11,7 +12,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp"
+            android:padding="1dp"
+            android:paddingBottom="15dp"
             android:weightSum="1"
             android:layout_gravity="start"
             tools:context=".search">
@@ -20,7 +22,6 @@
                 android:id="@+id/drink_content_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
                 android:text="Ingredient: "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -186,12 +187,14 @@
 
     <Button
         android:id="@+id/bt_adv_search"
-        android:layout_below="@+id/tv_message"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hit that search button baby"
+        android:layout_below="@+id/tv_message"
         android:layout_centerHorizontal="true"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+        android:background="@color/colorPrimaryDark"
+        android:text="  Hit that search button baby  "
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/url_test_tv"

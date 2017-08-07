@@ -162,12 +162,12 @@ public class NetworkUtils {
 
     }
 
-    public static URL makeAdvancedSearchUrl (String with, String skill, String taste, String glass, String time, String color){
+    public static URL makeAdvancedSearchUrl (String ingredient, String skill, String taste, String glass, String time, String color){
 
         String searchParams = "";
 
-        if (!with.equals("")){
-            searchParams= searchParams + "with/" + with.toLowerCase() + "/";
+        if (!ingredient.equals("")){
+            searchParams= searchParams + "with/" + ingredient.toLowerCase() + "/";
         }
         if (!skill.equals("-Show All-")){
             searchParams= searchParams + "skill/" + skill.toLowerCase() + "/";
@@ -211,5 +211,12 @@ public class NetworkUtils {
 
     public static void resetStoredUrl(){
         storedUrl = null;
+    }
+
+    public static boolean zeroDrinkResultsInJson(String json) throws JSONException {
+        JSONObject jsonObject = new JSONObject(json);
+        int numResults = jsonObject.getInt("totalResult");
+        if (numResults == 0) return true;
+        return false;
     }
 }

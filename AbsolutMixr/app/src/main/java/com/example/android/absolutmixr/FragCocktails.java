@@ -2,7 +2,6 @@ package com.example.android.absolutmixr;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
@@ -56,6 +54,18 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
         return view;
     }
 
+    public ArrayList<DrinkItem> createNoDrinkResultArrayList(){
+        ArrayList<DrinkItem> noDrinkItems = new ArrayList<DrinkItem>();
+        String id ="1";
+        String name ="No Drink Results";
+        String description ="No Drink Results";
+        String col ="";
+        String rating ="";
+        String skillname ="";
+        noDrinkItems.add(new DrinkItem(id,name,description,col,skillname,rating));
+        return noDrinkItems;
+    }
+
 
     // ##### AsyncTaskLoader #####
     //       Implement methods onCreateLoader, onLoadFinished, and onLoaderReset
@@ -87,6 +97,14 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 
                 try {
                     String json = NetworkUtils.getResponseFromHttpUrl(url);
+
+                    //Checking for json array with zero drink results
+                    if (NetworkUtils.zeroDrinkResultsInJson(json)){
+                        //Zero Drinks in json. Create and return a DrinkItem arraylist with one result that says no results
+                        result = createNoDrinkResultArrayList();
+                        return result;
+                    }
+
                     result = NetworkUtils.parseJSON(json);
 
                     //Advanced search JSON parsing

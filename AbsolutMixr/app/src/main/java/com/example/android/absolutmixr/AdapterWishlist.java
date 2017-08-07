@@ -23,9 +23,6 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
     private Context mContext;
     private Cursor mCursor;
 
-    private static final String Picture_url = "http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/100x100/";
-    private static final String type= ".png";
-
     public AdapterWishlist(Context mContext, Cursor mCursor) {
         this.mContext = mContext;
         this.mCursor = mCursor;
@@ -55,9 +52,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 
     @Override
     public void onBindViewHolder(WishlistViewHolder holder, int position) {
-        if (!mCursor.moveToPosition(position)) {
-            return;
-        }
+        if (!mCursor.moveToPosition(position)) { return; }
 
         int id = mCursor.getInt(mCursor.getColumnIndex(WishlistContract.WishlistEntry._ID));
         String name = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_NAME));

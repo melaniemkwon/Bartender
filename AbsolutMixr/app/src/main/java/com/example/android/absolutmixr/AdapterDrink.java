@@ -109,7 +109,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
                 if(checked == true){
                     // DONE: add drink item to wishlist db
-                    // TODO: find out why drink picture is not displaying in recyclerview
+                    // DONE: find out why drink picture is not displaying in recyclerview
                     Log.d(TAG, drinkcount.getId()+ drinkcount.getName()+ drinkcount.getDescription()+ drinkcount.getColor()+ drinkcount.getSkill()+ drinkcount.getRating()+ url);
                     addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url);
                     check = check + " added to wishlist";

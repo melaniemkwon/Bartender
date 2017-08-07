@@ -12,8 +12,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -54,7 +56,7 @@ public class FragCabinet extends Fragment {
         helper = new IngredientsDBHelper(getActivity());
         db = helper.getWritableDatabase();
         cursor = getAllItems(db);
-        refresh = (Button) view.findViewById(R.id.refresh);
+        /*refresh = (Button) view.findViewById(R.id.refresh);
         refresh.setTextColor(Color.WHITE);
         refresh.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         refresh.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +64,27 @@ public class FragCabinet extends Fragment {
             public void onClick(View v) {
                 refresh();
             }
-        });
+        });*/
         rv = (RecyclerView) view.findViewById(R.id.ingredientRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setHasFixedSize(true);
+        rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                refresh();
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                refresh();
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+                refresh();
+            }
+        });
         // Create and set adapter
         adapter= new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
             @Override

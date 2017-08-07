@@ -103,7 +103,8 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
                 if(checked == true){
                     // TODO: add drink item to wishlist db
-                    addToWishlist(Integer.parseInt(drinkcount.getId()), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url);
+                    Log.d(TAG, drinkcount.getId()+ drinkcount.getName()+ drinkcount.getDescription()+ drinkcount.getColor()+ drinkcount.getSkill()+ drinkcount.getRating()+ url);
+                    addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url);
                     check = check + " added to wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
@@ -132,7 +133,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     }
 
     // note: may need to remove some extraneous parameters....
-    private long addToWishlist(int id, String name, String desc, String color, String skill, String rating, String pic) {
+    private long addToWishlist(String id, String name, String desc, String color, String skill, String rating, String pic) {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(WishlistContract.WishlistEntry._ID, id);

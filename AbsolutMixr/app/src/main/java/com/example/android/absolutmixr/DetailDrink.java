@@ -30,6 +30,10 @@ public class DetailDrink extends AppCompatActivity{
     private TextView mDrinkName;
     private ImageView image;
     private TextView description;
+    private TextView color;
+    private TextView rating;
+    private TextView skill;
+
     private LinearLayout dynamic;
     private LinearLayout dynamicTaste;
     private LinearLayout dynamicOcc;
@@ -47,6 +51,9 @@ public class DetailDrink extends AppCompatActivity{
         dynamic = (LinearLayout)findViewById(R.id.dynamicText);
         dynamicTaste = (LinearLayout)findViewById(R.id.dynamicTaste);
         dynamicOcc = (LinearLayout)findViewById(R.id.dynamicOccasion);
+        color = (TextView)findViewById(R.id.deatailColor);
+        rating = (TextView)findViewById(R.id.detailkRating);
+        skill = (TextView)findViewById(R.id.detailSkill);
 
         //get the intent that was called
         Intent intentThatStartedThisActivity = getIntent();
@@ -62,6 +69,7 @@ public class DetailDrink extends AppCompatActivity{
 
         //setting the textview to the drink name
         mDrinkName.setText(drinkInfo.getName());
+
         //setting the image
         String url = Picture_url + (drinkInfo.getId()+type);
         Picasso.with(context)
@@ -97,7 +105,9 @@ public class DetailDrink extends AppCompatActivity{
             dynamicOcc.addView(o);
         }
 
-
+        color.setText("Color: "+drinkInfo.getColor());
+        rating.setText("Rating: "+drinkInfo.getRating());
+        skill.setText("Skill: "+drinkInfo.getSkill());
 
     }
 }

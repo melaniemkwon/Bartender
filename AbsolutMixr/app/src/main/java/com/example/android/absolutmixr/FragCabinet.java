@@ -117,8 +117,8 @@ public class FragCabinet extends Fragment {
         }).attachToRecyclerView(rv);
     }
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         if (db != null) db.close();
         if (cursor != null) cursor.close();
     }

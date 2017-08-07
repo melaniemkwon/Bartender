@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -86,13 +87,25 @@ public class NetworkUtils {
             JSONObject skill = drink.getJSONObject("skill");
             String skillname =skill.getString("name");
 
+            Log.v(TAG,"Made it before array of ingredients");
+            //Ingredients node is a json object
+            JSONArray ingredients = drink.getJSONArray("ingredients");
+            List<String> ingred = new ArrayList();
+            for(int k = 0;k<ingredients.length();k++){
+                JSONObject ingr =ingredients.getJSONObject(k);
+                String ing = ingr.getString("textPlain");
+                ingred.add(ing);
+                //Log.v(TAG,ing );
+            }
+
+
             Log.v(TAG,"We made it to parsing");
             Log.v(TAG,"Drink Name: " + name);
             Log.v(TAG,"Drink description: " + description);
             Log.v(TAG,"Drink Color: " + color);
             Log.v(TAG,"Drink rating: " + rating);
 
-            DrinkItem info = new DrinkItem(id,name,description,color,skillname,rating);
+            DrinkItem info = new DrinkItem(id,name,description,color,skillname,rating,ingred);
             result.add(info);
         }
         return result;

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AbsolutMixr</string>
+    <string name="ingList">Ingredients: </string>
 </resources>

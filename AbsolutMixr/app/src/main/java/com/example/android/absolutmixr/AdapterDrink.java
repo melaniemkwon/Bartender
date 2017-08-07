@@ -39,7 +39,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     public class AdapterDrinkViewHolder extends RecyclerView.ViewHolder{
         public final TextView mDrinkName;
         public final TextView mDrinkRating;
-        public final TextView mDrinkColor;
+        //public final TextView mDrinkColor;
         public final ImageView mDrinkpic;
         public final CheckBox mCheck;
 
@@ -52,7 +52,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
             super(view);
             mDrinkName = (TextView) view.findViewById(R.id.name);
             mDrinkRating = (TextView) view.findViewById(R.id.rating);
-            mDrinkColor = (TextView) view.findViewById(R.id.color);
+            //mDrinkColor = (TextView) view.findViewById(R.id.color);
             mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
             mCheck = (CheckBox) view.findViewById(R.id.starCheck);
 
@@ -87,8 +87,8 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
         //Binding the info from the arraylist to the Textview.
         holder.mDrinkName.setText(drinkcount.getName());
-        holder.mDrinkRating.setText((drinkcount.getRating()));
-        holder.mDrinkColor.setText(drinkcount.getColor());
+        holder.mDrinkRating.setText("Rating: "+(drinkcount.getRating()));
+        //holder.mDrinkColor.setText("Drink Color: "+drinkcount.getColor());
         if(url != null){
             Picasso.with(context)
                     .load(url)

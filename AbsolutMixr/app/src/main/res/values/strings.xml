@@ -3,8 +3,6 @@
     <string name="ingList">Ingredients: </string>
     <string name="tasList">Tastes: </string>
     <string name="occList">Occasions: </string>
-<<<<<<< HEAD
-=======
     <string-array name="num_drinks_array">
         <item>0</item>
         <item>1</item>
@@ -62,5 +60,4 @@
         <item>19</item>
         <item>20</item>
     </string-array>
->>>>>>> master
 </resources>

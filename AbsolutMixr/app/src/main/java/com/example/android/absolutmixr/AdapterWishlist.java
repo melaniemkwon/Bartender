@@ -2,6 +2,7 @@ package com.example.android.absolutmixr;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -102,6 +103,35 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         });
 
         // TODO: RATE THIS DRINK
+        holder.mThumbsupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
+                Drawable selectedThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_selected);
+
+                if (holder.mThumbsupButton.getDrawable().getConstantState().equals(defaultThumbsup.getConstantState())) {
+                    holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
+                } else if (holder.mThumbsupButton.getDrawable().getConstantState().equals(selectedThumbsup.getConstantState())) {
+                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
+                }
+            }
+        });
+
+        holder.mThumbsdownButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
+                Drawable selectedThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_selected);
+
+                if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(defaultThumbsdown.getConstantState())) {
+                    holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
+                } else if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(selectedThumbsdown.getConstantState())) {
+                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
+                }
+            }
+        });
+
+
         // TODO: BROWNIE POINTS-- undo delete item
     }
 

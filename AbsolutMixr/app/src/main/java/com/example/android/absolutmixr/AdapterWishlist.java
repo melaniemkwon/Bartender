@@ -102,15 +102,17 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             }
         });
 
-        // TODO: RATE THIS DRINK
+        // DONE: RATE THIS DRINK
         holder.mThumbsupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
                 Drawable selectedThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_selected);
+                Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
 
                 if (holder.mThumbsupButton.getDrawable().getConstantState().equals(defaultThumbsup.getConstantState())) {
                     holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
+                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
                 } else if (holder.mThumbsupButton.getDrawable().getConstantState().equals(selectedThumbsup.getConstantState())) {
                     holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
                 }
@@ -122,9 +124,11 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             public void onClick(View v) {
                 Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
                 Drawable selectedThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_selected);
+                Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
 
                 if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(defaultThumbsdown.getConstantState())) {
                     holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
+                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
                 } else if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(selectedThumbsdown.getConstantState())) {
                     holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
                 }

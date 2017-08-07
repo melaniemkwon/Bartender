@@ -1,12 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft ="32dp"
+        android:layout_marginTop ="32dp"
+        android:layout_marginRight ="32dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/graybackground">
+
+        <TextView
+            android:id="@+id/genderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:textSize="22sp"
+            android:text="Gender" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:layout_alignParentRight="true"
+            android:checkedButton="@+id/maleRadio">
+
+            <RadioButton
+                android:id="@+id/maleRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:text="Male"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"/>
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/weightTextView"
+            android:layout_below="@id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:textSize="22sp"
+            android:text="Weight"/>
+
+        <Spinner
+            android:id="@+id/weightSpinner"
+            android:paddingTop="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioGroup"/>
+
+        <TextView
+            android:id="@+id/numDrinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weightTextView"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:textSize="22sp"
+            android:text="Standard Drinks"/>
+
+        <Spinner
+            android:id="@+id/drinkSpinner"
+            android:layout_below="@+id/weightTextView"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:entries="@array/num_drinks_array"/>
+
+        <TextView
+            android:id="@+id/hourTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/numDrinkTextView"
+            android:textSize="22sp"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:text="Hours Drinking"/>
+
+        <Spinner
+            android:id="@+id/hourSpinner"
+            android:paddingTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/numDrinkTextView"
+            android:paddingBottom="16dp"
+            android:entries="@array/hour_array"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/estimate"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="BAC Calculator"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bluebackground"
+        android:text="Estimate"
+        android:textColor="#616161"
+        android:textSize="14sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/standard_drink"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/bac"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="18sp"
+            android:text="0.00"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/toSober"
+            android:textSize="18sp"
+            android:paddingTop="8dp"
+            android:layout_below="@id/bac"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/drinkMeterTextView"
+            android:textSize="22sp"
+            android:text="Drive-O-Meter"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:paddingTop="8dp"
+            android:layout_below="@id/toSober"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/statusView"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_below="@id/drinkMeterTextView"
+            android:layout_marginLeft="96dp"
+            android:layout_marginRight="96dp"
+            android:layout_marginBottom="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 </LinearLayout>

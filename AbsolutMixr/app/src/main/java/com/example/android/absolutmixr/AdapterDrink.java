@@ -3,6 +3,7 @@ package com.example.android.absolutmixr;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,21 +44,25 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     public class AdapterDrinkViewHolder extends RecyclerView.ViewHolder{
         public final TextView mDrinkName;
         public final TextView mDrinkRating;
-        public final TextView mDrinkColor;
+        //public final TextView mDrinkColor;
         public final ImageView mDrinkpic;
         public final CheckBox mCheck;
+
+        //instantiating
+        public final LinearLayout linearLayout;
 
         //creating the TextView to make it easier to bind in the onBindViewHolder
         public AdapterDrinkViewHolder(View view){
             super(view);
             mDrinkName = (TextView) view.findViewById(R.id.name);
             mDrinkRating = (TextView) view.findViewById(R.id.rating);
-            mDrinkColor = (TextView) view.findViewById(R.id.color);
+            //mDrinkColor = (TextView) view.findViewById(R.id.color);
             mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
             mCheck = (CheckBox) view.findViewById(R.id.starCheck);
+
+            //creating the layout and getting it
+            linearLayout = (LinearLayout) view.findViewById(R.id.clickable);
         }
-
-
     }
 
     @Override
@@ -87,8 +93,8 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
         //Binding the info from the arraylist to the Textview.
         holder.mDrinkName.setText(drinkcount.getName());
-        holder.mDrinkRating.setText((drinkcount.getRating()));
-        holder.mDrinkColor.setText(drinkcount.getColor());
+        holder.mDrinkRating.setText("Rating: "+(drinkcount.getRating()));
+        //holder.mDrinkColor.setText("Drink Color: "+drinkcount.getColor());
         if(url != null){
             Picasso.with(context)
                     .load(url)
@@ -116,6 +122,17 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
                 }
+            }
+        });
+
+        //making the layout section clickable
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Clicked on " + drinkcount.getName() + " info");
+                Intent intent = new Intent(context,DetailDrink.class);
+                intent.putExtra("Drink Object",drinkcount);
+                context.startActivity(intent);
             }
         });
     }

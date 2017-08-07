@@ -22,6 +22,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>>,View.OnClickListener {
 
@@ -62,7 +63,10 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
         String col ="";
         String rating ="";
         String skillname ="";
-        noDrinkItems.add(new DrinkItem(id,name,description,col,skillname,rating));
+        List<String> ingredients = null;
+        List<String> occassions = null;
+        List<String> tastes = null;
+        noDrinkItems.add(new DrinkItem(id,name,description,col,skillname,rating, ingredients, occassions, tastes));
         return noDrinkItems;
     }
 

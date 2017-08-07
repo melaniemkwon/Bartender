@@ -39,6 +39,8 @@ public class FragBAC extends Fragment {
     private ImageView statusView;
     private String TAG = "fragbac";
     private double bacNumber;
+    private boolean isAccept = false;
+    private static String gender ="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

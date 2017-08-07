@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -122,6 +123,10 @@ public class AddIngredientFragment extends DialogFragment implements LoaderCallb
         progress = (ProgressBar) view.findViewById(R.id .progressBarAddIngredient);
         prompt = (TextView) view.findViewById(R.id .ingredient_prompt);
         add = (Button) view.findViewById(R.id.add);
+        button.setTextColor(Color.WHITE);
+        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        add.setTextColor(Color.WHITE);
+        add.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,11 +170,5 @@ public class AddIngredientFragment extends DialogFragment implements LoaderCallb
 
         return view;
     }
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (onDismissListener != null) {
-            onDismissListener.onDismiss(dialog);
-        }
-    }
+
 }

@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -39,6 +40,8 @@ public class FragCabinet extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.frag_cabinet,container,false);
         button = (Button) view.findViewById(R.id.button);
+        button.setTextColor(Color.WHITE);
+        button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +55,8 @@ public class FragCabinet extends Fragment {
         db = helper.getWritableDatabase();
         cursor = getAllItems(db);
         refresh = (Button) view.findViewById(R.id.refresh);
+        refresh.setTextColor(Color.WHITE);
+        refresh.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

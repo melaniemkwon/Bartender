@@ -86,10 +86,10 @@ public class AdapterIngredients extends RecyclerView.Adapter<AdapterIngredients.
 
 
             public void bind(ItemHolder holder, int pos) {
-                Log.d("AdapterIngredients","reached bind"+pos);
+                //Log.d("AdapterIngredients","reached bind"+pos);
                 cursor.moveToPosition(pos);
                 id = cursor.getLong(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS._ID));
-                ingredientDesc = cursor.getString(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_TYPE));
+                ingredientDesc = cursor.getString(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_DESCRIPTION));
                 ingredientTitle = cursor.getString(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_NAME));
 
                 desc.setText(ingredientDesc);

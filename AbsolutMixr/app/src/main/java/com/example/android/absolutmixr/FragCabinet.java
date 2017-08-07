@@ -58,15 +58,11 @@ public class FragCabinet extends Fragment {
                 refresh();
             }
         });
-
-
         rv = (RecyclerView) view.findViewById(R.id.ingredientRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setHasFixedSize(true);
-
         // Create and set adapter
         adapter= new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
-
             @Override
             public void onItemClick(int id, String description, String name) {
                 //launch fragment with item descriptions
@@ -74,7 +70,6 @@ public class FragCabinet extends Fragment {
             }
         });
         rv.setAdapter(adapter);
-
         return view;
     }
 
@@ -88,17 +83,12 @@ public class FragCabinet extends Fragment {
         cursor = getAllItems(db);
         Log.d("Fragcab","got to onstart"+cursor.getCount());
         adapter = new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
-
             @Override
             public void onItemClick(int id, String description, String name) {
                 //launch fragment with item descriptions
 
             }
         });
-
-
-
-
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {

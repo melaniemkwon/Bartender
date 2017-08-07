@@ -28,7 +28,7 @@ public class FragWishlist extends Fragment implements LoaderManager.LoaderCallba
 
     private static final String TAG = FragWishlist.class.getSimpleName();
     private RecyclerView mDrink;
-    private AdapterDrink mAdapter;
+    private AdapterWishlist mAdapter;
     private SQLiteDatabase mDb;
 
     private static final int ADDB_LOADER3 = 333;
@@ -52,7 +52,7 @@ public class FragWishlist extends Fragment implements LoaderManager.LoaderCallba
         WishlistDbHelper dbHelper = new WishlistDbHelper(this.getContext());
         mDb = dbHelper.getWritableDatabase();
         Cursor cursor = getAllWishlist();
-        // TODO: MODIFY ADAPTERDRINK
+        // TODO: MAKE NEW ADAPTER FOR WISHLIST
 //        mAdapter = new AdapterDrink(this, cursor.getCount());
 
 //        loadWishlist();

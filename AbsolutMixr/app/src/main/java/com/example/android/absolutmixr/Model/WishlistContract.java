@@ -17,5 +17,6 @@ public class WishlistContract {
         public static final String COLUMN_COLOR = "color";
         public static final String COLUMN_SKILL = "skill";
         public static final String COLUMN_RATING = "rating";
+        public static final String COLUMN_PICTURE_URL = "picture";
     }
 }

@@ -56,15 +56,6 @@ public class FragCabinet extends Fragment {
         helper = new IngredientsDBHelper(getActivity());
         db = helper.getWritableDatabase();
         cursor = getAllItems(db);
-        /*refresh = (Button) view.findViewById(R.id.refresh);
-        refresh.setTextColor(Color.WHITE);
-        refresh.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                refresh();
-            }
-        });*/
         rv = (RecyclerView) view.findViewById(R.id.ingredientRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setHasFixedSize(true);
@@ -89,7 +80,7 @@ public class FragCabinet extends Fragment {
         adapter= new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
             @Override
             public void onItemClick(int id, String ingredientId) {
-                //launch fragment with item descriptions
+
 
             }
         });
@@ -134,7 +125,7 @@ public class FragCabinet extends Fragment {
         );
     }
     public static long addIngredient(String description, String name, String id, String type) {
-        //Log.d("Fragcab","reached addIngredient" + description);
+        Log.d("Fragcab","reached addIngredient" + description);
         ContentValues cv = new ContentValues();
         cv.put(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_DESCRIPTION, description);
         cv.put(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_NAME, name);

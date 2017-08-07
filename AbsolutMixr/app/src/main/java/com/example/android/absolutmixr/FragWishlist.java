@@ -1,5 +1,7 @@
 package com.example.android.absolutmixr;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -13,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
+import com.example.android.absolutmixr.Model.WishlistContract;
+import com.example.android.absolutmixr.Model.WishlistDbHelper;
 
 import java.util.ArrayList;
 
@@ -25,6 +29,8 @@ public class FragWishlist extends Fragment implements LoaderManager.LoaderCallba
     private static final String TAG = FragWishlist.class.getSimpleName();
     private RecyclerView mDrink;
     private AdapterDrink mAdapter;
+    private SQLiteDatabase mDb;
+
     private static final int ADDB_LOADER3 = 333;
 
     @Override
@@ -39,10 +45,17 @@ public class FragWishlist extends Fragment implements LoaderManager.LoaderCallba
         mDrink.setHasFixedSize(true);
 
         // Create and set adapter
-        mAdapter= new AdapterDrink();
+//        mAdapter= new AdapterDrink();
         mDrink.setAdapter(mAdapter);
 
-        loadWishlist();
+        // Create WishlistDbHelper instance
+        WishlistDbHelper dbHelper = new WishlistDbHelper(this.getContext());
+        mDb = dbHelper.getWritableDatabase();
+        Cursor cursor = getAllWishlist();
+        // TODO: MODIFY ADAPTERDRINK
+//        mAdapter = new AdapterDrink(this, cursor.getCount());
+
+//        loadWishlist();
 
         getActivity().getSupportLoaderManager().initLoader(ADDB_LOADER3, null, this);
 
@@ -74,5 +87,17 @@ public class FragWishlist extends Fragment implements LoaderManager.LoaderCallba
 
     public void loadWishlist() {
         // TODO: load all saved wishlist drinks to adapter
+    }
+
+    private Cursor getAllWishlist() {
+        return mDb.query(
+                WishlistContract.WishlistEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                WishlistContract.WishlistEntry.COLUMN_NAME
+        );
     }
 }

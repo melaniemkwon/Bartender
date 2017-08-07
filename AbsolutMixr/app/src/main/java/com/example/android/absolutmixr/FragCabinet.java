@@ -88,33 +88,19 @@ public class FragCabinet extends Fragment {
         // Create and set adapter
         adapter= new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
             @Override
-            public void onItemClick(int id, String description, String name) {
-                //launch fragment with item descriptions
-
-            }
-        });
-        rv.setAdapter(adapter);
-        return view;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.d("Fragcab","got to onstart");
-        refresh();
-        helper = new IngredientsDBHelper(getActivity());
-        db = helper.getWritableDatabase();
-        cursor = getAllItems(db);
-        Log.d("Fragcab","got to onstart"+cursor.getCount());
-        adapter = new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
-            @Override
-            public void onItemClick(int id, String description, String name) {
+            public void onItemClick(int id, String ingredientId) {
                 //launch fragment with item descriptions
 
             }
         });
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 
             @Override
@@ -148,7 +134,7 @@ public class FragCabinet extends Fragment {
         );
     }
     public static long addIngredient(String description, String name, String id, String type) {
-        Log.d("Fragcab","reached addIngredient" + description);
+        //Log.d("Fragcab","reached addIngredient" + description);
         ContentValues cv = new ContentValues();
         cv.put(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_DESCRIPTION, description);
         cv.put(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_NAME, name);

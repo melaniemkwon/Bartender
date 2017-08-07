@@ -36,7 +36,6 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         public final TextView mDrinkRating;
         public final TextView mDrinkColor;
         public final ImageView mDrinkpic;
-        public final CheckBox mCheck;
 
         public WishlistViewHolder(View view){
             super(view);
@@ -44,7 +43,6 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             mDrinkRating = (TextView) view.findViewById(R.id.rating);
             mDrinkColor = (TextView) view.findViewById(R.id.color);
             mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
-            mCheck = (CheckBox) view.findViewById(R.id.starCheck);
         }
     }
 
@@ -75,7 +73,10 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                     .load(pic_URL)
                     .into(holder.mDrinkpic);
         }
-        holder.mCheck.setChecked(true);
+
+        // TODO: on swipe of item, remove drink item from db
+
+        // TODO: BROWNIE POINTS-- undo delete item
     }
 
     @Override

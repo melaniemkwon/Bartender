@@ -92,11 +92,13 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                 String check = drinkcount.getName();
 
                 if(checked == true){
+                    // TODO: add drink item to wishlist db
                     check = check + " added to wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
                 }
                 else{
+                    // TODO: delete drink item to wishlist db
                     check =  check+ " removed from wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();

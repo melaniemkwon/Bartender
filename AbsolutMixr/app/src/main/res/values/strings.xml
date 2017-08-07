@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AbsolutMixr</string>
-
+    <string name="ingList">Ingredients: </string>
+    <string name="tasList">Tastes: </string>
+    <string name="occList">Occasions: </string>
     <string-array name="num_drinks_array">
         <item>0</item>
         <item>1</item>

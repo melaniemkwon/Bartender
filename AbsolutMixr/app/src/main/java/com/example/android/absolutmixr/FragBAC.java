@@ -46,6 +46,20 @@ public class FragBAC extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_bac,container,false);
 
+        Dialog dialog = new AlertDialog.Builder(getContext())
+                .setPositiveButton("Accept", null)
+                .setTitle("Disclaimer")
+                .setMessage("BAC readings may not be accurate. We are not liable for any choices you make because of the readings. Do you accept these terms?")
+                .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+                        viewPager.setCurrentItem(0);
+                    }
+                })
+                .show();
+        dialog.setCanceledOnTouchOutside(false);
+
         drinkSpinner = (Spinner) view.findViewById(R.id.drinkSpinner);
         weightSpinner = (Spinner) view.findViewById(R.id.weightSpinner);
         hourSpinner = (Spinner) view.findViewById(R.id.hourSpinner);
@@ -75,32 +89,12 @@ public class FragBAC extends Fragment {
             @Override
             public void onClick(View v) {
                 RadioButton genderButton = (RadioButton) getActivity().findViewById(genderGroup.getCheckedRadioButtonId());
-                gender = genderButton.getText().toString();
+                String gender = genderButton.getText().toString();
 
-                if(isAccept == false) {
-                    Dialog dialog = new AlertDialog.Builder(getContext())
-                            .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    displayBAC(calculateBAC(gender,
-                                            Integer.valueOf(drinkSpinner.getSelectedItem().toString()),
-                                            Integer.valueOf(weightSpinner.getSelectedItem().toString()),
-                                            Integer.valueOf(hourSpinner.getSelectedItem().toString())), bac);
-                                    isAccept = true;
-                                }
-                            })
-                            .setTitle("Disclaimer")
-                            .setMessage("BAC readings may not be accurate. We are not liable for any choices you make because of the readings. Do you accept these terms?")
-                            .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-                                    viewPager.setCurrentItem(0);
-                                }
-                            })
-                            .show();
-                    dialog.setCanceledOnTouchOutside(false);
-                }
+                displayBAC(calculateBAC(gender,
+                        Integer.valueOf(drinkSpinner.getSelectedItem().toString()),
+                        Integer.valueOf(weightSpinner.getSelectedItem().toString()),
+                        Integer.valueOf(hourSpinner.getSelectedItem().toString())), bac);
             }
         });
         return view;

@@ -80,5 +80,4 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
     }
 
     // DONE: replace AsyncTask with AsyncTaskLoader (which is implemented in FragCocktails)
-
 }

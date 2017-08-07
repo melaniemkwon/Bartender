@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -96,7 +97,6 @@ public class NetworkUtils {
         ArrayList<DrinkItem> result = new ArrayList<>();
         JSONObject main = new JSONObject(json);
         JSONArray items = main.getJSONArray("result");
-        //JSONArray skills = main.getJSONArray("skill");
 
         for(int i=0; i < items.length(); i++){
             JSONObject drink = items.getJSONObject(i);
@@ -111,13 +111,47 @@ public class NetworkUtils {
             JSONObject skill = drink.getJSONObject("skill");
             String skillname =skill.getString("name");
 
+            //Log.v(TAG,"Made it before array of ingredients");
+
+            //Ingredients node is a json array
+            JSONArray ingredients = drink.getJSONArray("ingredients");
+            List<String> ingred = new ArrayList();
+            for(int k = 0;k<ingredients.length();k++){
+                JSONObject ingr =ingredients.getJSONObject(k);
+                String ing = ingr.getString("textPlain");
+                ingred.add(ing);
+                //Log.v(TAG,ing );
+            }
+
+            //Occasions node is a json array
+            JSONArray occasions= drink.getJSONArray("occasions");
+            List<String> occasion = new ArrayList();
+            for(int j = 0;j<occasions.length();j++){
+                JSONObject ingr =occasions.getJSONObject(j);
+                String occ = ingr.getString("text");
+                occasion.add(occ);
+                //Log.v(TAG,"Occa: "+ occ );
+            }
+
+            //Tastes node is a json array
+            JSONArray tastes = drink.getJSONArray("tastes");
+            List<String> taste = new ArrayList();
+            for(int z = 0;z<tastes.length();z++){
+                JSONObject ingr =tastes.getJSONObject(z);
+                String tas = ingr.getString("text");
+                taste.add(tas);
+                //Log.v(TAG,"Taste: "+ tas );
+            }
+
+
+            //used for debugging
             Log.v(TAG,"We made it to parsing");
             Log.v(TAG,"Drink Name: " + name);
-            Log.v(TAG,"Drink description: " + description);
-            Log.v(TAG,"Drink Color: " + color);
-            Log.v(TAG,"Drink rating: " + rating);
+            //Log.v(TAG,"Drink description: " + description);
+            //Log.v(TAG,"Drink Color: " + color);
+            //Log.v(TAG,"Drink rating: " + rating);
 
-            DrinkItem info = new DrinkItem(id,name,description,color,skillname,rating);
+            DrinkItem info = new DrinkItem(id,name,description,color,skillname,rating,ingred,occasion,taste);
             result.add(info);
         }
         return result;

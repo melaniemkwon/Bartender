@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    >
+<RelativeLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp">
+
+
+    <ImageView
+        android:id="@+id/imgdrink"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:gravity="center_horizontal"
+        android:src="@color/colorAccent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:padding="10dp"
+        android:textSize="30sp"
+        android:id="@+id/dName"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Drink Name"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/imgdrink"
+        android:layout_centerHorizontal="true" />
+
+    <!--dynamic view for ingredients thats is located on the left -->
+    <TextView
+
+        android:layout_below="@id/dName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list"
+        android:text="@string/ingList"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dynamicText"
+        android:orientation="vertical"
+        android:layout_below="@+id/list">
+
+    </LinearLayout>
+
+    <!--Linear Layout that will hold rating color and skill level and will be placed along side the ingredients-->
+    <LinearLayout
+        android:id="@+id/etc"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/dName"
+        >
+
+    </LinearLayout>
+
+
+    <!--description view-->
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dynamicText"
+        android:layout_marginTop="10dp"
+        android:hint="Drink Description"
+        android:textSize="20sp" />
+
+
+    <!--dynamic view for taste thats is located on the left -->
+    <LinearLayout
+        android:paddingTop="5dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dynamicOccasion"
+        android:orientation="vertical"
+        android:layout_below="@id/description"
+        android:layout_alignParentLeft="true"
+        >
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/occasion"
+            android:text="@string/occList"/>
+    </LinearLayout>
+
+
+    <!--dynamic view for occasion thats is located on the right -->
+    <LinearLayout
+        android:id="@+id/dynamicTaste"
+        android:paddingTop="5dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/description"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tasty"
+            android:text="@string/tasList"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/deatailColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Color"
+        android:layout_below="@+id/detailSkill"
+        android:layout_alignLeft="@+id/detailSkill"
+        android:layout_alignStart="@+id/detailSkill" />
+
+    <TextView
+        android:id="@+id/detailSkill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Skill"
+        android:layout_below="@+id/detailkRating"
+        android:layout_alignLeft="@+id/detailkRating"
+        android:layout_alignStart="@+id/detailkRating" />
+
+    <TextView
+        android:id="@+id/detailkRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="rating"
+        android:layout_below="@+id/dName"
+        android:layout_alignLeft="@+id/dynamicTaste"
+        android:layout_alignStart="@+id/dynamicTaste" />
+
+    <!--This will be where the video will go-->
+
+
+</RelativeLayout>
+</ScrollView>

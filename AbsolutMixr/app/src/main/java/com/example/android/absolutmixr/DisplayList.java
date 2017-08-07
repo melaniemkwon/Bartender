@@ -27,9 +27,9 @@ public class DisplayList extends RecyclerView.Adapter<DisplayList.ItemHolder> {
         Log.d(TAG,"Does it make it here?");
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImediately = false;
+        boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(R.layout.display_list_view,parent, shouldAttachToParentImediately);
+        View view = inflater.inflate(R.layout.display_list_view,parent, shouldAttachToParentImmediately);
         ItemHolder holder = new ItemHolder(view);
         return holder;
     }
@@ -48,20 +48,20 @@ public class DisplayList extends RecyclerView.Adapter<DisplayList.ItemHolder> {
 
         TextView name;
         TextView rating;
-        TextView color;
+        //TextView color;
 
         ItemHolder(View view){
             super(view);
             name = (TextView)view.findViewById(R.id.name);
             rating = (TextView)view.findViewById(R.id.rating);
-            color = (TextView)view.findViewById(R.id.color);
+            //color = (TextView)view.findViewById(R.id.color);
         }
 
         public void bind (int pos){
             DrinkItem drink = data.get(pos);
             name.setText(drink.getName());
             rating.setText(drink.getRating());
-            color.setText(drink.getColor());
+            //color.setText(drink.getColor());
         }
     }
 }

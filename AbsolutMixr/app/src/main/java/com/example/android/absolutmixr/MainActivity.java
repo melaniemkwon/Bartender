@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
 
 
     // ##### MATERIAL DESIGN TAB #####
+    // TODO: melanie-- make these scrollable...
+    // https://www.androidhive.info/2015/09/android-material-design-working-with-tabs/
     public void setupViewPager(ViewPager viewPager){
         AdapterViewPager pagerAdapter = new AdapterViewPager(getSupportFragmentManager());
         pagerAdapter.addFragment(new FragCocktails(),"Cocktails");

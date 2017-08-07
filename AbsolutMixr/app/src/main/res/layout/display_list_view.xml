@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
     android:weightSum="1"
 
     tools:context="com.example.android.absolutmixr.DisplayList">
@@ -29,31 +29,32 @@
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight=".7"
+        android:layout_weight=".706"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:id="@+id/clickable">
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Drink Name"
+            android:textSize="28sp"
+            android:hint="Drink Name"
             android:id="@+id/name"/>
 
         <TextView
             android:id="@+id/rating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Drink Rating"
+            android:hint="Drink Rating"
             android:textSize="26sp" />
 
-        <TextView
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="Drink Color"
-            android:id="@+id/color"/>
+            android:id="@+id/color"/>-->
 
         <!--Adding a separator to make viewing easier-->
         <View
@@ -65,10 +66,10 @@
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="match_parent"
-        android:layout_weight=".1"
+        android:layout_weight=".12"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="5dp"
-        android:gravity="center_vertical">
+        android:padding="5dp">
 
         <CheckBox
             android:id="@+id/starCheck"

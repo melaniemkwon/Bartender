@@ -25,9 +25,13 @@
             </intent-filter>
         </activity>
 
+
         <activity android:name=".BarcodeScanner"></activity>
 
        <activity android:name=".DisplayList"></activity>
+
+
+        <activity android:name=".DetailDrink"></activity>
 
     </application>
 

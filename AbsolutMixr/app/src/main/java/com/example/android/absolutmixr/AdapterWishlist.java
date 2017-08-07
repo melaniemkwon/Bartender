@@ -74,7 +74,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                     .into(holder.mDrinkpic);
         }
 
-        // TODO: on swipe of item, remove drink item from db
+        // TODO: submenu - shop, share on social media, delete
 
         // TODO: BROWNIE POINTS-- undo delete item
     }

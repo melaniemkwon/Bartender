@@ -45,7 +45,7 @@ public class DrinkItem  implements Serializable{
     //Constructor
     //Changed to a string because there was problems with adding it to the text view
     public DrinkItem(String id, String name, String description, String color, String skill
-            , String rating,List<String> ingredients){
+            , String rating,List<String> ingredients, List<String> occassions, List<String> tastes){
         this.id = id;
         this.name = name;
         this.description = description;
@@ -53,6 +53,8 @@ public class DrinkItem  implements Serializable{
         this.skill =skill;
         this.rating = rating;
         this.ingredients = ingredients;
+        this.occassions = occassions;
+        this.tastes =tastes;
     }
 
     //Getters and Setters for the values
@@ -110,5 +112,21 @@ public class DrinkItem  implements Serializable{
 
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public List<String> getTastes() {
+        return tastes;
+    }
+
+    public void setTastes(List<String> tastes) {
+        this.tastes = tastes;
+    }
+
+    public List<String> getOccassions() {
+        return occassions;
+    }
+
+    public void setOccassions(List<String> occassions) {
+        this.occassions = occassions;
     }
 }

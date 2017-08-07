@@ -78,7 +78,8 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                     .into(holder.mDrinkpic);
         }
 
-        // TODO: submenu - shop, share on social media, delete
+        // DONE: popupmenu
+        // TODO: implement - shop, share, delete
         holder.mDotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +90,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         Toast.makeText(mContext, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
+
                         return true;
                     }
                 });
@@ -97,6 +99,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             }
         });
 
+        // TODO: RATE THIS DRINK
         // TODO: BROWNIE POINTS-- undo delete item
     }
 

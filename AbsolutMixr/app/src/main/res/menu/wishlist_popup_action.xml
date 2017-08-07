@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--TODO: Get icons to show beside the text-->
     <item
-        android:id="@+id/wishlist_action_1"
-        android:title="ACTION 1"/>
+        android:id="@+id/wishlist_action_shop"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:title="SHOP"/>
     <item
-        android:id="@+id/wishlist_action_2"
-        android:title="ACTION 2"/>
+        android:id="@+id/wishlist_action_share"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="SHARE"/>
     <item
-        android:id="@+id/wishlist_action_3"
-        android:title="ACTION 3"/>
+        android:id="@+id/wishlist_action_delete"
+        android:icon="@drawable/ic_delete_black_24dp"
+        android:title="DELETE"/>
 </menu>

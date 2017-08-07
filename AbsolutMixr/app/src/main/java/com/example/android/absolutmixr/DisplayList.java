@@ -60,7 +60,8 @@ public class DisplayList extends RecyclerView.Adapter<DisplayList.ItemHolder> {
         public void bind (int pos){
             DrinkItem drink = data.get(pos);
             name.setText(drink.getName());
-            rating.setText(drink.getRating());
+            rating.setText(drink.getDescription()); //testing.. set this to description
+            Log.d(TAG, "Drink description: " + drink.getDescription());
             color.setText(drink.getColor());
         }
     }

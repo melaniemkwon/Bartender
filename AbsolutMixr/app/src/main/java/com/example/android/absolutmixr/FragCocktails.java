@@ -22,10 +22,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
-/**
- * Created by melaniekwon on 7/27/17.
- */
+import java.util.List;
 
 public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>>,View.OnClickListener {
 
@@ -37,6 +34,8 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_cocktails,container,false);
+
+        //Log.d(TAG, "TAG: "+TAG);
 
         // Get reference to RecyclerView
         mDrink = (RecyclerView) view.findViewById(R.id.recycler2);
@@ -55,6 +54,22 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 
         return view;
     }
+
+    public ArrayList<DrinkItem> createNoDrinkResultArrayList(){
+        ArrayList<DrinkItem> noDrinkItems = new ArrayList<DrinkItem>();
+        String id ="1";
+        String name ="No Drink Results";
+        String description ="No Drink Results";
+        String col ="";
+        String rating ="";
+        String skillname ="";
+        List<String> ingredients = null;
+        List<String> occassions = null;
+        List<String> tastes = null;
+        noDrinkItems.add(new DrinkItem(id,name,description,col,skillname,rating, ingredients, occassions, tastes));
+        return noDrinkItems;
+    }
+
 
     // ##### AsyncTaskLoader #####
     //       Implement methods onCreateLoader, onLoadFinished, and onLoaderReset
@@ -86,7 +101,23 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 
                 try {
                     String json = NetworkUtils.getResponseFromHttpUrl(url);
+
+                    //Checking for json array with zero drink results
+                    if (NetworkUtils.zeroDrinkResultsInJson(json)){
+                        //Zero Drinks in json. Create and return a DrinkItem arraylist with one result that says no results
+                        result = createNoDrinkResultArrayList();
+                        return result;
+                    }
+
                     result = NetworkUtils.parseJSON(json);
+
+                    //Advanced search JSON parsing
+                    try {
+                        NetworkUtils.parseJsonAdvancedSearch(json);
+                    } catch (JSONException e){
+                        Log.d(TAG, "crap tje advanced search json parsing no bueno");
+                    }
+
                     return result;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -112,6 +143,7 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 
 //            displayDrinkData();
             mAdapter.setDrinkData(result);
+            NetworkUtils.resetStoredUrl();
 
             //loadDrinkData();
         } else {
@@ -158,4 +190,5 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
             toast.show();
         }
     }
+
 }

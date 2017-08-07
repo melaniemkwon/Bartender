@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
  */
 
 public class IngredientsContract {
-    public static class TABLE_ARTICLES implements BaseColumns {
+    public static class TABLE_INGREDIENTS implements BaseColumns {
         //column names are self explanatory
         public static final String TABLE_NAME = "ingredients";
         public static final String COLUMN_NAME_NAME = "name";

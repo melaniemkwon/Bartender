@@ -7,6 +7,7 @@
     <string name="or">OR</string>
     <string name="add_by_upc">Add Ingredient by UPC</string>
     <string-array name="type_array">
+        <item></item>
         <item>Mixers</item>
         <item>Base Spirit</item>
         <item>Brandy</item>

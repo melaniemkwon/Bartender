@@ -14,7 +14,7 @@ import android.view.MenuItem;
 
 
 
-public class MainActivity extends AppCompatActivity implements FragSearch.OnDialogCloseListener {
+public class MainActivity extends AppCompatActivity implements FragSearch.OnDialogCloseListener{
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private ViewPager viewPager;    // submenu for Material Design Tab Layout

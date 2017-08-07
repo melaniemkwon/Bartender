@@ -20,6 +20,9 @@ import com.example.android.absolutmixr.Model.WishlistDbHelper;
 
 import java.util.ArrayList;
 
+import static android.provider.BaseColumns._ID;
+import static com.example.android.absolutmixr.Model.WishlistContract.WishlistEntry.TABLE_NAME;
+
 /**
  * Created by melaniekwon on 7/27/17.
  */
@@ -90,7 +93,7 @@ public class FragWishlist extends Fragment {
 
     private Cursor getAllWishlist() {
         return mDb.query(
-                WishlistContract.WishlistEntry.TABLE_NAME,
+                TABLE_NAME,
                 null,
                 null,
                 null,
@@ -98,5 +101,9 @@ public class FragWishlist extends Fragment {
                 null,
                 WishlistContract.WishlistEntry.COLUMN_NAME
         );
+    }
+
+    private boolean removeWishlistItem(long id) {
+        return mDb.delete(TABLE_NAME, _ID + "=" + id, null) > 0;
     }
 }

@@ -27,9 +27,9 @@ public class DisplayList extends RecyclerView.Adapter<DisplayList.ItemHolder> {
         Log.d(TAG,"Does it make it here?");
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        boolean shouldAttachToParentImediately = false;
+        boolean shouldAttachToParentImmediately = false;
 
-        View view = inflater.inflate(R.layout.display_list_view,parent, shouldAttachToParentImediately);
+        View view = inflater.inflate(R.layout.display_list_view,parent, shouldAttachToParentImmediately);
         ItemHolder holder = new ItemHolder(view);
         return holder;
     }

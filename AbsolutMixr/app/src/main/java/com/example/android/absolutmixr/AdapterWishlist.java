@@ -63,7 +63,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         String name = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_NAME));
         String rating = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_RATING));
         String color = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_COLOR));
-        String pic_URL = Picture_url + mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL)) + type;
+        String pic_URL = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL));
 
         holder.mDrinkName.setText(name);
         holder.mDrinkRating.setText(rating);

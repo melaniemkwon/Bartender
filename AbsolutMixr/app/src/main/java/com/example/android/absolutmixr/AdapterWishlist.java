@@ -39,17 +39,17 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 
         public WishlistViewHolder(View view){
             super(view);
-            mDrinkName = (TextView) view.findViewById(R.id.name);
-            mDrinkRating = (TextView) view.findViewById(R.id.rating);
-            mDrinkColor = (TextView) view.findViewById(R.id.color);
-            mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
+            mDrinkName = (TextView) view.findViewById(R.id.wishlist_name);
+            mDrinkRating = (TextView) view.findViewById(R.id.wishlist_rating);
+            mDrinkColor = (TextView) view.findViewById(R.id.wishlist_color);
+            mDrinkpic = (ImageView) view.findViewById(R.id.wishlist_drinkImage);
         }
     }
 
     @Override
     public WishlistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.display_list_view, parent, false);
+        View view = inflater.inflate(R.layout.display_wishlist_view, parent, false);
         return new WishlistViewHolder(view);
     }
 

@@ -104,6 +104,6 @@ public class FragWishlist extends Fragment {
     }
 
     private boolean removeWishlistItem(long id) {
-        return mDb.delete(TABLE_NAME, _ID + "=" + id, null) > 0;
+        return mDb.delete(TABLE_NAME, _ID + "='" + id + "'", null) > 0;
     }
 }

@@ -1,6 +1,8 @@
 package com.example.android.absolutmixr;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
+import com.example.android.absolutmixr.Model.WishlistContract;
+import com.example.android.absolutmixr.Model.WishlistDbHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,6 +31,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private static final String TAG = AdapterDrink.class.getSimpleName();
     public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/100x100/";
     private static final String type= ".png";
+    private SQLiteDatabase mDb;
 
 
     //Constructor is default because we will change when we implement search function
@@ -57,6 +62,11 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     @Override
     public AdapterDrinkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
+
+        // Database for writing to Wishlist
+        WishlistDbHelper dbHelper = new WishlistDbHelper(context);
+        mDb = dbHelper.getWritableDatabase();
+
         int layoutIdForListItem = R.layout.display_list_view;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
@@ -72,7 +82,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         //Logs to see if it can make it here used for debugging.
         Log.v(TAG, "Made it to onBind name");
         Log.v(TAG, drinkcount.getName());
-        String url = Picture_url + (drinkcount.getId()+type);
+        final String url = Picture_url + (drinkcount.getId()+type);
         Log.v(TAG, "Built URI " + url +")(*&^%$#@!)(*&^%$#@*&^%$#@*&^%$#@)(*&^%$#@(*&^%$#@)(*&^%$#@");
 
         //Binding the info from the arraylist to the Textview.
@@ -93,6 +103,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
                 if(checked == true){
                     // TODO: add drink item to wishlist db
+                    addToWishlist(Integer.parseInt(drinkcount.getId()), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url);
                     check = check + " added to wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
@@ -118,5 +129,20 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         Log.d(TAG, "setDrinkData called");
         Log.d(TAG, dat.get(0).toString());
         notifyDataSetChanged();
+    }
+
+    // note: may need to remove some extraneous parameters....
+    private long addToWishlist(int id, String name, String desc, String color, String skill, String rating, String pic) {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(WishlistContract.WishlistEntry._ID, id);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_NAME, name);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_DESCRIPTION, desc);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_COLOR, color);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_SKILL, skill);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_RATING, rating);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL, pic);
+
+        return mDb.insert(WishlistContract.WishlistEntry.TABLE_NAME, null, contentValues);
     }
 }

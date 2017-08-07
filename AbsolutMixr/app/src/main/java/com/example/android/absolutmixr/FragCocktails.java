@@ -31,13 +31,12 @@ import java.util.ArrayList;
  * Created by melaniekwon on 7/27/17.
  */
 
-public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>>,View.OnClickListener {
+public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>> {
 
     private static final String TAG = FragCocktails.class.getSimpleName();
     private RecyclerView mDrink;
     private AdapterDrink mAdapter;
     private static final int ADDB_LOADER2 = 222;
-    private SQLiteDatabase mDb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,10 +56,6 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
         loadDrinkData();
 
         getActivity().getSupportLoaderManager().initLoader(ADDB_LOADER2, null, this);
-
-        // Database for writing to Wishlist
-        WishlistDbHelper dbHelper = new WishlistDbHelper(this.getContext());
-        mDb = dbHelper.getWritableDatabase();
 
         return view;
     }
@@ -150,36 +145,5 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
             loaderManager.restartLoader(ADDB_LOADER2, queryBundle, this);
         }
         // ##########################################################
-    }
-
-    @Override
-    public void onClick(View v) {
-        Context context = getContext();
-        int duration = Toast.LENGTH_SHORT;
-        boolean checked = ((CheckBox)v).isChecked();
-
-        if(checked == true){
-            Toast toast = Toast.makeText(context,"added to wishlist",duration);
-            toast.show();
-        }
-        else{
-            Toast toast = Toast.makeText(context,"added to wishlist",duration);
-            toast.show();
-        }
-    }
-
-    // note: may need to remove some extraneous parameters....
-    private long addToWishlist(int id, String name, String desc, String color, String skill, String rating, String pic) {
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(WishlistContract.WishlistEntry._ID, id);
-        contentValues.put(WishlistContract.WishlistEntry.COLUMN_NAME, name);
-        contentValues.put(WishlistContract.WishlistEntry.COLUMN_DESCRIPTION, desc);
-        contentValues.put(WishlistContract.WishlistEntry.COLUMN_COLOR, color);
-        contentValues.put(WishlistContract.WishlistEntry.COLUMN_SKILL, skill);
-        contentValues.put(WishlistContract.WishlistEntry.COLUMN_RATING, rating);
-        contentValues.put(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL, pic);
-
-        return mDb.insert(WishlistContract.WishlistEntry.TABLE_NAME, null, contentValues);
     }
 }

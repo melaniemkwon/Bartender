@@ -104,12 +104,12 @@ public class FragBAC extends Fragment {
         df.setRoundingMode(RoundingMode.DOWN);
 
         if(bac == 0)
-            textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're completely sober!");
+            textView.setText("BAC: 0.00" + " You're completely sober!");
         else if(bac <= 0.04)
             textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're a buzzing aren't you?");
         else if(bac <= 0.08)
             textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're tipsy. Slow down.");
-        else if(bac <= 0.15)
+        else if(bac <= 0.17)
             textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're drunk. Please don't drive.");
         else
             textView.setText("BAC: " + String.valueOf(df.format(bac)) + " You're wasted now. Good luck.");
@@ -158,7 +158,7 @@ public class FragBAC extends Fragment {
 
         if(bac <= 0)
             statusView.setBackgroundResource(R.drawable.green);
-        else if(bac <= 0.03) {
+        else if(bac <= 0.04) {
             statusView.setBackgroundResource(R.drawable.greenanimation);
             statusAnimation = (AnimationDrawable) statusView.getBackground();
             statusAnimation.start();

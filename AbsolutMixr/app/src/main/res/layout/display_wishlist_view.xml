@@ -85,20 +85,32 @@
                 android:background="?android:selectableItemBackground"/>
 
             <ImageButton
-                android:id="@+id/wishlist_share"
+                android:id="@+id/wishlist_thumbsup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_share_black_24dp"
+                app:srcCompat="@drawable/ic_thumb_up_black_24dp"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 android:background="?android:selectableItemBackground"
-                android:padding="5dp"
+
                 card_view:layout_constraintRight_toRightOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/wishlist_action"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginLeft="8dp"
                 card_view:layout_constraintVertical_bias="1.0"
-                card_view:layout_constraintLeft_toLeftOf="@+id/wishlist_action" />
+                card_view:layout_constraintLeft_toLeftOf="@+id/wishlist_action"
+                android:layout_marginBottom="4dp" />
+
+            <ImageButton
+                android:id="@+id/wishlist_thumbsdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="0dp"
+                android:background="?android:selectableItemBackground"
+                app:srcCompat="@drawable/ic_thumb_down_black_24dp"
+                card_view:layout_constraintRight_toLeftOf="@+id/wishlist_thumbsup"
+                card_view:layout_constraintTop_toTopOf="@+id/wishlist_thumbsup" />
 
             <!--<CheckBox-->
                 <!--android:id="@+id/starCheck"-->

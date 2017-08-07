@@ -39,7 +39,8 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         public final TextView mDrinkColor;
         public final ImageView mDrinkpic;
         public final Button mDotButton;
-        public final ImageButton mShareButton;
+        public final ImageButton mThumbsupButton;
+        public final ImageButton mThumbsdownButton;
 
         public WishlistViewHolder(View view){
             super(view);
@@ -48,7 +49,8 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             mDrinkColor = (TextView) view.findViewById(R.id.wishlist_color);
             mDrinkpic = (ImageView) view.findViewById(R.id.wishlist_drinkImage);
             mDotButton = (Button) view.findViewById(R.id.wishlist_action);
-            mShareButton = (ImageButton) view.findViewById(R.id.wishlist_share);
+            mThumbsupButton = (ImageButton) view.findViewById(R.id.wishlist_thumbsup);
+            mThumbsdownButton = (ImageButton) view.findViewById(R.id.wishlist_thumbsdown);
         }
     }
 

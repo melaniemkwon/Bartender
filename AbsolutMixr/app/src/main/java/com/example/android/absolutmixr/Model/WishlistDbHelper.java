@@ -22,7 +22,7 @@ public class WishlistDbHelper extends SQLiteOpenHelper {
 
         String SQL_CREATE_WAITLIST_TABLE = "CREATE TABLE " +
                 WishlistContract.WishlistEntry.TABLE_NAME + " (" +
-                WishlistContract.WishlistEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                WishlistContract.WishlistEntry._ID + " INTEGER PRIMARY KEY," +
                 WishlistContract.WishlistEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 WishlistContract.WishlistEntry.COLUMN_DESCRIPTION + " TEXT," +
                 WishlistContract.WishlistEntry.COLUMN_COLOR + " TEXT," +

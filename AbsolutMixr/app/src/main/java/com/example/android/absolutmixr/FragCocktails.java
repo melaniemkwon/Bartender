@@ -1,6 +1,8 @@
 package com.example.android.absolutmixr;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -16,6 +18,8 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
+import com.example.android.absolutmixr.Model.WishlistContract;
+import com.example.android.absolutmixr.Model.WishlistDbHelper;
 
 import org.json.JSONException;
 
@@ -33,6 +37,7 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
     private RecyclerView mDrink;
     private AdapterDrink mAdapter;
     private static final int ADDB_LOADER2 = 222;
+    private SQLiteDatabase mDb;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +57,10 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
         loadDrinkData();
 
         getActivity().getSupportLoaderManager().initLoader(ADDB_LOADER2, null, this);
+
+        // Database for writing to Wishlist
+        WishlistDbHelper dbHelper = new WishlistDbHelper(this.getContext());
+        mDb = dbHelper.getWritableDatabase();
 
         return view;
     }
@@ -157,5 +166,20 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
             Toast toast = Toast.makeText(context,"added to wishlist",duration);
             toast.show();
         }
+    }
+
+    // note: may need to remove some extraneous parameters....
+    private long addToWishlist(int id, String name, String desc, String color, String skill, String rating, String pic) {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(WishlistContract.WishlistEntry._ID, id);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_NAME, name);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_DESCRIPTION, desc);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_COLOR, color);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_SKILL, skill);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_RATING, rating);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL, pic);
+
+        return mDb.insert(WishlistContract.WishlistEntry.TABLE_NAME, null, contentValues);
     }
 }

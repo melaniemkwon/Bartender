@@ -18,7 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/type_array"
-        android:prompt="@string/ingredient_type_prompt"/>
+        android:prompt="@string/ingredient_type_prompt"
+        style="@android:style/Widget.Holo.Light.Spinner"/>
     <ProgressBar
         android:id="@+id/progressBarAddIngredient"
         style="?android:attr/progressBarStyle"
@@ -41,7 +42,8 @@
         android:layout_height="wrap_content"
         android:entries="@array/type_array"
         android:prompt="@string/ingredient_type_prompt"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        style="@android:style/Widget.Holo.Light.Spinner"/>
     <Button
         android:id="@+id/add"
         android:layout_width="match_parent"

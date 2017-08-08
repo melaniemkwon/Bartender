@@ -108,21 +108,41 @@
                 android:entries="@array/hour_array"/>
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/estimate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bluebackground"
-            android:text="Estimate"
-            android:textColor="#616161"
-            android:textSize="14sp"/>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <Button
+                android:id="@+id/estimate"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="96dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/bluebackground"
+                android:text="Estimate"
+
+                android:textColor="#616161"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/test"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="96dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bluebackground"
+                android:text="Drunk Test"
+                android:textColor="#616161"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"

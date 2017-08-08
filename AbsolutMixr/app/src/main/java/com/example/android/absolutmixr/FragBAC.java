@@ -108,6 +108,13 @@ public class FragBAC extends Fragment {
                             .show();
                     dialog.setCanceledOnTouchOutside(false);
                 }
+
+                else {
+                    displayBAC(calculateBAC(gender,
+                            Integer.valueOf(drinkSpinner.getSelectedItem().toString()),
+                            Integer.valueOf(weightSpinner.getSelectedItem().toString()),
+                            Integer.valueOf(hourSpinner.getSelectedItem().toString())), bac);
+                }
             }
         });
 

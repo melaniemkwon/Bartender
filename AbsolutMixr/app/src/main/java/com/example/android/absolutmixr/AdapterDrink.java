@@ -106,17 +106,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         }
 
         // If drinkid exists in wishlist db, mark the star checkbox as checked
-        Cursor cursor = getAllWishlist();
-        List drinkIds = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            String drinkId = cursor.getString(cursor.getColumnIndexOrThrow(WishlistContract.WishlistEntry._ID));
-            drinkIds.add(drinkId);
-        }
-        cursor.close();
-
-        if (drinkIds.contains( drinkcount.getId() )) {
-            holder.mCheck.setChecked(true);
-        }
+        holder.mCheck.setChecked(existsInWishlist( drinkcount.getId() ));
 
         holder.mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +164,24 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     }
 
     // ########## WISHLIST DB METHODS ##########
+
+    // Helper method to determine if drinkid exists in wishlist db
+    // @returns true if star checkbox should be checked
+    private boolean existsInWishlist(String id) {
+        Cursor cursor = getAllWishlist();
+        List drinkIds = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            String drinkId = cursor.getString(cursor.getColumnIndexOrThrow(WishlistContract.WishlistEntry._ID));
+            drinkIds.add(drinkId);
+        }
+
+        cursor.close();
+
+        if (drinkIds.contains( id )) { return true; }
+        return false;
+    }
+
     // TODO: get rid of this duplicate method... later though.
     private Cursor getAllWishlist() {
         return mDb.query(

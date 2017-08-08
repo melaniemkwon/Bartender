@@ -36,6 +36,7 @@ public class FragSearch extends DialogFragment {
 
     private final String TAG = "searchfragment";
 
+    private EditText etDrinkName;
     private EditText editTextContent;
     private Spinner spinnerTaste;
     private Spinner spinnerColor;
@@ -73,7 +74,7 @@ public class FragSearch extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.advanced_search, container, false);
 
-
+        etDrinkName = (EditText) view.findViewById(R.id.drink_name_edit_text);
         editTextContent = (EditText) view.findViewById(R.id.drink_content_edit_text);
         spinnerTaste = (Spinner) view.findViewById(R.id.drink_taste_spinner);
         spinnerColor = (Spinner) view.findViewById(R.id.drink_color_spinner);
@@ -130,8 +131,9 @@ public class FragSearch extends DialogFragment {
             public void onClick(View v){
                 String urlString;
                 String json;
+                String drinkName = etDrinkName.getText().toString();
                 String drinkContains = editTextContent.getText().toString();
-                URL url = NetworkUtils.makeAdvancedSearchUrl(drinkContains,
+                URL url = NetworkUtils.makeAdvancedSearchUrl(drinkName, drinkContains,
                         spinnerSkill.getSelectedItem().toString(), spinnerTaste.getSelectedItem().toString(),
                         spinnerGlass.getSelectedItem().toString(), spinnerTime.getSelectedItem().toString(),
                         spinnerColor.getSelectedItem().toString());

@@ -6,6 +6,55 @@
     android:id="@+id/activity_second"
     android:gravity="center">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:paddingBottom="15dp"
+        android:weightSum="1"
+        android:layout_gravity="start"
+        tools:context=".search">
+
+        <TextView
+            android:id="@+id/drink_name_tv"
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:text="Search by: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/drink_name_edit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Drink Name"
+            android:paddingTop="1dp" />
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:paddingBottom="15dp"
+        android:weightSum="1"
+        android:layout_gravity="start"
+        tools:context=".search">
+
+        <TextView
+            android:id="@+id/drink_or_search_by_tv"
+            android:layout_width="140sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Or Search By: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"

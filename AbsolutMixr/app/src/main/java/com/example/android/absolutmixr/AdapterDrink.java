@@ -3,6 +3,7 @@ package com.example.android.absolutmixr;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,9 @@ import com.example.android.absolutmixr.Model.WishlistDbHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.android.absolutmixr.Model.WishlistContract.WishlistEntry.TABLE_NAME;
 
 /**
  * Created by Leonard on 7/17/2017.
@@ -100,6 +104,20 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                     .load(url)
                     .into(holder.mDrinkpic);
         }
+
+        // If drinkid exists in wishlist db, mark the star checkbox as checked
+        Cursor cursor = getAllWishlist();
+        List drinkIds = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            String drinkId = cursor.getString(cursor.getColumnIndexOrThrow(WishlistContract.WishlistEntry._ID));
+            drinkIds.add(drinkId);
+        }
+        cursor.close();
+
+        if (drinkIds.contains( drinkcount.getId() )) {
+            holder.mCheck.setChecked(true);
+        }
+
         holder.mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,15 +130,16 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                     String ingredients = android.text.TextUtils.join(",", drinkcount.getIngredients());
                     String occassions = android.text.TextUtils.join(",", drinkcount.getOccassions());
                     String tastes = android.text.TextUtils.join(",", drinkcount.getTastes());
-                    // DONE: add drink item to wishlist db
-                    Log.d(TAG, drinkcount.getId()+ drinkcount.getName()+ drinkcount.getDescription()+ drinkcount.getColor()+ drinkcount.getSkill()+ drinkcount.getRating()+ url);
+
+                    // Add drink item to wishlist db
                     addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url, ingredients, occassions, tastes);
+
                     check = check + " added to wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
                 }
                 else{
-                    // DONE: delete drink item to wishlist db
+                    // Delete drink item to wishlist db
                     removeWishlistItem(drinkcount.getId());
                     check =  check+ " removed from wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
@@ -154,7 +173,20 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         notifyDataSetChanged();
     }
 
-    // note: may need to remove some extraneous parameters....
+    // ########## WISHLIST DB METHODS ##########
+    // TODO: get rid of this duplicate method... later though.
+    private Cursor getAllWishlist() {
+        return mDb.query(
+                TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                WishlistContract.WishlistEntry._ID
+        );
+    }
+
     private long addToWishlist(String id, String name, String desc, String color, String skill, String rating, String pic, String ingreds, String occs, String tastes) {
         ContentValues contentValues = new ContentValues();
 
@@ -175,4 +207,5 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private boolean removeWishlistItem(String id) {
         return mDb.delete(WishlistContract.WishlistEntry.TABLE_NAME, WishlistContract.WishlistEntry._ID + "='" + id + "'", null) > 0;
     }
+    // ########## END WISHLIST DB METHODS ##########
 }

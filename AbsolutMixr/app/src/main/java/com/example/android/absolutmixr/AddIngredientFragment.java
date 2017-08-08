@@ -15,6 +15,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -126,6 +127,7 @@ public class AddIngredientFragment extends DialogFragment implements LoaderCallb
         progress = (ProgressBar) view.findViewById(R.id .progressBarAddIngredient);
         prompt = (TextView) view.findViewById(R.id .ingredient_prompt);
         add = (Button) view.findViewById(R.id.add);
+        final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         button.setTextColor(Color.WHITE);
         button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         add.setTextColor(Color.WHITE);
@@ -145,6 +147,9 @@ public class AddIngredientFragment extends DialogFragment implements LoaderCallb
                 FragCabinet.setIngredient(choice);
                 //OnDialogCloseListener activity = (OnDialogCloseListener) FragCabinet;
                 //activity.closeDialog(choice.getDescription(), choice.getName(), choice.getId(), choice.getType());
+                FragCabinet fg = (FragCabinet) getActivity().getSupportFragmentManager().getFragments().get(1);
+                getActivity().getSupportFragmentManager().beginTransaction().detach(fg).attach(fg).commit();
+                viewPager.setCurrentItem(1);
                 AddIngredientFragment.this.dismiss();
             }
         });

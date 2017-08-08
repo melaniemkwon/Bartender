@@ -53,6 +53,9 @@ public class AddIngredientFragment extends DialogFragment implements LoaderCallb
     public AddIngredientFragment() {
         // Required empty public constructor\
     }
+    public interface OnDismissListener {
+        void onDismiss(AddIngredientFragment myDialogFragment);
+    }
     public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
         this.onDismissListener = onDismissListener;
     }
@@ -142,7 +145,6 @@ public class AddIngredientFragment extends DialogFragment implements LoaderCallb
                 FragCabinet.setIngredient(choice);
                 //OnDialogCloseListener activity = (OnDialogCloseListener) FragCabinet;
                 //activity.closeDialog(choice.getDescription(), choice.getName(), choice.getId(), choice.getType());
-
                 AddIngredientFragment.this.dismiss();
             }
         });

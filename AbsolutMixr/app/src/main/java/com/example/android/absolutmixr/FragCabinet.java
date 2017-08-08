@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -28,7 +29,7 @@ import com.example.android.absolutmixr.Model.IngredientsDBHelper;
  * Created by melaniekwon on 7/27/17.
  */
 
-public class FragCabinet extends Fragment {
+public class FragCabinet extends Fragment implements AddIngredientFragment.OnDismissListener {//implements AdapterIngredients.ItemClickListener {
     private Button button;
     private Button refresh;
     private Button add;
@@ -42,6 +43,7 @@ public class FragCabinet extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.frag_cabinet,container,false);
         button = (Button) view.findViewById(R.id.button);
+        final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
         button.setTextColor(Color.WHITE);
         button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         button.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +61,16 @@ public class FragCabinet extends Fragment {
         rv = (RecyclerView) view.findViewById(R.id.ingredientRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setHasFixedSize(true);
-        rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+
+      /*  rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                refresh();
+                //onTouchEvent(rv,e);
                 return false;
             }
+
+
 
             @Override
             public void onTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -75,14 +81,23 @@ public class FragCabinet extends Fragment {
             public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
                 refresh();
             }
-        });
+        });*/
         // Create and set adapter
         adapter= new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
             @Override
-            public void onItemClick(int id, String ingredientId) {
+            public void onItemClick(int pos, String id) {
+                Log.d("rvclick","reached"+id);
+                NetworkUtils.makeAdvancedSearchUrl(id,"-Show All-","-Show All-","-Show All-","-Show All-","-Show All-");
+                FragCocktails fg = (FragCocktails) getActivity().getSupportFragmentManager().getFragments().get(0);
+                getActivity().getSupportFragmentManager().beginTransaction().detach(fg).attach(fg).commit();
+
+                Log.d("in ", "search button clicked");
+
+                viewPager.setCurrentItem(0);
 
 
             }
+
         });
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -99,6 +114,7 @@ public class FragCabinet extends Fragment {
                 return false;
             }
 
+
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 long id = (long) viewHolder.itemView.getTag();
@@ -112,6 +128,12 @@ public class FragCabinet extends Fragment {
         super.onDestroy();
         if (db != null) db.close();
         if (cursor != null) cursor.close();
+    }
+    @Override
+    public void onResume(){
+        refresh();
+        super.onResume();
+
     }
     private Cursor getAllItems(SQLiteDatabase db) {
         return db.query(
@@ -145,4 +167,14 @@ public class FragCabinet extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onDismiss(AddIngredientFragment myDialogFragment) {
+        refresh();
+    }
+
+
+    /*@Override
+    public void onItemClick(int pos, String id) {
+        Log.d("onitemclick ",": "+id);
+    }*/
 }

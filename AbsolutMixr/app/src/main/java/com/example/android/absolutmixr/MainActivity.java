@@ -1,5 +1,8 @@
 package com.example.android.absolutmixr;
 
+
+
+
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -10,7 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends AppCompatActivity implements FragSearch.OnDialogCloseListener {
+
+public class MainActivity extends AppCompatActivity implements FragSearch.OnDialogCloseListener{
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private ViewPager viewPager;    // submenu for Material Design Tab Layout
@@ -21,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
         super.onCreate(savedInstanceState);
         Log.v(TAG, "Made it here okay");
         setContentView(R.layout.activity_main);
-
         Log.v(TAG, "Made it here okay");
 
         // Implement Material Design Tab Layout
@@ -60,7 +63,10 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
     }
     // ##### END MENU #####
 
+
     // ##### MATERIAL DESIGN TAB #####
+    // TODO: melanie-- make these scrollable...
+    // https://www.androidhive.info/2015/09/android-material-design-working-with-tabs/
     public void setupViewPager(ViewPager viewPager){
         AdapterViewPager pagerAdapter = new AdapterViewPager(getSupportFragmentManager());
         pagerAdapter.addFragment(new FragCocktails(),"Cocktails");

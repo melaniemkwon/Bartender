@@ -7,6 +7,8 @@
     tools:context="com.example.android.absolutmixr.MainActivity"
     android:orientation="vertical">
 
+
+
     <!--COORDINATORLAYOUT-->
     <!--SOURCE: http://www.ekiras.com/2015/12/how-to-implement-material-design-tab-layout-in-android.html-->
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -46,7 +46,7 @@ public class AdapterIngredients extends RecyclerView.Adapter<AdapterIngredients.
         }
 
         public interface ItemClickListener {
-            void onItemClick(int pos, String title, String desc);
+            void onItemClick(int pos, String id);
         }
 
 
@@ -71,6 +71,8 @@ public class AdapterIngredients extends RecyclerView.Adapter<AdapterIngredients.
             TextView desc;
             String ingredientTitle;
             String ingredientDesc;
+            String ingredientId;
+
 
             long id;
 
@@ -91,6 +93,7 @@ public class AdapterIngredients extends RecyclerView.Adapter<AdapterIngredients.
                 id = cursor.getLong(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS._ID));
                 ingredientDesc = cursor.getString(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_DESCRIPTION));
                 ingredientTitle = cursor.getString(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_NAME));
+                ingredientId = cursor.getString(cursor.getColumnIndex(IngredientsContract.TABLE_INGREDIENTS.COLUMN_NAME_ID));
 
                 desc.setText(ingredientDesc);
                 title.setText(ingredientTitle);
@@ -102,7 +105,8 @@ public class AdapterIngredients extends RecyclerView.Adapter<AdapterIngredients.
             @Override
             public void onClick(View v) {
                 int pos = getAdapterPosition();
-                listener.onItemClick(pos, ingredientDesc, ingredientTitle);
+                listener.onItemClick(pos, ingredientId);
+
             }
 
 

@@ -56,15 +56,6 @@ public class FragCabinet extends Fragment {
         helper = new IngredientsDBHelper(getActivity());
         db = helper.getWritableDatabase();
         cursor = getAllItems(db);
-        /*refresh = (Button) view.findViewById(R.id.refresh);
-        refresh.setTextColor(Color.WHITE);
-        refresh.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                refresh();
-            }
-        });*/
         rv = (RecyclerView) view.findViewById(R.id.ingredientRecyclerView);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setHasFixedSize(true);
@@ -88,33 +79,19 @@ public class FragCabinet extends Fragment {
         // Create and set adapter
         adapter= new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
             @Override
-            public void onItemClick(int id, String description, String name) {
-                //launch fragment with item descriptions
+            public void onItemClick(int id, String ingredientId) {
+
 
             }
         });
         rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("Fragcab","got to onstart");
-        refresh();
-        helper = new IngredientsDBHelper(getActivity());
-        db = helper.getWritableDatabase();
-        cursor = getAllItems(db);
-        Log.d("Fragcab","got to onstart"+cursor.getCount());
-        adapter = new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
-            @Override
-            public void onItemClick(int id, String description, String name) {
-                //launch fragment with item descriptions
-
-            }
-        });
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 
             @Override
@@ -131,8 +108,8 @@ public class FragCabinet extends Fragment {
         }).attachToRecyclerView(rv);
     }
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         if (db != null) db.close();
         if (cursor != null) cursor.close();
     }

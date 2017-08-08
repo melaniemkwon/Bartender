@@ -2,8 +2,9 @@ package com.example.android.absolutmixr;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +49,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         public final CheckBox mCheck;
 
         //instantiating
-        public final LinearLayout linearLayout;
+        public final CardView linearLayout;
 
         //creating the TextView to make it easier to bind in the onBindViewHolder
         public AdapterDrinkViewHolder(View view){
@@ -61,7 +61,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
             mCheck = (CheckBox) view.findViewById(R.id.starCheck);
 
             //creating the layout and getting it
-            linearLayout = (LinearLayout) view.findViewById(R.id.clickable);
+            linearLayout = (CardView) view.findViewById(R.id.clickable);
         }
     }
 

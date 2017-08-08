@@ -27,9 +27,9 @@
 
 
     <string name="vertical_ellipsis">&#8942;</string>
-    <string name="ingList">Ingredients: </string>
-    <string name="tasList">Tastes: </string>
-    <string name="occList">Occasions: </string>
+    <string name="ingList"><b>Ingredients: </b></string>
+    <string name="tasList"><b>Tastes: </b></string>
+    <string name="occList"><b>Occasions: </b></string>
     <string-array name="num_drinks_array">
         <item>0</item>
         <item>1</item>

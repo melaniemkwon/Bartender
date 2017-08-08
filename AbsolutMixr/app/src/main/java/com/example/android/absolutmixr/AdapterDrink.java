@@ -108,10 +108,13 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                 String check = drinkcount.getName();
 
                 if(checked == true){
+                    // Group ingredients, tastes, occassions into comma separated string.
+                    String ingredients = android.text.TextUtils.join(",", drinkcount.getIngredients());
+                    String occassions = android.text.TextUtils.join(",", drinkcount.getOccassions());
+                    String tastes = android.text.TextUtils.join(",", drinkcount.getTastes());
                     // DONE: add drink item to wishlist db
-                    // DONE: find out why drink picture is not displaying in recyclerview
                     Log.d(TAG, drinkcount.getId()+ drinkcount.getName()+ drinkcount.getDescription()+ drinkcount.getColor()+ drinkcount.getSkill()+ drinkcount.getRating()+ url);
-                    addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url);
+                    addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url, ingredients, occassions, tastes);
                     check = check + " added to wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
@@ -152,7 +155,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     }
 
     // note: may need to remove some extraneous parameters....
-    private long addToWishlist(String id, String name, String desc, String color, String skill, String rating, String pic) {
+    private long addToWishlist(String id, String name, String desc, String color, String skill, String rating, String pic, String ingreds, String occs, String tastes) {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(WishlistContract.WishlistEntry._ID, id);
@@ -162,6 +165,9 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_SKILL, skill);
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_RATING, rating);
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL, pic);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_INGREDIENTS, ingreds);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_OCCASSIONS, occs);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_TASTES, tastes);
 
         return mDb.insert(WishlistContract.WishlistEntry.TABLE_NAME, null, contentValues);
     }

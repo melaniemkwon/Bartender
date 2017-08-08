@@ -2,6 +2,8 @@ package com.example.android.absolutmixr.Model;
 
 import android.provider.BaseColumns;
 
+import java.util.List;
+
 /**
  * Created by melaniekwon on 8/6/17.
  */
@@ -18,5 +20,8 @@ public class WishlistContract {
         public static final String COLUMN_SKILL = "skill";
         public static final String COLUMN_RATING = "rating";
         public static final String COLUMN_PICTURE_URL = "picture";
+        public static final String COLUMN_INGREDIENTS = "ingredients";
+        public static final String COLUMN_TASTES = "tastes";
+        public static final String COLUMN_OCCASSIONS = "occassions";
     }
 }

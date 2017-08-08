@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class WishlistDbHelper extends SQLiteOpenHelper {
 
     static final String DATABASE_NAME = "wishlist.db";
-    static final int DATABASE_VERSION = 4;
+    static final int DATABASE_VERSION = 5;
 
     public WishlistDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +28,10 @@ public class WishlistDbHelper extends SQLiteOpenHelper {
                 WishlistContract.WishlistEntry.COLUMN_COLOR + " TEXT," +
                 WishlistContract.WishlistEntry.COLUMN_SKILL + " TEXT," +
                 WishlistContract.WishlistEntry.COLUMN_RATING + " TEXT," +
-                WishlistContract.WishlistEntry.COLUMN_PICTURE_URL + " TEXT" +
+                WishlistContract.WishlistEntry.COLUMN_PICTURE_URL + " TEXT," +
+                WishlistContract.WishlistEntry.COLUMN_INGREDIENTS + " TEXT," +
+                WishlistContract.WishlistEntry.COLUMN_TASTES + " TEXT," +
+                WishlistContract.WishlistEntry.COLUMN_OCCASSIONS + " TEXT" +
                 ");";
 
         db.execSQL(SQL_CREATE_WAITLIST_TABLE);

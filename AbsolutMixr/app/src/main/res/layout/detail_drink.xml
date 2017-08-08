@@ -80,7 +80,10 @@
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginBottom="8dp" />
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d5817aef14a5be775ee5445544991b11bd8fcf70
     <!--dynamic view for taste thats is located on the left -->
 
 
@@ -100,7 +103,13 @@
         app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintLeft_toRightOf="@+id/dynamicTaste"
         app:layout_constraintRight_toRightOf="@+id/detailkRating"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/detailSkill" />
+=======
+        app:layout_constraintTop_toBottomOf="@+id/detailSkill"
+        tools:layout_editor_absoluteY="124dp"
+        tools:layout_editor_absoluteX="249dp" />
+>>>>>>> d5817aef14a5be775ee5445544991b11bd8fcf70
 
     <TextView
         android:id="@+id/detailSkill"

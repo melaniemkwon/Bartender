@@ -133,7 +133,7 @@
                 android:layout_marginRight="96dp"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/bluebackground"
-                android:text="Test"
+                android:text="Drunk Test"
                 android:textColor="#616161"
                 android:textSize="14sp"/>
         </RelativeLayout>

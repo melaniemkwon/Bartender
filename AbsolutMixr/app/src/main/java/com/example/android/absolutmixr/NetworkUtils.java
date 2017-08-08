@@ -203,21 +203,21 @@ public class NetworkUtils {
         if (!ingredient.equals("")){
             searchParams= searchParams + "with/" + ingredient.toLowerCase() + "/";
         }
-        if (!skill.equals("-Show All-")){
+        if (!skill.equals("-All-")){
             searchParams= searchParams + "skill/" + skill.toLowerCase() + "/";
         }
-        if (!color.equals("-Show All-")){
+        if (!color.equals("-All-")){
             searchParams= searchParams + "colored/" + color.toLowerCase() + "/";
         }
-        if (!taste.equals("-Show All-")){
+        if (!taste.equals("-All-")){
             String tasteID = FragSearch.tasteMap.get(taste);
             searchParams= searchParams + "tasting/" + tasteID + "/";
         }
-        if (!glass.equals("-Show All-")){
+        if (!glass.equals("-All-")){
             String glassID = FragSearch.glassMap.get(glass);
             searchParams= searchParams + "servedin/" + glassID + "/";
         }
-        if (!time.equals("-Show All-")){
+        if (!time.equals("-All-")){
             String timeID = FragSearch.timeMap.get(time);
             searchParams= searchParams + "for/" + timeID + "/";
         }

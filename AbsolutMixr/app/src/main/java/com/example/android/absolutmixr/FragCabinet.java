@@ -66,7 +66,7 @@ public class FragCabinet extends Fragment {
             @Override
             public void onItemClick(int pos, String id) {
                 Log.d("rvclick","reached"+id);
-                NetworkUtils.makeAdvancedSearchUrl(id,"-Show All-","-Show All-","-Show All-","-Show All-","-Show All-");
+                NetworkUtils.makeAdvancedSearchUrl(id,"-All-","-All-","-All-","-All-","-All-");
                 FragCocktails fg = (FragCocktails) getActivity().getSupportFragmentManager().getFragments().get(0);
                 getActivity().getSupportFragmentManager().beginTransaction().detach(fg).attach(fg).commit();
                 Log.d("in ", "search button clicked");

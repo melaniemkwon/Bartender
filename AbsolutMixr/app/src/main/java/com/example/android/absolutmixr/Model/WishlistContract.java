@@ -23,5 +23,6 @@ public class WishlistContract {
         public static final String COLUMN_INGREDIENTS = "ingredients";
         public static final String COLUMN_TASTES = "tastes";
         public static final String COLUMN_OCCASSIONS = "occassions";
+        public static final String COLUMN_THUMBSUP = "thumpsup";
     }
 }

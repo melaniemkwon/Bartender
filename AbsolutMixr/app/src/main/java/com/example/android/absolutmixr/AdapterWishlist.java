@@ -25,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static com.example.android.absolutmixr.AdapterDrink.Picture_url;
 
@@ -75,11 +76,21 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
     public void onBindViewHolder(final WishlistViewHolder holder, int position) {
         if (!mCursor.moveToPosition(position)) { return; }
 
-        int id = mCursor.getInt(mCursor.getColumnIndex(WishlistContract.WishlistEntry._ID));
-        String name = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_NAME));
-        String rating = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_RATING));
-        String color = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_COLOR));
-        String pic_URL = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL));
+        final String id = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry._ID));
+        final String name = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_NAME));
+        final String description = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_DESCRIPTION));
+        final String color = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_COLOR));
+        final String skill = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_SKILL));
+        final String rating = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_RATING));
+        final String pic_URL = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL));
+
+        // Strings are parsed into ArrayList<String>
+        String ingredients = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_INGREDIENTS));
+        String tastes = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_TASTES));
+        String occassions = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_OCCASSIONS));
+        final List<String> ingredientsList = Arrays.asList(ingredients.split("\\s*,\\s*"));
+        final List<String> tastesList = Arrays.asList(tastes.split("\\s*,\\s*"));
+        final List<String> occassionsList = Arrays.asList(occassions.split("\\s*,\\s*"));
 
         holder.mDrinkName.setText(name);
         holder.mDrinkRating.setText(rating);
@@ -149,7 +160,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             // NOTE: id of the DrinkItem is used to call the picture
             String test = "test";
             ArrayList<String> testArray = new ArrayList<String>(Arrays.asList(test, test, test));
-            DrinkItem drinkItem = new DrinkItem(test, test, test, test, test, test, testArray, testArray, testArray);
+            DrinkItem drinkItem = new DrinkItem(id, name, description, color, skill, rating, ingredientsList, occassionsList, tastesList);
 
             @Override
             public void onClick(View v) {

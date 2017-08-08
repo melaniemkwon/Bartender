@@ -112,9 +112,19 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(mContext, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
 
-                        return true;
+                        int id = item.getItemId();
+                        switch(id) {
+                            case R.id.wishlist_action_shop:
+                                return true;
+                            case R.id.wishlist_action_share:
+                                return true;
+                            case R.id.wishlist_action_delete:
+                                Toast.makeText(mContext, "" + item.getGroupId(), Toast.LENGTH_SHORT).show();
+                                return true;
+                            default:
+                                return false;
+                        }
                     }
                 });
 
@@ -122,7 +132,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             }
         });
 
-        // DONE: RATE THIS DRINK
+        // TODO: RATING DRINKS SHOULD BE PERSISTENT. SAVE TO DB.
         holder.mThumbsupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -54,12 +54,6 @@ public class AddIngredientFragment extends DialogFragment implements LoaderCallb
     public AddIngredientFragment() {
         // Required empty public constructor\
     }
-    public interface OnDismissListener {
-        void onDismiss(AddIngredientFragment myDialogFragment);
-    }
-    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.onDismissListener = onDismissListener;
-    }
 
     @Override
     public Loader<Void> onCreateLoader(int id, Bundle args) {

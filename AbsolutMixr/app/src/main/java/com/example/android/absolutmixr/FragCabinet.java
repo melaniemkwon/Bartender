@@ -29,10 +29,8 @@ import com.example.android.absolutmixr.Model.IngredientsDBHelper;
  * Created by melaniekwon on 7/27/17.
  */
 
-public class FragCabinet extends Fragment implements AddIngredientFragment.OnDismissListener {//implements AdapterIngredients.ItemClickListener {
+public class FragCabinet extends Fragment {
     private Button button;
-    private Button refresh;
-    private Button add;
     private RecyclerView rv;
     private IngredientsDBHelper helper;
     private Cursor cursor;
@@ -62,26 +60,7 @@ public class FragCabinet extends Fragment implements AddIngredientFragment.OnDis
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv.setHasFixedSize(true);
 
-      /*  rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
 
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                //onTouchEvent(rv,e);
-                return false;
-            }
-
-
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                refresh();
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-                refresh();
-            }
-        });*/
         // Create and set adapter
         adapter= new AdapterIngredients(cursor, new AdapterIngredients.ItemClickListener() {
             @Override
@@ -165,11 +144,6 @@ public class FragCabinet extends Fragment implements AddIngredientFragment.OnDis
     public void refresh(){
         adapter.swapCursor(getAllItems(db));
         adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onDismiss(AddIngredientFragment myDialogFragment) {
-        refresh();
     }
 
 

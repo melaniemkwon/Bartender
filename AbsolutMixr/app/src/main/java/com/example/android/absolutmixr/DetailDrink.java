@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -77,12 +80,15 @@ public class DetailDrink extends AppCompatActivity{
                 .into(image);
 
         //setting the description
-        description.setText("Description:\n"+drinkInfo.getDescription());
+        Spanned desc = Html.fromHtml("<b>Description:</b><br/>" +drinkInfo.getDescription());
+        //description.setText("Description:\n"+drinkInfo.getDescription());
+        description.setText(desc);
 
         //dynamically adding the list of ingredients to the linear view named dynamic
         for (int i=0;i<ingredients.size();i++){
             TextView m =new TextView(this);
             m.setText(ingredients.get(i));
+            m.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             m.setId(i+3);
             dynamic.addView(m);
         }
@@ -91,6 +97,7 @@ public class DetailDrink extends AppCompatActivity{
         for (int l=0;l<tastes.size();l++){
             TextView t =new TextView(this);
             t.setText(tastes.get(l));
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             t.setId(l+ 8);
             Log.v(TAG,"setting into tastes: "+ tastes.get(l));
             dynamicTaste.addView(t);
@@ -101,13 +108,17 @@ public class DetailDrink extends AppCompatActivity{
         for (int j=0;j<occasions.size();j++){
             TextView o =new TextView(this);
             o.setText(occasions.get(j));
+            o.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             o.setId(j+4);
             dynamicOcc.addView(o);
         }
-
-        color.setText("Color: "+drinkInfo.getColor());
-        rating.setText("Rating: "+drinkInfo.getRating());
-        skill.setText("Skill: "+drinkInfo.getSkill());
+        //Using spanned and html formating to only format the beginning of the text
+        Spanned c = Html.fromHtml("<b>Color: </b>"+drinkInfo.getColor());
+        color.setText(c);
+        Spanned r = Html.fromHtml("<b>Rating: </b>"+drinkInfo.getRating());
+        rating.setText(r);
+        Spanned s = Html.fromHtml("<b>Skill: </b>"+drinkInfo.getSkill());
+        skill.setText(s);
 
     }
 }

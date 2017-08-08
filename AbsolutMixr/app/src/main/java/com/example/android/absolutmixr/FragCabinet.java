@@ -69,12 +69,8 @@ public class FragCabinet extends Fragment {
                 NetworkUtils.makeAdvancedSearchUrl(id,"-Show All-","-Show All-","-Show All-","-Show All-","-Show All-");
                 FragCocktails fg = (FragCocktails) getActivity().getSupportFragmentManager().getFragments().get(0);
                 getActivity().getSupportFragmentManager().beginTransaction().detach(fg).attach(fg).commit();
-
                 Log.d("in ", "search button clicked");
-
                 viewPager.setCurrentItem(0);
-
-
             }
 
         });
@@ -146,9 +142,4 @@ public class FragCabinet extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-
-    /*@Override
-    public void onItemClick(int pos, String id) {
-        Log.d("onitemclick ",": "+id);
-    }*/
 }

@@ -12,42 +12,59 @@
     tools:context="com.example.android.absolutmixr.DisplayList">
 
 
-    <FrameLayout
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight=".2">
+    <!-- A CardView that contains each drink item -->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/clickable"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="4dp"
+        >
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/drinkImage"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_gravity="center"
-            android:src="@color/colorAccent" />
-    </FrameLayout>
-
-
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight=".706"
-        android:orientation="vertical"
-        android:padding="5dp"
-        android:id="@+id/clickable">
+            android:src="@color/colorAccent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            card_view:layout_constraintLeft_toLeftOf="parent"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp" />
 
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="28sp"
+            android:id="@+id/name"
+            android:layout_width="219dp"
+            android:layout_height="38dp"
             android:hint="Drink Name"
-            android:id="@+id/name"/>
+            android:textSize="28sp"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            card_view:layout_constraintBottom_toTopOf="@+id/rating"
+            card_view:layout_constraintLeft_toRightOf="@+id/drinkImage"
+            android:layout_marginLeft="8dp"
+            card_view:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/rating"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Drink Rating"
-            android:textSize="26sp" />
+            android:textSize="26sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            card_view:layout_constraintLeft_toRightOf="@+id/drinkImage"
+            android:layout_marginLeft="8dp" />
 
         <!--<TextView
             android:layout_width="match_parent"
@@ -56,27 +73,23 @@
             android:text="Drink Color"
             android:id="@+id/color"/>-->
 
-        <!--Adding a separator to make viewing easier-->
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:background="#000000" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="match_parent"
-        android:layout_weight=".12"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:padding="5dp">
 
         <CheckBox
             android:id="@+id/starCheck"
             style="?android:attr/starStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            card_view:layout_constraintRight_toRightOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            card_view:layout_constraintLeft_toRightOf="@+id/name"
+            android:layout_marginLeft="8dp" />
 
-    </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>

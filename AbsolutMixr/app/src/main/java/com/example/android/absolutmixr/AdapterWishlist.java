@@ -3,6 +3,7 @@ package com.example.android.absolutmixr;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
 import com.example.android.absolutmixr.Model.WishlistContract;
+import com.example.android.absolutmixr.Model.WishlistDbHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ import static com.example.android.absolutmixr.AdapterDrink.Picture_url;
 public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.WishlistViewHolder> {
     private Context mContext;
     private Cursor mCursor;
+    private SQLiteDatabase mDb;
 
     public AdapterWishlist(Context mContext, Cursor mCursor) {
         this.mContext = mContext;
@@ -67,6 +70,10 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 
     @Override
     public WishlistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // Database for writing to Wishlist
+        WishlistDbHelper dbHelper = new WishlistDbHelper(mContext);
+        mDb = dbHelper.getWritableDatabase();
+
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.display_wishlist_view, parent, false);
         return new WishlistViewHolder(view);
@@ -101,8 +108,8 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                     .into(holder.mDrinkpic);
         }
 
-        // DONE: popupmenu
-        // TODO: implement - shop, share, delete
+        // DONE: popupmenu, delete
+        // TODO: implement - shop, share, refresh recyclerview upon delete
         holder.mDotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,14 +120,17 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        int id = item.getItemId();
-                        switch(id) {
+                        int menuId = item.getItemId();
+                        switch(menuId) {
                             case R.id.wishlist_action_shop:
                                 return true;
                             case R.id.wishlist_action_share:
                                 return true;
                             case R.id.wishlist_action_delete:
                                 Toast.makeText(mContext, "" + item.getGroupId(), Toast.LENGTH_SHORT).show();
+                                removeWishlistItem(id);
+                                //refresh recyclerview
+
                                 return true;
                             default:
                                 return false;
@@ -187,5 +197,9 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
     @Override
     public int getItemCount() {
         return mCursor.getCount();
+    }
+
+    private boolean removeWishlistItem(String id) {
+        return mDb.delete(WishlistContract.WishlistEntry.TABLE_NAME, WishlistContract.WishlistEntry._ID + "='" + id + "'", null) > 0;
     }
 }

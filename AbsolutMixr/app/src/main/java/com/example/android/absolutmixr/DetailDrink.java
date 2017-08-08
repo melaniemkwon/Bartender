@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +31,10 @@ public class DetailDrink extends AppCompatActivity{
     private TextView mDrinkName;
     private ImageView image;
     private TextView description;
+    private TextView color;
+    private TextView rating;
+    private TextView skill;
+
     private LinearLayout dynamic;
     private LinearLayout dynamicTaste;
     private LinearLayout dynamicOcc;
@@ -47,6 +52,9 @@ public class DetailDrink extends AppCompatActivity{
         dynamic = (LinearLayout)findViewById(R.id.dynamicText);
         dynamicTaste = (LinearLayout)findViewById(R.id.dynamicTaste);
         dynamicOcc = (LinearLayout)findViewById(R.id.dynamicOccasion);
+        color = (TextView)findViewById(R.id.deatailColor);
+        rating = (TextView)findViewById(R.id.detailkRating);
+        skill = (TextView)findViewById(R.id.detailSkill);
 
         //get the intent that was called
         Intent intentThatStartedThisActivity = getIntent();
@@ -62,6 +70,7 @@ public class DetailDrink extends AppCompatActivity{
 
         //setting the textview to the drink name
         mDrinkName.setText(drinkInfo.getName());
+
         //setting the image
         String url = Picture_url + (drinkInfo.getId()+type);
         Picasso.with(context)
@@ -75,6 +84,7 @@ public class DetailDrink extends AppCompatActivity{
         for (int i=0;i<ingredients.size();i++){
             TextView m =new TextView(this);
             m.setText(ingredients.get(i));
+            m.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             m.setId(i+3);
             dynamic.addView(m);
         }
@@ -83,6 +93,7 @@ public class DetailDrink extends AppCompatActivity{
         for (int l=0;l<tastes.size();l++){
             TextView t =new TextView(this);
             t.setText(tastes.get(l));
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             t.setId(l+ 8);
             Log.v(TAG,"setting into tastes: "+ tastes.get(l));
             dynamicTaste.addView(t);
@@ -93,11 +104,14 @@ public class DetailDrink extends AppCompatActivity{
         for (int j=0;j<occasions.size();j++){
             TextView o =new TextView(this);
             o.setText(occasions.get(j));
+            o.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             o.setId(j+4);
             dynamicOcc.addView(o);
         }
 
-
+        color.setText("Color: "+drinkInfo.getColor());
+        rating.setText("Rating: "+drinkInfo.getRating());
+        skill.setText("Skill: "+drinkInfo.getSkill());
 
     }
 }

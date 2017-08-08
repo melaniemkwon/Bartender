@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5sp"
+    android:padding="15sp"
     android:id="@+id/activity_second"
     android:gravity="center">
 
@@ -20,17 +20,17 @@
 
             <TextView
                 android:id="@+id/drink_content_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="110sp"
                 android:layout_height="wrap_content"
                 android:text="Ingredient: "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <EditText
                 android:id="@+id/drink_content_edit_text"
-                android:paddingTop="1dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Show All"/>
+                android:hint="Enter an ingredient"
+                android:paddingTop="1dp" />
 
         </LinearLayout>
 
@@ -47,7 +47,7 @@
 
         <TextView
             android:id="@+id/drink_taste_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="110sp"
             android:layout_height="wrap_content"
             android:text="Taste: "
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -55,7 +55,7 @@
         <Spinner
             android:id="@+id/drink_taste_spinner"
             android:paddingTop="0dp"
-            android:layout_width="wrap_content"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"
             style="@android:style/Widget.Holo.Light.Spinner"></Spinner>
 
@@ -74,7 +74,7 @@
 
         <TextView
             android:id="@+id/drink_color_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="110sp"
             android:layout_height="wrap_content"
             android:text="Color: "
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -82,7 +82,7 @@
         <Spinner
             android:id="@+id/drink_color_spinner"
             style="@android:style/Widget.Holo.Light.Spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"></Spinner>
 
     </LinearLayout>
@@ -99,7 +99,7 @@
 
         <TextView
             android:id="@+id/drink_skill_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="110sp"
             android:layout_height="wrap_content"
             android:text="Skill level: "
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -107,7 +107,7 @@
         <Spinner
             android:id="@+id/drink_skill_spinner"
             style="@android:style/Widget.Holo.Light.Spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"></Spinner>
 
     </LinearLayout>
@@ -117,13 +117,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="start"
         android:padding="1dp"
         android:weightSum="1"
         tools:context=".search">
 
         <TextView
             android:id="@+id/drink_glass_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="110sp"
             android:layout_height="wrap_content"
             android:text="Glass type: "
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -131,7 +132,7 @@
         <Spinner
             android:id="@+id/drink_glass_spinner"
             style="@android:style/Widget.Holo.Light.Spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"></Spinner>
 
     </LinearLayout>
@@ -142,12 +143,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="1dp"
+        android:layout_gravity="start"
         android:weightSum="1"
         tools:context=".search">
 
         <TextView
             android:id="@+id/drink_time_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="110sp"
             android:layout_height="wrap_content"
             android:text="Occasion: "
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -155,34 +157,10 @@
         <Spinner
             android:id="@+id/drink_time_spinner"
             style="@android:style/Widget.Holo.Light.Spinner"
-            android:layout_width="wrap_content"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"></Spinner>
 
     </LinearLayout>
-
-    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:padding="1dp"-->
-        <!--android:weightSum="1"-->
-        <!--tools:context=".search">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/drink_is_alcoholic_tv"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Alcoholic Beverage: "-->
-            <!--android:textAppearance="?android:attr/textAppearanceLarge" />-->
-
-        <!--<Spinner-->
-            <!--android:id="@+id/drink_is_alcoholic_spinner"-->
-            <!--android:paddingTop="1dp"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"></Spinner>-->
-
-    <!--</LinearLayout>-->
 
 
     <Button
@@ -199,7 +177,7 @@
     <TextView
         android:id="@+id/url_test_tv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="1sp"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
 

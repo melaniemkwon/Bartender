@@ -1,6 +1,8 @@
 package com.example.android.absolutmixr;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -16,6 +18,8 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
+import com.example.android.absolutmixr.Model.WishlistContract;
+import com.example.android.absolutmixr.Model.WishlistDbHelper;
 
 import org.json.JSONException;
 
@@ -24,7 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>>,View.OnClickListener {
+public class FragCocktails extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<DrinkItem>> {
 
     private static final String TAG = FragCocktails.class.getSimpleName();
     private RecyclerView mDrink;
@@ -174,21 +178,4 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
         }
         // ##########################################################
     }
-
-    @Override
-    public void onClick(View v) {
-        Context context = getContext();
-        int duration = Toast.LENGTH_SHORT;
-        boolean checked = ((CheckBox)v).isChecked();
-
-        if(checked == true){
-            Toast toast = Toast.makeText(context,"added to wishlist",duration);
-            toast.show();
-        }
-        else{
-            Toast toast = Toast.makeText(context,"added to wishlist",duration);
-            toast.show();
-        }
-    }
-
 }

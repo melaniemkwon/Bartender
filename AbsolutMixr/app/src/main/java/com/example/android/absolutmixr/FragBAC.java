@@ -113,30 +113,6 @@ public class FragBAC extends Fragment {
                             Integer.valueOf(weightSpinner.getSelectedItem().toString()),
                             Integer.valueOf(hourSpinner.getSelectedItem().toString())), bac);
                 }
-                if(isAccept == false) {
-                    Dialog dialog = new AlertDialog.Builder(getContext())
-                            .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    displayBAC(calculateBAC(gender,
-                                            Integer.valueOf(drinkSpinner.getSelectedItem().toString()),
-                                            Integer.valueOf(weightSpinner.getSelectedItem().toString()),
-                                            Integer.valueOf(hourSpinner.getSelectedItem().toString())), bac);
-                                    isAccept = true;
-                                }
-                            })
-                            .setTitle("Disclaimer")
-                            .setMessage("BAC readings may not be accurate. We are not liable for any choices you make because of the readings. Do you accept these terms?")
-                            .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-                                    viewPager.setCurrentItem(0);
-                                }
-                            })
-                            .show();
-                    dialog.setCanceledOnTouchOutside(false);
-                }
             }
         });
 

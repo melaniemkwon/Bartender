@@ -8,16 +8,18 @@
     <Button
         android:id="@+id/resetButton"
         android:text="Reset"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
+        android:background="@drawable/graybackgroundnooutline"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/exitButton"
+        android:background="@drawable/graybackgroundnooutline"
         android:text="Exit"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
@@ -41,17 +43,17 @@
     <TextView
         android:id="@+id/sensorValue"
         android:text="test"
-        android:textSize="50sp"
+        android:textSize="70sp"
         android:textAlignment="center"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="64dp"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/timer"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -65,7 +67,7 @@
         android:layout_above="@id/timer"
         android:textSize="40dp"
         android:text="Timer"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
         android:layout_alignParentLeft="true"/>
 </RelativeLayout>

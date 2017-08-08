@@ -2,7 +2,10 @@ package com.example.android.absolutmixr;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -31,6 +34,7 @@ public class FragBAC extends Fragment {
     private Spinner weightSpinner;
     private Spinner hourSpinner;
     private Button estimate;
+    private Button test;
     private TextView bac;
     private TextView toSober;
     private TextView drinkMeter;
@@ -41,6 +45,8 @@ public class FragBAC extends Fragment {
     private double bacNumber;
     private boolean isAccept = false;
     private static String gender ="";
+    private SensorManager sensorManager;
+    private Sensor sensor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +62,7 @@ public class FragBAC extends Fragment {
         toSober = (TextView) view.findViewById(R.id.toSober);
         statusView = (ImageView) view.findViewById(R.id.statusView);
         drinkMeter = (TextView) view.findViewById(R.id.drinkMeterTextView);
+        test = (Button) view.findViewById(R.id.test);
 
         String[] weightList = new String[100];
 
@@ -103,6 +110,15 @@ public class FragBAC extends Fragment {
                 }
             }
         });
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DrunkTest.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

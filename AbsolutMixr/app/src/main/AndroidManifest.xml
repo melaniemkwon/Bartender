@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailDrink"></activity>
+        <activity android:name=".DrunkTest"></activity>
     </application>
 
 </manifest>

@@ -28,10 +28,12 @@
 
         <activity android:name=".BarcodeScanner"></activity>
         <activity android:name=".DisplayList"></activity>
-        <activity android:name=".DrunkTest"></activity>
-
         <activity android:name=".DetailDrink"></activity>
+<<<<<<< HEAD
+        <activity android:name=".DrunkTest"></activity>
+=======
 
+>>>>>>> ba1ca03da09aefb701c8ba1e3f9d7c93b5bb8077
     </application>
 
 </manifest>

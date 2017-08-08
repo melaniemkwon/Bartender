@@ -32,7 +32,7 @@ public class NetworkUtils {
     public static final String Query_Param = "q";
 
     //these two constants used for advanced search url building
-    public static final String BASE_ADV_SEARCH = "https://addb.absolutdrinks.com/drinks/";
+    public static final String BASE_ADV_SEARCH = "https://addb.absolutdrinks.com/";
     public static final String apiKey = "bb66369811204fb395a943c7008414df";
     protected static URL storedUrl = null;
 
@@ -196,34 +196,45 @@ public class NetworkUtils {
 
     }
 
-    public static URL makeAdvancedSearchUrl (String ingredient, String skill, String taste, String glass, String time, String color){
+    public static URL makeAdvancedSearchUrl (String drinkName, String ingredient, String skill, String taste, String glass, String time, String color){
 
         String searchParams = "";
 
-        if (!ingredient.equals("")){
-            searchParams= searchParams + "with/" + ingredient.toLowerCase() + "/";
-        }
-        if (!skill.equals("-Show All-")){
-            searchParams= searchParams + "skill/" + skill.toLowerCase() + "/";
-        }
-        if (!color.equals("-Show All-")){
-            searchParams= searchParams + "colored/" + color.toLowerCase() + "/";
-        }
-        if (!taste.equals("-Show All-")){
-            String tasteID = FragSearch.tasteMap.get(taste);
-            searchParams= searchParams + "tasting/" + tasteID + "/";
-        }
-        if (!glass.equals("-Show All-")){
-            String glassID = FragSearch.glassMap.get(glass);
-            searchParams= searchParams + "servedin/" + glassID + "/";
-        }
-        if (!time.equals("-Show All-")){
-            String timeID = FragSearch.timeMap.get(time);
-            searchParams= searchParams + "for/" + timeID + "/";
+        if (!drinkName.equals("")){
+            drinkName = drinkName.trim();
+            int spaceIndex = drinkName.indexOf(" ");
+            if (spaceIndex != -1) drinkName = drinkName.substring(0, spaceIndex);
+            searchParams= "quickSearch/drinks/" + drinkName.toLowerCase() + "/";
+        } else {
+
+            searchParams= "drinks/";
+            if (!ingredient.equals("")){
+                ingredient = ingredient.trim();
+                searchParams= searchParams + "with/" + ingredient.toLowerCase() + "/";
+            }
+            if (!skill.equals("-All-")){
+                searchParams= searchParams + "skill/" + skill.toLowerCase() + "/";
+            }
+            if (!color.equals("-All-")){
+                searchParams= searchParams + "colored/" + color.toLowerCase() + "/";
+            }
+            if (!taste.equals("-All-")){
+                String tasteID = FragSearch.tasteMap.get(taste);
+                searchParams= searchParams + "tasting/" + tasteID + "/";
+            }
+            if (!glass.equals("-All-")){
+                String glassID = FragSearch.glassMap.get(glass);
+                searchParams= searchParams + "servedin/" + glassID + "/";
+            }
+            if (!time.equals("-All-")){
+                String timeID = FragSearch.timeMap.get(time);
+                searchParams= searchParams + "for/" + timeID + "/";
+            }
         }
 
+
         Uri builtUri = Uri.parse(BASE_ADV_SEARCH).buildUpon()
-                .appendPath(searchParams)//(Uri.decode(searchParams))
+                .appendPath(searchParams)
                 .appendQueryParameter("apiKey", apiKey).build();
 
         URL url = null;

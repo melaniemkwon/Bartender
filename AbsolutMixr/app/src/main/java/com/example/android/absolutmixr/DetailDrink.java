@@ -80,7 +80,7 @@ public class DetailDrink extends AppCompatActivity{
                 .into(image);
 
         //setting the description
-        Spanned desc = Html.fromHtml("<b>Description:</b><br/>" +drinkInfo.getDescription());
+        Spanned desc = Html.fromHtml("<b>Instructions:</b><br/>" +drinkInfo.getDescription());
         //description.setText("Description:\n"+drinkInfo.getDescription());
         description.setText(desc);
 

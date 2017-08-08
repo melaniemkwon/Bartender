@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -83,6 +84,7 @@ public class DetailDrink extends AppCompatActivity{
         for (int i=0;i<ingredients.size();i++){
             TextView m =new TextView(this);
             m.setText(ingredients.get(i));
+            m.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             m.setId(i+3);
             dynamic.addView(m);
         }
@@ -91,6 +93,7 @@ public class DetailDrink extends AppCompatActivity{
         for (int l=0;l<tastes.size();l++){
             TextView t =new TextView(this);
             t.setText(tastes.get(l));
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             t.setId(l+ 8);
             Log.v(TAG,"setting into tastes: "+ tastes.get(l));
             dynamicTaste.addView(t);
@@ -101,6 +104,7 @@ public class DetailDrink extends AppCompatActivity{
         for (int j=0;j<occasions.size();j++){
             TextView o =new TextView(this);
             o.setText(occasions.get(j));
+            o.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             o.setId(j+4);
             dynamicOcc.addView(o);
         }

@@ -1,5 +1,31 @@
 <resources>
     <string name="app_name">AbsolutMixr</string>
+    <string name="cabinet_title">My Cabinet</string>
+    <string name="ingredient_type_prompt">What type of ingredient?</string>
+    <string name="add">Add Ingredient</string>
+    <string name="disclaimer">Note: If you do not see the ingredient then it is not in our database.</string>
+    <string name="or">OR</string>
+    <string name="add_by_upc">Add Ingredient by UPC</string>
+    <string-array name="type_array">
+        <item></item>
+        <item>Mixers</item>
+        <item>Base Spirit</item>
+        <item>Brandy</item>
+        <item>Whiskey</item>
+        <item>Gin</item>
+        <item>Vodka</item>
+        <item>Tequila</item>
+        <item>Rum</item>
+        <item>Spirits-Other</item>
+        <item>Decoration</item>
+        <item>Fruits</item>
+        <item>Berries</item>
+        <item>Ice</item>
+        <item>Spices/Herbs</item>
+        <item>Other</item>
+    </string-array>
+
+
     <string name="vertical_ellipsis">&#8942;</string>
     <string name="ingList">Ingredients: </string>
     <string name="tasList">Tastes: </string>

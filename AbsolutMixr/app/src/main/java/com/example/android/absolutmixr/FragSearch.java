@@ -91,11 +91,11 @@ public class FragSearch extends DialogFragment {
     }
 
     private void addAllOptionToSets(){
-        allTastes.add("-Show All-");
-        allColors.add("-Show All-");
-        allSkills.add("-Show All-");
-        allGlasses.add("-Show All-");
-        allTimes.add("-Show All-");
+        allTastes.add("-All-");
+        allColors.add("-All-");
+        allSkills.add("-All-");
+        allGlasses.add("-All-");
+        allTimes.add("-All-");
     }
 
     private Object[] sortSet(HashSet<String> set){

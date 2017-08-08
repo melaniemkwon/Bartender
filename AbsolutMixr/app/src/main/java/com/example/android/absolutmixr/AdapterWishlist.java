@@ -1,10 +1,13 @@
 package com.example.android.absolutmixr;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,8 +19,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.absolutmixr.Model.DrinkItem;
 import com.example.android.absolutmixr.Model.WishlistContract;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.example.android.absolutmixr.AdapterDrink.Picture_url;
 
@@ -42,6 +49,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         public final Button mDotButton;
         public final ImageButton mThumbsupButton;
         public final ImageButton mThumbsdownButton;
+        public final CardView mCardview;
 
         public WishlistViewHolder(View view){
             super(view);
@@ -52,6 +60,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             mDotButton = (Button) view.findViewById(R.id.wishlist_action);
             mThumbsupButton = (ImageButton) view.findViewById(R.id.wishlist_thumbsup);
             mThumbsdownButton = (ImageButton) view.findViewById(R.id.wishlist_thumbsdown);
+            mCardview = (CardView) view.findViewById(R.id.wishlist_card_view);
         }
     }
 
@@ -135,6 +144,21 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             }
         });
 
+        //making the cardview section clickable to see drink details
+        holder.mCardview.setOnClickListener(new View.OnClickListener() {
+            // NOTE: id of the DrinkItem is used to call the picture
+            String test = "test";
+            ArrayList<String> testArray = new ArrayList<String>(Arrays.asList(test, test, test));
+            DrinkItem drinkItem = new DrinkItem(test, test, test, test, test, test, testArray, testArray, testArray);
+
+            @Override
+            public void onClick(View v) {
+//                Log.d(TAG, "Clicked on " + drinkcount.getName() + " info");
+                Intent intent = new Intent(mContext,DetailDrink.class);
+                intent.putExtra("Drink Object",drinkItem);
+                mContext.startActivity(intent);
+            }
+        });
 
         // TODO: BROWNIE POINTS-- undo delete item
     }

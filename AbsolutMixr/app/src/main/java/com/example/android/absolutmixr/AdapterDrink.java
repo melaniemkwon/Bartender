@@ -117,7 +117,8 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                     toast.show();
                 }
                 else{
-                    // TODO: delete drink item to wishlist db
+                    // DONE: delete drink item to wishlist db
+                    removeWishlistItem(drinkcount.getId());
                     check =  check+ " removed from wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
@@ -163,5 +164,9 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL, pic);
 
         return mDb.insert(WishlistContract.WishlistEntry.TABLE_NAME, null, contentValues);
+    }
+
+    private boolean removeWishlistItem(String id) {
+        return mDb.delete(WishlistContract.WishlistEntry.TABLE_NAME, WishlistContract.WishlistEntry._ID + "='" + id + "'", null) > 0;
     }
 }

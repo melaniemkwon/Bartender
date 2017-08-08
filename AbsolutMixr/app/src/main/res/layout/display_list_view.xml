@@ -44,15 +44,15 @@
         <TextView
             android:id="@+id/name"
             android:layout_width="219dp"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:hint="Drink Name"
             android:textSize="28sp"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             card_view:layout_constraintBottom_toTopOf="@+id/rating"
             card_view:layout_constraintLeft_toRightOf="@+id/drinkImage"
-            android:layout_marginLeft="8dp"
+            card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintVertical_bias="0.0" />
 
         <TextView

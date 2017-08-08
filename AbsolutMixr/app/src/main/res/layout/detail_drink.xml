@@ -17,34 +17,33 @@
 
         <ImageView
             android:id="@+id/imgdrink"
-            android:layout_width="161dp"
-            android:layout_height="188dp"
+            android:layout_width="158dp"
+            android:layout_height="249dp"
             android:gravity="center_horizontal"
             android:src="@color/colorAccent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:adjustViewBounds="true"/>
 
-    <TextView
-        android:id="@+id/dName"
-        android:layout_width="208dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:hint="Drink Name"
-        android:padding="10dp"
-        android:textSize="28sp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/imgdrink"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="11dp" />
+        <TextView
+            android:id="@+id/dName"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:hint="Drink Name"
+            android:padding="10dp"
+            android:textSize="28sp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/imgdrink"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!--dynamic view for ingredients thats is located on the left -->
         <TextView
@@ -54,7 +53,7 @@
             android:id="@+id/list"
             android:text="@string/ingList"
             android:textStyle="bold"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="26dp"
             app:layout_constraintTop_toBottomOf="@+id/imgdrink"
             android:layout_marginLeft="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -74,11 +73,17 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dynamicText"
-            android:layout_marginTop="29dp"
+            android:layout_marginTop="55dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginBottom="8dp" />
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d5817aef14a5be775ee5445544991b11bd8fcf70
     <!--dynamic view for taste thats is located on the left -->
 
 
@@ -86,26 +91,30 @@
 
     <TextView
         android:id="@+id/deatailColor"
-        android:layout_width="113dp"
-        android:layout_height="32dp"
+        android:layout_width="115dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="-1dp"
+        android:layout_marginTop="0dp"
         android:hint="Color"
         android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.809"
         app:layout_constraintLeft_toRightOf="@+id/dynamicTaste"
         app:layout_constraintRight_toRightOf="@+id/detailkRating"
+<<<<<<< HEAD
+        app:layout_constraintTop_toBottomOf="@+id/detailSkill" />
+=======
         app:layout_constraintTop_toBottomOf="@+id/detailSkill"
         tools:layout_editor_absoluteY="124dp"
         tools:layout_editor_absoluteX="249dp" />
+>>>>>>> d5817aef14a5be775ee5445544991b11bd8fcf70
 
     <TextView
         android:id="@+id/detailSkill"
-        android:layout_width="122dp"
-        android:layout_height="26dp"
+        android:layout_width="116dp"
+        android:layout_height="22dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="-1dp"
@@ -114,33 +123,29 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toRightOf="@+id/dynamicTaste"
         app:layout_constraintRight_toRightOf="@+id/detailkRating"
-        app:layout_constraintTop_toBottomOf="@+id/detailkRating"
-        tools:layout_editor_absoluteY="100dp"
-        tools:layout_editor_absoluteX="248dp" />
+        app:layout_constraintTop_toBottomOf="@+id/detailkRating" />
 
     <TextView
         android:id="@+id/detailkRating"
-        android:layout_width="121dp"
-        android:layout_height="24dp"
+        android:layout_width="114dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="14dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="8dp"
         android:hint="rating"
         android:textSize="18sp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="@+id/detailSkill"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dName"
-        tools:layout_editor_absoluteY="77dp"
-        tools:layout_editor_absoluteX="249dp" />
+        app:layout_constraintTop_toBottomOf="@+id/dName" />
 
     <LinearLayout
         android:id="@+id/dynamicTaste"
         android:layout_width="115dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="1dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         android:paddingTop="5dp"
@@ -161,35 +166,8 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/dynamicOccasion"
-        android:layout_width="161dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        android:paddingTop="5dp"
-        app:layout_constraintHorizontal_bias="0.949"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/list"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/dynamicText"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintTop_toBottomOf="@+id/imgdrink">
 
-        <TextView
-            android:id="@+id/occasion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/occList"
-            android:textSize="18sp"/>
-    </LinearLayout>
-
-
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/dynamicText"
         android:layout_width="147dp"
         android:layout_height="wrap_content"
@@ -201,7 +179,31 @@
 
     </LinearLayout>
 
-    <!--This will be where the video will go-->
+        <LinearLayout
+            android:id="@+id/dynamicOccasion"
+            android:layout_width="161dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="94dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="283dp"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/list"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/occasion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/occList"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!--This will be where the video will go-->
 
 
     </android.support.constraint.ConstraintLayout>

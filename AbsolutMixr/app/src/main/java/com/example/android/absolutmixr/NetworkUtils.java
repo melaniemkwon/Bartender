@@ -201,11 +201,15 @@ public class NetworkUtils {
         String searchParams = "";
 
         if (!drinkName.equals("")){
+            drinkName = drinkName.trim();
+            int spaceIndex = drinkName.indexOf(" ");
+            if (spaceIndex != -1) drinkName = drinkName.substring(0, spaceIndex);
             searchParams= "quickSearch/drinks/" + drinkName.toLowerCase() + "/";
         } else {
 
             searchParams= "drinks/";
             if (!ingredient.equals("")){
+                ingredient = ingredient.trim();
                 searchParams= searchParams + "with/" + ingredient.toLowerCase() + "/";
             }
             if (!skill.equals("-All-")){

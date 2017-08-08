@@ -1,12 +1,10 @@
 package com.example.android.absolutmixr;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,16 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -45,6 +38,10 @@ public class FragSearch extends DialogFragment {
     private Spinner spinnerTime;
     private Button advSearchButton;
     private TextView urlTestingTV;
+
+    private LinearLayout mBottomLinearLayout;
+    private LinearLayout mTopLinearLayout;
+    private LinearLayout mLinearLayoutHeader;
 
     //sets are used to auto-populate arrays in spinners without repeats
     protected static HashSet<String> allTastes = new HashSet<String>();
@@ -73,6 +70,14 @@ public class FragSearch extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.advanced_search, container, false);
+
+        mBottomLinearLayout = (LinearLayout) view.findViewById(R.id.expandable);
+        mBottomLinearLayout.setVisibility(View.GONE);
+
+        mTopLinearLayout = (LinearLayout) view.findViewById(R.id.drink_name_expandable);
+        mTopLinearLayout.setVisibility(View.VISIBLE);
+
+        mLinearLayoutHeader = (LinearLayout) view.findViewById(R.id.expandable_header);
 
         etDrinkName = (EditText) view.findViewById(R.id.drink_name_edit_text);
         editTextContent = (EditText) view.findViewById(R.id.drink_content_edit_text);
@@ -126,9 +131,28 @@ public class FragSearch extends DialogFragment {
 
         final ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
 
+
+        mLinearLayoutHeader.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (mTopLinearLayout.getVisibility() == View.GONE) {
+                    expandTop();
+                } else {
+                    collapseTop();
+                }
+
+                if (mBottomLinearLayout.getVisibility() == View.GONE) {
+                    expandBottom();
+                } else {
+                    collapseBottom();
+                }
+            }
+        });
+
         advSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 String urlString;
                 String json;
                 String drinkName = etDrinkName.getText().toString();
@@ -149,7 +173,118 @@ public class FragSearch extends DialogFragment {
 
             }
         });
+    }
 
+    private void expandTop() {
+        mTopLinearLayout.setVisibility(View.VISIBLE);
+
+        final int widthSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        final int heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        mTopLinearLayout.measure(widthSpec, heightSpec);
+
+        ValueAnimator mAnimator = slideAnimatorTop(0, mTopLinearLayout.getMeasuredHeight());
+        mAnimator.start();
+    }
+
+    private void collapseTop() {
+        int finalHeight = mTopLinearLayout.getHeight();
+
+        ValueAnimator mAnimator = slideAnimatorTop(finalHeight, 0);
+
+        mAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {}
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                //Height=0, but it set visibility to GONE
+                mTopLinearLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {}
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {}
+
+        });
+        mAnimator.start();
+    }
+
+    private void expandBottom() {
+        mBottomLinearLayout.setVisibility(View.VISIBLE);
+
+        final int widthSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        final int heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        mBottomLinearLayout.measure(widthSpec, heightSpec);
+
+        ValueAnimator mAnimator = slideAnimatorBottom(0, mBottomLinearLayout.getMeasuredHeight());
+        mAnimator.start();
+    }
+
+    private void collapseBottom() {
+        int finalHeight = mBottomLinearLayout.getHeight();
+
+        ValueAnimator mAnimator = slideAnimatorBottom(finalHeight, 0);
+
+        mAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                //Height=0, but it set visibility to GONE
+                mBottomLinearLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+
+        });
+        mAnimator.start();
+    }
+
+    private ValueAnimator slideAnimatorTop(int start, int end) {
+
+        ValueAnimator animator = ValueAnimator.ofInt(start, end);
+
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                //Update Height
+                int value = (Integer) valueAnimator.getAnimatedValue();
+                ViewGroup.LayoutParams layoutParams = mBottomLinearLayout.getLayoutParams();
+                layoutParams.height = value;
+                mBottomLinearLayout.setLayoutParams(layoutParams);
+            }
+        });
+        return animator;
+    }
+
+    private ValueAnimator slideAnimatorBottom(int start, int end) {
+
+        ValueAnimator animator = ValueAnimator.ofInt(start, end);
+
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                //Update Height
+                int value = (Integer) valueAnimator.getAnimatedValue();
+                ViewGroup.LayoutParams layoutParams = mBottomLinearLayout.getLayoutParams();
+                layoutParams.height = value;
+                mBottomLinearLayout.setLayoutParams(layoutParams);
+            }
+        });
+        return animator;
     }
 
 

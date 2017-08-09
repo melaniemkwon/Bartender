@@ -37,6 +37,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private static final String TAG = AdapterDrink.class.getSimpleName();
     public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/100x100/";
     private static final String type= ".png";
+    private static final String thumbsRatingUp = "THUMBSUP", thumbsRatingDown = "THUMBSDOWN", thumbsRatingNone = "NONE";
     private SQLiteDatabase mDb;
 
 
@@ -183,7 +184,6 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         return false;
     }
 
-    // TODO: get rid of this duplicate method... later though.
     private Cursor getAllWishlist() {
         return mDb.query(
                 TABLE_NAME,
@@ -216,5 +216,6 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private boolean removeWishlistItem(String id) {
         return mDb.delete(WishlistContract.WishlistEntry.TABLE_NAME, WishlistContract.WishlistEntry._ID + "='" + id + "'", null) > 0;
     }
+
     // ########## END WISHLIST DB METHODS ##########
 }

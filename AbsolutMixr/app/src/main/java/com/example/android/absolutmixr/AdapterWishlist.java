@@ -1,5 +1,6 @@
 package com.example.android.absolutmixr;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -206,5 +207,32 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         if (newCursor != null) {
             this.notifyDataSetChanged();
         }
+    }
+
+    private int updateThumbsRating(String id, String status) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_THUMBSUP, status);
+
+        // Which row to update, based on the title
+        String selection = WishlistContract.WishlistEntry._ID + " LIKE ?";
+        String[] selectionArgs = { id };
+
+        return mDb.update(
+                WishlistContract.WishlistEntry.TABLE_NAME,
+                contentValues,
+                selection,
+                selectionArgs);
+
+//        switch (status) {
+//            case thumbsRatingUp:
+//                return true;
+//            case thumbsRatingDown:
+//                return true;
+//            case thumbsRatingNone:
+//                return true;
+//            default:
+//                return false;
+//        }
     }
 }

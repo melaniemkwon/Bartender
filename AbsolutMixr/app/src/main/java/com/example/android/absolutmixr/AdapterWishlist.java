@@ -175,6 +175,12 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                         holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
                         Log.d(TAG, "switching up to none");
                         break;
+                    case thumbsRatingDown:
+                        updateThumbsRating(id, thumbsRatingUp);
+                        holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
+                        holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
+                        Log.d(TAG, "switching down to none");
+                        break;
                     case thumbsRatingNone:
                         updateThumbsRating(id, thumbsRatingUp);
                         holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
@@ -203,6 +209,12 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                 Log.d(TAG, "thumbsup: " + thumbsRatingDown);
 
                 switch (thumbsup) {
+                    case thumbsRatingUp:
+                        updateThumbsRating(id, thumbsRatingDown);
+                        holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
+                        holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
+                        Log.d(TAG, "switching up to none");
+                        break;
                     case thumbsRatingDown:
                         updateThumbsRating(id, thumbsRatingNone);
                         holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
@@ -210,11 +222,12 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                         break;
                     case thumbsRatingNone:
                         updateThumbsRating(id, thumbsRatingDown);
-                        holder.mThumbsupButton.setImageDrawable(selectedThumbsdown);
-                        holder.mThumbsdownButton.setImageDrawable(defaultThumbsup);
+                        holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
+                        holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
                         Log.d(TAG, "switching none to down");
                         break;
                     default:
+                        Log.d(TAG, "nothing happened.");
                         break;
                 }
 //                Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);

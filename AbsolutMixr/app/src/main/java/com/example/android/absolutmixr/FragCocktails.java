@@ -151,11 +151,16 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 //            displayDrinkData();
             mAdapter.setDrinkData(result);
             NetworkUtils.resetStoredUrl();
+<<<<<<< HEAD
             if (result.isEmpty()){
                 Toast.makeText(getActivity(), " There there. ",
                         Toast.LENGTH_LONG).show();
                 cry.setVisibility(View.VISIBLE);
             }
+=======
+            if (result.isEmpty()) Toast.makeText(getActivity(), " No Drink Results ",
+                    Toast.LENGTH_LONG).show();
+>>>>>>> a76ff87ddbe416e34d1ab099eaeb1bc1492128bb
 
             //loadDrinkData();
         } else {

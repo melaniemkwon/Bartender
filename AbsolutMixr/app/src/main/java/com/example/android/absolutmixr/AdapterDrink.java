@@ -92,7 +92,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
         //Logs to see if it can make it here used for debugging.
         Log.v(TAG, "Made it to onBind name");
-        Log.v(TAG, drinkcount.getName());
+        //Log.v(TAG, drinkcount.getName());
         final String url = Picture_url + (drinkcount.getId()+type);
         Log.v(TAG, "Built URI " + url +")(*&^%$#@!)(*&^%$#@*&^%$#@*&^%$#@)(*&^%$#@(*&^%$#@)(*&^%$#@");
 
@@ -144,7 +144,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Clicked on " + drinkcount.getName() + " info");
+                //Log.d(TAG, "Clicked on " + drinkcount.getName() + " info");
                 Intent intent = new Intent(context,DetailDrink.class);
                 intent.putExtra("Drink Object",drinkcount);
                 context.startActivity(intent);
@@ -161,7 +161,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     public void setDrinkData(ArrayList<DrinkItem> dat){
         data = dat;
         Log.d(TAG, "setDrinkData called");
-        Log.d(TAG, dat.get(0).toString());
+        //Log.d(TAG, dat.get(0).toString());
         notifyDataSetChanged();
     }
 

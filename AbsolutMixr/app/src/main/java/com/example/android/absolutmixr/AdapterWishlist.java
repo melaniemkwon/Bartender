@@ -1,8 +1,11 @@
 package com.example.android.absolutmixr;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
@@ -139,10 +142,11 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 
                         int menuId = item.getItemId();
                         switch(menuId) {
-                            case R.id.wishlist_action_photo:
-                                ((MainActivity)mContext).dispatchTakePictureIntent();
+//                            case R.id.wishlist_action_photo:
+//                                hasPermissionInManifest(mContext, Manifest.permission.CAMERA);
+//                                ((MainActivity)mContext).dispatchTakePictureIntent();
 //                                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
-                                return true;
+//                                return true;
                             case R.id.wishlist_action_share:
 //                                ((MainActivity)mContext).dispatchChoosePictureIntent();
                                 String tweet = "Enjoying my refreshing #" + name + "! Thanks @AbsolutMixr!";
@@ -162,7 +166,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
             }
         });
 
-        // TODO: RATING DRINKS SHOULD BE PERSISTENT. SAVE TO DB.
+        // TODO: FIX LOGIC
         holder.mThumbsupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,5 +274,26 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                 selection,
                 selectionArgs);
 
+    }
+
+    // Needed to access Camera
+    // SOURCE: https://stackoverflow.com/questions/32789027/android-m-camera-intent-permission-bug
+    public boolean hasPermissionInManifest(Context context, String permissionName) {
+        final String packageName = context.getPackageName();
+        try {
+            final PackageInfo packageInfo = context.getPackageManager()
+                    .getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            final String[] declaredPermisisons = packageInfo.requestedPermissions;
+            if (declaredPermisisons != null && declaredPermisisons.length > 0) {
+                for (String p : declaredPermisisons) {
+                    if (p.equals(permissionName)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        }
+        return false;
     }
 }

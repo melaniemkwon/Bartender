@@ -3,6 +3,7 @@ package com.example.android.absolutmixr;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,9 @@ import com.example.android.absolutmixr.Model.WishlistDbHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.android.absolutmixr.Model.WishlistContract.WishlistEntry.TABLE_NAME;
 
 /**
  * Created by Leonard on 7/17/2017.
@@ -33,6 +37,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private static final String TAG = AdapterDrink.class.getSimpleName();
     public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/100x100/";
     private static final String type= ".png";
+    public static final String thumbsRatingUp = "THUMBSUP", thumbsRatingDown = "THUMBSDOWN", thumbsRatingNone = "NONE";
     private SQLiteDatabase mDb;
 
 
@@ -100,6 +105,10 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                     .load(url)
                     .into(holder.mDrinkpic);
         }
+
+        // If drinkid exists in wishlist db, mark the star checkbox as checked
+        holder.mCheck.setChecked(existsInWishlist( drinkcount.getId() ));
+
         holder.mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,16 +117,22 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                 String check = drinkcount.getName();
 
                 if(checked == true){
-                    // DONE: add drink item to wishlist db
-                    // DONE: find out why drink picture is not displaying in recyclerview
-                   // Log.d(TAG, drinkcount.getId()+ drinkcount.getName()+ drinkcount.getDescription()+ drinkcount.getColor()+ drinkcount.getSkill()+ drinkcount.getRating()+ url);
-                    addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url);
+                    // Group ingredients, tastes, occassions into comma separated string.
+                    String ingredients = android.text.TextUtils.join(",", drinkcount.getIngredients());
+                    String occassions = android.text.TextUtils.join(",", drinkcount.getOccassions());
+                    String tastes = android.text.TextUtils.join(",", drinkcount.getTastes());
+
+                    // Add drink item to wishlist db
+                    Log.d(TAG, "ADDING DRINK");
+                    addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url, ingredients, occassions, tastes);
+
                     check = check + " added to wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
                 }
                 else{
-                    // TODO: delete drink item to wishlist db
+                    // Delete drink item to wishlist db
+                    removeWishlistItem(drinkcount.getId());
                     check =  check+ " removed from wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
                     toast.show();
@@ -150,8 +165,38 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         notifyDataSetChanged();
     }
 
-    // note: may need to remove some extraneous parameters....
-    private long addToWishlist(String id, String name, String desc, String color, String skill, String rating, String pic) {
+    // ########## WISHLIST DB METHODS ##########
+
+    // Helper method to determine if drinkid exists in wishlist db
+    // @returns true if star checkbox should be checked
+    private boolean existsInWishlist(String id) {
+        Cursor cursor = getAllWishlist();
+        List drinkIds = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            String drinkId = cursor.getString(cursor.getColumnIndexOrThrow(WishlistContract.WishlistEntry._ID));
+            drinkIds.add(drinkId);
+        }
+
+        cursor.close();
+
+        if (drinkIds.contains( id )) { return true; }
+        return false;
+    }
+
+    private Cursor getAllWishlist() {
+        return mDb.query(
+                TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                WishlistContract.WishlistEntry._ID
+        );
+    }
+
+    private long addToWishlist(String id, String name, String desc, String color, String skill, String rating, String pic, String ingreds, String occs, String tastes) {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(WishlistContract.WishlistEntry._ID, id);
@@ -161,7 +206,17 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_SKILL, skill);
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_RATING, rating);
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL, pic);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_INGREDIENTS, ingreds);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_OCCASSIONS, occs);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_TASTES, tastes);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_THUMBSUP, thumbsRatingNone);
 
         return mDb.insert(WishlistContract.WishlistEntry.TABLE_NAME, null, contentValues);
     }
+
+    private boolean removeWishlistItem(String id) {
+        return mDb.delete(WishlistContract.WishlistEntry.TABLE_NAME, WishlistContract.WishlistEntry._ID + "='" + id + "'", null) > 0;
+    }
+
+    // ########## END WISHLIST DB METHODS ##########
 }

@@ -3,7 +3,9 @@ package com.example.android.absolutmixr;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
 
     private ViewPager viewPager;    // submenu for Material Design Tab Layout
     private TabLayout tabLayout;    // submenu for Material Design Tab Layout
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_GALLERY = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,4 +103,17 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
     }
 
     // DONE: replace AsyncTask with AsyncTaskLoader (which is implemented in FragCocktails)
+
+    public void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    public void dispatchChoosePictureIntent() {
+        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(pickPhoto , REQUEST_IMAGE_GALLERY);
+    }
 }

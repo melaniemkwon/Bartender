@@ -9,6 +9,7 @@ import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,26 @@ public class FragWishlist extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                String id = viewHolder.itemView.getTag().toString();
+                removeWishlistItem(id);
+                mAdapter.swapCursor(getAllWishlist());
+                Log.d(TAG, "SWIPED " +  id);
+            }
+        }).attachToRecyclerView(mDrink);
+    }
+
     private Cursor getAllWishlist() {
         return mDb.query(
                 TABLE_NAME,
@@ -69,7 +90,7 @@ public class FragWishlist extends Fragment {
         );
     }
 
-    private boolean removeWishlistItem(long id) {
+    private boolean removeWishlistItem(String id) {
         return mDb.delete(TABLE_NAME, _ID + "='" + id + "'", null) > 0;
     }
 }

@@ -3,7 +3,7 @@
     <!--TODO: Get icons to show beside the text-->
     <item
         android:id="@+id/wishlist_action_shop"
-        android:title="Find ingredients"/>
+        android:title="Take a photo"/>
     <item
         android:id="@+id/wishlist_action_share"
         android:icon="@drawable/ic_share_black_24dp"

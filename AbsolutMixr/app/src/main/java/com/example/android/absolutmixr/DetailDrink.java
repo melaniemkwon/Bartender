@@ -112,6 +112,7 @@ public class DetailDrink extends AppCompatActivity{
             o.setId(j+4);
             dynamicOcc.addView(o);
         }
+
         //Using spanned and html formating to only format the beginning of the text
         Spanned c = Html.fromHtml("<b>Color: </b>"+drinkInfo.getColor());
         color.setText(c);

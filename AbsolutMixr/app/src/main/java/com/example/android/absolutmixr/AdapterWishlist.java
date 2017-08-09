@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -17,11 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
 import com.example.android.absolutmixr.Model.WishlistContract;
@@ -114,8 +109,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 
         holder.itemView.setTag(id);
 
-        // DONE: popupmenu, delete
-        // TODO: implement - shop, share, refresh recyclerview upon delete
+        // TODO: share picture with tweet
         holder.mDotButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +122,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 
                         int menuId = item.getItemId();
                         switch(menuId) {
-                            case R.id.wishlist_action_shop:
+                            case R.id.wishlist_action_photo:
                                 ((MainActivity)mContext).dispatchTakePictureIntent();
 //                                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
                                 return true;
@@ -140,8 +134,6 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 //                                        .image(myUri)
                                         .text(tweet);
                                 builder.show();
-                                return true;
-                            case R.id.wishlist_action_delete:
                                 return true;
                             default:
                                 return false;
@@ -201,8 +193,6 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                 mContext.startActivity(intent);
             }
         });
-
-        // TODO: BROWNIE POINTS-- undo delete item
     }
 
     @Override
@@ -210,15 +200,10 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         return mCursor.getCount();
     }
 
-    private boolean removeWishlistItem(String id) {
-        return mDb.delete(WishlistContract.WishlistEntry.TABLE_NAME, WishlistContract.WishlistEntry._ID + "='" + id + "'", null) > 0;
-    }
-
     public void swapCursor(Cursor newCursor){
         if (mCursor != null) mCursor.close();
         mCursor = newCursor;
         if (newCursor != null) {
-            // Force the RecyclerView to refresh
             this.notifyDataSetChanged();
         }
     }

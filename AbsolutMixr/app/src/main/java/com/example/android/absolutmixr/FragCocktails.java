@@ -70,7 +70,7 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
         List<String> ingredients = null;
         List<String> occassions = null;
         List<String> tastes = null;
-        noDrinkItems.add(new DrinkItem(id,name,description,col,skillname,rating, ingredients, occassions, tastes));
+        //noDrinkItems.add(new DrinkItem(id,name,description,col,skillname,rating, ingredients, occassions, tastes));
         return noDrinkItems;
     }
 
@@ -148,6 +148,8 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 //            displayDrinkData();
             mAdapter.setDrinkData(result);
             NetworkUtils.resetStoredUrl();
+            if (result.isEmpty()) Toast.makeText(getActivity(), " No Drink Results ",
+                    Toast.LENGTH_LONG).show();
 
             //loadDrinkData();
         } else {

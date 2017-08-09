@@ -54,8 +54,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 
     public class WishlistViewHolder extends RecyclerView.ViewHolder{
         public final TextView mDrinkName;
-        public final TextView mDrinkRating;
-        public final TextView mDrinkColor;
+        public final TextView mTastes;
         public final ImageView mDrinkpic;
         public final Button mDotButton;
         public final ImageButton mThumbsupButton;
@@ -65,8 +64,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         public WishlistViewHolder(View view){
             super(view);
             mDrinkName = (TextView) view.findViewById(R.id.wishlist_name);
-            mDrinkRating = (TextView) view.findViewById(R.id.wishlist_rating);
-            mDrinkColor = (TextView) view.findViewById(R.id.wishlist_color);
+            mTastes = (TextView) view.findViewById(R.id.wishlist_tastes);
             mDrinkpic = (ImageView) view.findViewById(R.id.wishlist_drinkImage);
             mDotButton = (Button) view.findViewById(R.id.wishlist_action);
             mThumbsupButton = (ImageButton) view.findViewById(R.id.wishlist_thumbsup);
@@ -108,8 +106,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         final List<String> occassionsList = Arrays.asList(occassions.split("\\s*,\\s*"));
 
         holder.mDrinkName.setText(name);
-        holder.mDrinkRating.setText(rating);
-        holder.mDrinkColor.setText(color);
+        holder.mTastes.setText(tastes);
         if(pic_URL != null){
             Picasso.with(mContext)
                     .load(pic_URL)

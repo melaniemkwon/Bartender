@@ -43,31 +43,31 @@
                 android:textSize="22sp"
                 android:text="Drink Name"
                 card_view:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 card_view:layout_constraintLeft_toRightOf="@+id/wishlist_drinkImage"
                 android:layout_marginLeft="8dp" />
 
-            <TextView
-                android:id="@+id/wishlist_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Drink Rating"
-                android:textSize="20sp"
-                card_view:layout_constraintLeft_toRightOf="@+id/wishlist_drinkImage"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="0dp"
-                card_view:layout_constraintTop_toBottomOf="@+id/wishlist_name" />
+            <!--<TextView-->
+                <!--android:id="@+id/wishlist_rating"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Drink Rating"-->
+                <!--android:textSize="20sp"-->
+                <!--card_view:layout_constraintLeft_toRightOf="@+id/wishlist_drinkImage"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginTop="0dp"-->
+                <!--card_view:layout_constraintTop_toBottomOf="@+id/wishlist_name" />-->
 
             <TextView
-                android:id="@+id/wishlist_color"
+                android:id="@+id/wishlist_tastes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="Drink Color"
-                android:layout_marginTop="0dp"
-                card_view:layout_constraintTop_toBottomOf="@+id/wishlist_rating"
+                android:text="Drink Tastes"
                 android:layout_marginLeft="8dp"
-                card_view:layout_constraintLeft_toRightOf="@+id/wishlist_drinkImage" />
+                card_view:layout_constraintLeft_toRightOf="@+id/wishlist_drinkImage"
+                card_view:layout_constraintBottom_toBottomOf="@+id/wishlist_drinkImage"
+                android:layout_marginBottom="8dp" />
 
             <Button
                 android:id="@+id/wishlist_action"

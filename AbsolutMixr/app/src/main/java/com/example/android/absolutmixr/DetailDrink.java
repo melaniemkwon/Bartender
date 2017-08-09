@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
@@ -78,7 +80,9 @@ public class DetailDrink extends AppCompatActivity{
                 .into(image);
 
         //setting the description
-        description.setText("Description:\n"+drinkInfo.getDescription());
+        Spanned desc = Html.fromHtml("<b>Description:</b><br/>" +drinkInfo.getDescription());
+        //description.setText("Description:\n"+drinkInfo.getDescription());
+        description.setText(desc);
 
         //dynamically adding the list of ingredients to the linear view named dynamic
         for (int i=0;i<ingredients.size();i++){
@@ -108,10 +112,13 @@ public class DetailDrink extends AppCompatActivity{
             o.setId(j+4);
             dynamicOcc.addView(o);
         }
-
-        color.setText("Color: "+drinkInfo.getColor());
-        rating.setText("Rating: "+drinkInfo.getRating());
-        skill.setText("Skill: "+drinkInfo.getSkill());
+        //Using spanned and html formating to only format the beginning of the text
+        Spanned c = Html.fromHtml("<b>Color: </b>"+drinkInfo.getColor());
+        color.setText(c);
+        Spanned r = Html.fromHtml("<b>Rating: </b>"+drinkInfo.getRating());
+        rating.setText(r);
+        Spanned s = Html.fromHtml("<b>Skill: </b>"+drinkInfo.getSkill());
+        skill.setText(s);
 
     }
 }

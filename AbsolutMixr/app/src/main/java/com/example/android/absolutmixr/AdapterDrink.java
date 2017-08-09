@@ -122,6 +122,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                     String tastes = android.text.TextUtils.join(",", drinkcount.getTastes());
 
                     // Add drink item to wishlist db
+                    Log.d(TAG, "ADDING DRINK");
                     addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url, ingredients, occassions, tastes);
 
                     check = check + " added to wishlist";

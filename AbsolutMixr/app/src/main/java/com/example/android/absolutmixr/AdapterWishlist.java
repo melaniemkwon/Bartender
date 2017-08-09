@@ -80,7 +80,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
     }
 
     @Override
-    public void onBindViewHolder(final WishlistViewHolder holder, int position) {
+    public void onBindViewHolder(final WishlistViewHolder holder, final int position) {
         if (!mCursor.moveToPosition(position)) { return; }
 
         final String id = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry._ID));
@@ -129,8 +129,23 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                             case R.id.wishlist_action_delete:
                                 Toast.makeText(mContext, "" + item.getGroupId(), Toast.LENGTH_SHORT).show();
                                 removeWishlistItem(id);
-                                //refresh recyclerview
+                                notifyItemRemoved(position);
+                                notifyItemRangeChanged(position, getItemCount());
 
+//                                notifyDataSetChanged();
+
+//                                if(mContext instanceof MainActivity){
+////                                    ((YourActivityName)mContext).yourDesiredMethod();
+//
+//                                    FragWishlist fg = (FragWishlist) getActivity().getSupportFragmentManager().getFragments().get(2);
+//                                    getActivity().getSupportFragmentManager().beginTransaction().detach(fg).attach(fg).commit();
+//
+//                                    FragWishlist fg = .getActivity().getSupportFragmentManager().getFragments().get(2);
+//                                    ((FragWishlist)mContext).getActivity().getSupportFragmentManager().beginTransaction().detach(fg).attach(fg).commit();
+//                                }
+
+
+                                Log.d(AdapterDrink.class.getSimpleName(), "DELETING DRINK");
                                 return true;
                             default:
                                 return false;

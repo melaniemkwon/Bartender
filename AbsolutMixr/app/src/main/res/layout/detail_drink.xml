@@ -29,6 +29,7 @@
 
         <TextView
             android:id="@+id/dName"
+
             android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -59,10 +60,10 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:textSize="18sp"/>
 
-    <!--Linear Layout that will hold rating color and skill level and will be placed along side the ingredients-->
+        <!--Linear Layout that will hold rating color and skill level and will be placed along side the ingredients-->
 
 
-    <!--description view-->
+        <!--description view-->
         <TextView
             android:id="@+id/description"
             android:layout_width="0dp"
@@ -119,14 +120,12 @@
             android:id="@+id/detailkRating"
             android:layout_width="114dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="14dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:hint="rating"
             android:textSize="18sp"
             app:layout_constraintLeft_toRightOf="@+id/imgdrink"
             app:layout_constraintTop_toBottomOf="@+id/dName" />
-
 
         <LinearLayout
         android:id="@+id/dynamicText"
@@ -138,7 +137,7 @@
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent">
 
-    </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/dynamicOccasion"

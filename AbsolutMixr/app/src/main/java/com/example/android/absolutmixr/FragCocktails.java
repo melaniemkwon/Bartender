@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.android.absolutmixr.Model.DrinkItem;
@@ -33,6 +34,7 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
     private static final String TAG = FragCocktails.class.getSimpleName();
     private RecyclerView mDrink;
     private AdapterDrink mAdapter;
+    private ImageView cry;
     private static final int ADDB_LOADER2 = 222;
 
     @Override
@@ -40,7 +42,8 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
         View view = inflater.inflate(R.layout.frag_cocktails,container,false);
 
         //Log.d(TAG, "TAG: "+TAG);
-
+        cry = (ImageView) view.findViewById(R.id.no_results);
+        cry .setVisibility(View.GONE);
         // Get reference to RecyclerView
         mDrink = (RecyclerView) view.findViewById(R.id.recycler2);
 
@@ -148,6 +151,13 @@ public class FragCocktails extends Fragment implements LoaderManager.LoaderCallb
 //            displayDrinkData();
             mAdapter.setDrinkData(result);
             NetworkUtils.resetStoredUrl();
+
+            if (result.isEmpty()){
+                Toast.makeText(getActivity(), " There there. ",
+                        Toast.LENGTH_LONG).show();
+                cry.setVisibility(View.VISIBLE);
+            }
+
             if (result.isEmpty()) Toast.makeText(getActivity(), " No Drink Results ",
                     Toast.LENGTH_LONG).show();
 

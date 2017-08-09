@@ -118,6 +118,7 @@ public class DetailDrink extends AppCompatActivity{
             o.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             dynamicOcc.addView(o);
         }
+
         else {
             for (int j = 0; j < occasions.size(); j++) {
                 TextView o = new TextView(this);
@@ -127,6 +128,7 @@ public class DetailDrink extends AppCompatActivity{
                 dynamicOcc.addView(o);
             }
         }
+
         //Using spanned and html formating to only format the beginning of the text
         Spanned c = Html.fromHtml("<b>Color: </b>"+drinkInfo.getColor());
         color.setText(c);

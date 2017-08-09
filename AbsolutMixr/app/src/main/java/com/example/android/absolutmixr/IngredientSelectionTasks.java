@@ -1,6 +1,7 @@
 package com.example.android.absolutmixr;
 
 import com.example.android.absolutmixr.Model.Ingredient;
+import com.example.android.absolutmixr.Model.UPCIngredient;
 
 import org.json.JSONException;
 
@@ -27,6 +28,26 @@ public class IngredientSelectionTasks {
         }
 
         return ingredients;
+    }
+    public static ArrayList<Ingredient> getAllIngredients() throws IOException, JSONException {
+        URL url = CabinetNetworkUtils.makeIngredientListURL();
+        String response = CabinetNetworkUtils.getResponseFromHttpUrl(url);
+        ArrayList<Ingredient> ingredients = CabinetNetworkUtils.parseJSON(response);
+
+        return ingredients;
+    }
+    public static ArrayList<UPCIngredient> getUPCIngredients(String upc) throws IOException, JSONException {
+        URL url = CabinetNetworkUtils.makeUPCURL(upc);
+        String response = CabinetNetworkUtils.getResponseFromHttpUrl(url);
+        ArrayList<UPCIngredient> ingredients = CabinetNetworkUtils.parseUPCJSON(response);
+        return ingredients;
+    }
+    public static Ingredient getIngredientFromUPC(String name, ArrayList<Ingredient> ing){
+        for (int i = 0;i<ing.size();i++){
+            if(name.contains(ing.get(i).getName())){
+                return ing.get(i);
+            }
+        }return null;
     }
     public static String getType(int position){
         String result = "";

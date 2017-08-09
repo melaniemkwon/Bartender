@@ -68,7 +68,7 @@ public class DetailDrink extends AppCompatActivity{
         List<String> occasions = drinkInfo.getOccassions();
         List<String> tastes = drinkInfo.getTastes();
 
-        Log.v(TAG,occasions.get(0));
+        //Log.v(TAG,occasions.get(0));
 
         //setting the textview to the drink name
         mDrinkName.setText(drinkInfo.getName());
@@ -94,24 +94,41 @@ public class DetailDrink extends AppCompatActivity{
         }
 
         //dynamically adding the list of ingredients to the linear view named dynamicT
-        for (int l=0;l<tastes.size();l++){
-            TextView t =new TextView(this);
-            t.setText(tastes.get(l));
-            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-            t.setId(l+ 8);
-            Log.v(TAG,"setting into tastes: "+ tastes.get(l));
-            dynamicTaste.addView(t);
+        if(tastes.size() == 0){
+            TextView o =new TextView(this);
+            o.setText("Has no specific taste");
+            o.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            dynamicOcc.addView(o);
+        }
+        else {
+            for (int l = 0; l < tastes.size(); l++) {
+                TextView t = new TextView(this);
+                t.setText(tastes.get(l));
+                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                t.setId(l + 8);
+                Log.v(TAG, "setting into tastes: " + tastes.get(l));
+                dynamicTaste.addView(t);
+            }
         }
 
         //dynamically adding the list of ingredients to the linear view named dynamicO
-
-        for (int j=0;j<occasions.size();j++){
+        if(occasions.size() == 0){
             TextView o =new TextView(this);
-            o.setText(occasions.get(j));
+            o.setText("For all occasions");
             o.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-            o.setId(j+4);
             dynamicOcc.addView(o);
         }
+
+        else {
+            for (int j = 0; j < occasions.size(); j++) {
+                TextView o = new TextView(this);
+                o.setText(occasions.get(j));
+                o.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                o.setId(j + 4);
+                dynamicOcc.addView(o);
+            }
+        }
+
         //Using spanned and html formating to only format the beginning of the text
         Spanned c = Html.fromHtml("<b>Color: </b>"+drinkInfo.getColor());
         color.setText(c);

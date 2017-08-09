@@ -87,7 +87,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
 
         //Logs to see if it can make it here used for debugging.
         Log.v(TAG, "Made it to onBind name");
-        Log.v(TAG, drinkcount.getName());
+        //Log.v(TAG, drinkcount.getName());
         final String url = Picture_url + (drinkcount.getId()+type);
         Log.v(TAG, "Built URI " + url +")(*&^%$#@!)(*&^%$#@*&^%$#@*&^%$#@)(*&^%$#@(*&^%$#@)(*&^%$#@");
 
@@ -110,7 +110,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
                 if(checked == true){
                     // DONE: add drink item to wishlist db
                     // DONE: find out why drink picture is not displaying in recyclerview
-                    Log.d(TAG, drinkcount.getId()+ drinkcount.getName()+ drinkcount.getDescription()+ drinkcount.getColor()+ drinkcount.getSkill()+ drinkcount.getRating()+ url);
+                   // Log.d(TAG, drinkcount.getId()+ drinkcount.getName()+ drinkcount.getDescription()+ drinkcount.getColor()+ drinkcount.getSkill()+ drinkcount.getRating()+ url);
                     addToWishlist(drinkcount.getId(), drinkcount.getName(), drinkcount.getDescription(), drinkcount.getColor(), drinkcount.getSkill(), drinkcount.getRating(), url);
                     check = check + " added to wishlist";
                     Toast toast = Toast.makeText(context,check,duration);
@@ -129,7 +129,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "Clicked on " + drinkcount.getName() + " info");
+                //Log.d(TAG, "Clicked on " + drinkcount.getName() + " info");
                 Intent intent = new Intent(context,DetailDrink.class);
                 intent.putExtra("Drink Object",drinkcount);
                 context.startActivity(intent);
@@ -146,7 +146,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     public void setDrinkData(ArrayList<DrinkItem> dat){
         data = dat;
         Log.d(TAG, "setDrinkData called");
-        Log.d(TAG, dat.get(0).toString());
+        //Log.d(TAG, dat.get(0).toString());
         notifyDataSetChanged();
     }
 

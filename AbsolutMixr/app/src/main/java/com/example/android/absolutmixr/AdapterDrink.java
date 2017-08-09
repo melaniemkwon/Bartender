@@ -37,7 +37,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
     private static final String TAG = AdapterDrink.class.getSimpleName();
     public static final String Picture_url = "http://assets.absolutdrinks.com/drinks/solid-background-white/soft-shadow/floor-reflection/100x100/";
     private static final String type= ".png";
-    private static final String thumbsRatingUp = "THUMBSUP", thumbsRatingDown = "THUMBSDOWN", thumbsRatingNone = "NONE";
+    public static final String thumbsRatingUp = "THUMBSUP", thumbsRatingDown = "THUMBSDOWN", thumbsRatingNone = "NONE";
     private SQLiteDatabase mDb;
 
 
@@ -209,6 +209,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_INGREDIENTS, ingreds);
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_OCCASSIONS, occs);
         contentValues.put(WishlistContract.WishlistEntry.COLUMN_TASTES, tastes);
+        contentValues.put(WishlistContract.WishlistEntry.COLUMN_THUMBSUP, thumbsRatingNone);
 
         return mDb.insert(WishlistContract.WishlistEntry.TABLE_NAME, null, contentValues);
     }

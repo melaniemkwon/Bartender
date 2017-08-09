@@ -30,12 +30,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.example.android.absolutmixr.AdapterDrink.Picture_url;
+import static com.example.android.absolutmixr.AdapterDrink.thumbsRatingDown;
+import static com.example.android.absolutmixr.AdapterDrink.thumbsRatingNone;
+import static com.example.android.absolutmixr.AdapterDrink.thumbsRatingUp;
 
 /**
  * Created by melaniekwon on 8/6/17.
  */
 
 public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.WishlistViewHolder> {
+    private static final String TAG = AdapterWishlist.class.getSimpleName();
+
     private Context mContext;
     private Cursor mCursor;
     private SQLiteDatabase mDb;
@@ -90,6 +95,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         final String skill = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_SKILL));
         final String rating = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_RATING));
         final String pic_URL = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_PICTURE_URL));
+        final String thumbsup = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_THUMBSUP));
 
         // Strings are parsed into ArrayList<String>
         String ingredients = mCursor.getString(mCursor.getColumnIndex(WishlistContract.WishlistEntry.COLUMN_INGREDIENTS));
@@ -109,6 +115,17 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         }
 
         holder.itemView.setTag(id);
+
+        final Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
+        final Drawable selectedThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_selected);
+        final Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
+        final Drawable selectedThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_selected);
+
+        if (thumbsup.equals(thumbsRatingUp)) {
+            holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
+        } else if (thumbsup.equals(thumbsRatingDown)) {
+            holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
+        }
 
         // TODO: share picture with tweet
         holder.mDotButton.setOnClickListener(new View.OnClickListener() {
@@ -150,32 +167,66 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
         holder.mThumbsupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
-                Drawable selectedThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_selected);
-                Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
 
-                if (holder.mThumbsupButton.getDrawable().getConstantState().equals(defaultThumbsup.getConstantState())) {
-                    holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
-                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
-                } else if (holder.mThumbsupButton.getDrawable().getConstantState().equals(selectedThumbsup.getConstantState())) {
-                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
+                Log.d(TAG, "thumbsup: " + thumbsRatingUp);
+                switch (thumbsup) {
+                    case thumbsRatingUp:
+                        updateThumbsRating(id, thumbsRatingNone);
+                        holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
+                        Log.d(TAG, "switching up to none");
+                        break;
+                    case thumbsRatingNone:
+                        updateThumbsRating(id, thumbsRatingUp);
+                        holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
+                        holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
+                        Log.d(TAG, "switching none to up");
+                        break;
+                    default:
+                        Log.d(TAG, "nothing happened.");
+                        break;
                 }
+
+//                if (holder.mThumbsupButton.getDrawable().getConstantState().equals(defaultThumbsup.getConstantState())) {
+//                    holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
+//                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
+//                } else if (holder.mThumbsupButton.getDrawable().getConstantState().equals(selectedThumbsup.getConstantState())) {
+//                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
+//                }
             }
         });
 
         holder.mThumbsdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
-                Drawable selectedThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_selected);
-                Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
 
-                if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(defaultThumbsdown.getConstantState())) {
-                    holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
-                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
-                } else if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(selectedThumbsdown.getConstantState())) {
-                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
+                updateThumbsRating(id, thumbsRatingDown);
+                Log.d(TAG, "thumbsup: " + thumbsRatingDown);
+
+                switch (thumbsup) {
+                    case thumbsRatingDown:
+                        updateThumbsRating(id, thumbsRatingNone);
+                        holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
+                        Log.d(TAG, "switching down to none");
+                        break;
+                    case thumbsRatingNone:
+                        updateThumbsRating(id, thumbsRatingDown);
+                        holder.mThumbsupButton.setImageDrawable(selectedThumbsdown);
+                        holder.mThumbsdownButton.setImageDrawable(defaultThumbsup);
+                        Log.d(TAG, "switching none to down");
+                        break;
+                    default:
+                        break;
                 }
+//                Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
+//                Drawable selectedThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_selected);
+//                Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
+//
+//                if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(defaultThumbsdown.getConstantState())) {
+//                    holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
+//                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
+//                } else if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(selectedThumbsdown.getConstantState())) {
+//                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
+//                }
             }
         });
 
@@ -224,15 +275,5 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                 selection,
                 selectionArgs);
 
-//        switch (status) {
-//            case thumbsRatingUp:
-//                return true;
-//            case thumbsRatingDown:
-//                return true;
-//            case thumbsRatingNone:
-//                return true;
-//            default:
-//                return false;
-//        }
     }
 }

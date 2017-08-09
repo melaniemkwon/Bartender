@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.android.absolutmixr.AdapterDrink.Picture_url;
 import static com.example.android.absolutmixr.AdapterDrink.thumbsRatingDown;
 import static com.example.android.absolutmixr.AdapterDrink.thumbsRatingNone;
 import static com.example.android.absolutmixr.AdapterDrink.thumbsRatingUp;
@@ -145,7 +144,7 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
 //                                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
                                 return true;
                             case R.id.wishlist_action_share:
-                                ((MainActivity)mContext).dispatchChoosePictureIntent();
+//                                ((MainActivity)mContext).dispatchChoosePictureIntent();
                                 String tweet = "Enjoying my refreshing #" + name + "! Thanks @AbsolutMixr!";
 //                                Uri myUri = Uri.parse(pic_URL);
                                 TweetComposer.Builder builder = new TweetComposer.Builder(mContext)
@@ -191,13 +190,6 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                         Log.d(TAG, "nothing happened.");
                         break;
                 }
-
-//                if (holder.mThumbsupButton.getDrawable().getConstantState().equals(defaultThumbsup.getConstantState())) {
-//                    holder.mThumbsupButton.setImageDrawable(selectedThumbsup);
-//                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
-//                } else if (holder.mThumbsupButton.getDrawable().getConstantState().equals(selectedThumbsup.getConstantState())) {
-//                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
-//                }
             }
         });
 
@@ -230,16 +222,6 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                         Log.d(TAG, "nothing happened.");
                         break;
                 }
-//                Drawable defaultThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_black_24dp);
-//                Drawable selectedThumbsdown = mContext.getResources().getDrawable(R.drawable.ic_thumb_down_selected);
-//                Drawable defaultThumbsup = mContext.getResources().getDrawable(R.drawable.ic_thumb_up_black_24dp);
-//
-//                if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(defaultThumbsdown.getConstantState())) {
-//                    holder.mThumbsdownButton.setImageDrawable(selectedThumbsdown);
-//                    holder.mThumbsupButton.setImageDrawable(defaultThumbsup);
-//                } else if (holder.mThumbsdownButton.getDrawable().getConstantState().equals(selectedThumbsdown.getConstantState())) {
-//                    holder.mThumbsdownButton.setImageDrawable(defaultThumbsdown);
-//                }
             }
         });
 

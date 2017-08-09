@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +25,7 @@ import com.example.android.absolutmixr.Model.DrinkItem;
 import com.example.android.absolutmixr.Model.WishlistContract;
 import com.example.android.absolutmixr.Model.WishlistDbHelper;
 import com.squareup.picasso.Picasso;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -125,12 +127,18 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                             case R.id.wishlist_action_shop:
                                 return true;
                             case R.id.wishlist_action_share:
+                                String tweet = "Enjoying my refreshing #" + name + "! Thanks @AbsolutMixr!";
+//                                Uri myUri = Uri.parse(pic_URL);
+                                TweetComposer.Builder builder = new TweetComposer.Builder(mContext)
+//                                        .image(myUri)
+                                        .text(tweet);
+                                builder.show();
                                 return true;
                             case R.id.wishlist_action_delete:
-                                Toast.makeText(mContext, "" + item.getGroupId(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, name + " removed from wishlist", Toast.LENGTH_SHORT).show();
                                 removeWishlistItem(id);
                                 notifyItemRemoved(position);
-                                notifyItemRangeChanged(position, getItemCount());
+                                notifyItemRangeChanged(position, mCursor.getCount());
 
 //                                notifyDataSetChanged();
 

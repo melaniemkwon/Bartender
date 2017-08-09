@@ -12,6 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.twitter.sdk.android.core.DefaultLogger;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterConfig;
 
 
 public class MainActivity extends AppCompatActivity implements FragSearch.OnDialogCloseListener{
@@ -32,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements FragSearch.OnDial
         setupViewPager(viewPager);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        // Twitter
+        TwitterConfig config = new TwitterConfig.Builder(this)
+                .logger(new DefaultLogger(Log.DEBUG))
+                .twitterAuthConfig(new TwitterAuthConfig("IdjL7LOKwuss74mm8HBlARp5A", "XXrwAdFQwr61oqOY8tZ3be9XUTWNSz0IcH4CbNAIaFkAIRRfDQ"))
+                .debug(true)
+                .build();
+        Twitter.initialize(config);
     }
 
     // ##### MENU #####

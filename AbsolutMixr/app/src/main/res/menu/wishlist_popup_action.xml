@@ -3,14 +3,13 @@
     <!--TODO: Get icons to show beside the text-->
     <item
         android:id="@+id/wishlist_action_shop"
-        android:icon="@drawable/ic_shopping_cart_black_24dp"
-        android:title="SHOP"/>
+        android:title="Find ingredients"/>
     <item
         android:id="@+id/wishlist_action_share"
         android:icon="@drawable/ic_share_black_24dp"
-        android:title="SHARE"/>
+        android:title="Share on Twitter"/>
     <item
         android:id="@+id/wishlist_action_delete"
         android:icon="@drawable/ic_delete_black_24dp"
-        android:title="DELETE"/>
+        android:title="Delete"/>
 </menu>

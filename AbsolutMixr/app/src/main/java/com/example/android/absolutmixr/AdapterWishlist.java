@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -125,6 +126,8 @@ public class AdapterWishlist extends RecyclerView.Adapter<AdapterWishlist.Wishli
                         int menuId = item.getItemId();
                         switch(menuId) {
                             case R.id.wishlist_action_shop:
+                                // TODO: MAKE PAGE GO TO CABINET
+//                                ViewPager viewPager = (ViewPager) getActivity().findViewById(R.id.viewpager);
                                 return true;
                             case R.id.wishlist_action_share:
                                 String tweet = "Enjoying my refreshing #" + name + "! Thanks @AbsolutMixr!";

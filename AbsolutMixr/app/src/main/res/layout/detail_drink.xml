@@ -80,91 +80,52 @@
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginBottom="8dp" />
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d5817aef14a5be775ee5445544991b11bd8fcf70
     <!--dynamic view for taste thats is located on the left -->
 
 
     <!--dynamic view for occasion thats is located on the right -->
 
-    <TextView
-        android:id="@+id/deatailColor"
-        android:layout_width="115dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="0dp"
-        android:hint="Color"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintLeft_toRightOf="@+id/dynamicTaste"
-        app:layout_constraintRight_toRightOf="@+id/detailkRating"
-<<<<<<< HEAD
-        app:layout_constraintTop_toBottomOf="@+id/detailSkill" />
-=======
-        app:layout_constraintTop_toBottomOf="@+id/detailSkill"
-        tools:layout_editor_absoluteY="124dp"
-        tools:layout_editor_absoluteX="249dp" />
->>>>>>> d5817aef14a5be775ee5445544991b11bd8fcf70
-
-    <TextView
-        android:id="@+id/detailSkill"
-        android:layout_width="116dp"
-        android:layout_height="22dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="-1dp"
-        android:hint="Skill"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@+id/dynamicTaste"
-        app:layout_constraintRight_toRightOf="@+id/detailkRating"
-        app:layout_constraintTop_toBottomOf="@+id/detailkRating" />
-
-    <TextView
-        android:id="@+id/detailkRating"
-        android:layout_width="114dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
-        android:hint="rating"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="@+id/detailSkill"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dName" />
-
-    <LinearLayout
-        android:id="@+id/dynamicTaste"
-        android:layout_width="115dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        android:paddingTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/dynamicOccasion"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintLeft_toRightOf="@+id/imgdrink"
-        app:layout_constraintRight_toLeftOf="@+id/detailkRating"
-        app:layout_constraintTop_toBottomOf="@+id/dName"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginStart="1dp">
+        <TextView
+            android:id="@+id/deatailColor"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:hint="Color"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.963"
+            app:layout_constraintLeft_toRightOf="@+id/dynamicTaste"
+            app:layout_constraintRight_toRightOf="@+id/detailkRating"
+            app:layout_constraintTop_toBottomOf="@+id/detailSkill" />
 
         <TextView
-            android:id="@+id/tasty"
-            android:layout_width="wrap_content"
+            android:id="@+id/detailSkill"
+            android:layout_width="116dp"
             android:layout_height="wrap_content"
-            android:text="@string/tasList"
-            android:textSize="18sp"/>
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-1dp"
+            android:hint="Skill"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.991"
+            app:layout_constraintLeft_toRightOf="@+id/dynamicTaste"
+            app:layout_constraintRight_toRightOf="@+id/detailkRating"
+            app:layout_constraintTop_toBottomOf="@+id/detailkRating" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/detailkRating"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="14dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="rating"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toRightOf="@+id/imgdrink"
+            app:layout_constraintTop_toBottomOf="@+id/dName" />
 
 
         <LinearLayout
@@ -184,16 +145,19 @@
             android:layout_width="161dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginLeft="94dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="283dp"
+            android:layout_marginTop="135dp"
             android:orientation="vertical"
             android:paddingTop="5dp"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.936"
             app:layout_constraintLeft_toRightOf="@+id/list"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/dynamicTaste"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/description"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/occasion"
@@ -201,6 +165,30 @@
                 android:layout_height="wrap_content"
                 android:text="@string/occList"
                 android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dynamicTaste"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            app:layout_constraintLeft_toRightOf="@+id/detailkRating"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dName"
+            app:layout_constraintHorizontal_bias="0.0">
+
+            <TextView
+                android:id="@+id/tasty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tasList"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
         <!--This will be where the video will go-->

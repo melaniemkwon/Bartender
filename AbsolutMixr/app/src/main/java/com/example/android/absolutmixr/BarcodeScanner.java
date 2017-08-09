@@ -12,6 +12,7 @@ package com.example.android.absolutmixr;
         import android.util.Log;
         import android.util.SparseArray;
         import android.view.View;
+        import android.widget.ProgressBar;
 
 
         import com.example.android.absolutmixr.Model.Ingredient;
@@ -43,11 +44,13 @@ public class BarcodeScanner extends AppCompatActivity implements BarcodeRetrieve
     ArrayList<UPCIngredient> upcingredient;
     ArrayList<Ingredient> ingredients;
     Barcode bar;
+    ProgressBar progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_scanner);
+        progress = (ProgressBar) findViewById(R.id.progressBarcode);
 
         BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(barcode);
         barcodeCapture.setRetrieval(this);
@@ -111,6 +114,7 @@ public class BarcodeScanner extends AppCompatActivity implements BarcodeRetrieve
                 @Override
                 protected void onStartLoading() {
                     super.onStartLoading();
+                    progress.setVisibility(View.VISIBLE);
                     Log.d("Async","start async");
 
                 }
@@ -138,13 +142,14 @@ public class BarcodeScanner extends AppCompatActivity implements BarcodeRetrieve
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                progress.setVisibility(View.GONE);
                 if(upcingredient.size()>0){
                     Ingredient a = IngredientSelectionTasks.getIngredientFromUPC(upcingredient.get(0).getName(),ingredients);
                     if(a!=null){
                         FragCabinet.setIngredient(a);
                     }
                 AlertDialog.Builder builder = new AlertDialog.Builder(BarcodeScanner.this)
-                        .setTitle("code retrieved, added to cabinet if in database")
+                        .setTitle("Code retrieved! Added to cabinet if in database")
                         .setMessage(upcingredient.get(0).getName());
                 builder.show();}
                 else{

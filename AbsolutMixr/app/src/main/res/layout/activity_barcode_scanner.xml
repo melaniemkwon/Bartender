@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBarcode"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+         />
+
     <fragment
         android:id="@+id/barcode"
         android:name="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
@@ -15,6 +25,8 @@
         app:gvb_code_format="all_format"
         app:gvb_flash="false"
         app:gvb_rect_colors="@array/rect_color" />
+
+
 
 
 </RelativeLayout>

@@ -22,6 +22,7 @@ import com.example.android.absolutmixr.Model.WishlistDbHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.example.android.absolutmixr.Model.WishlistContract.WishlistEntry.TABLE_NAME;
@@ -50,6 +51,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         public final TextView mDrinkName;
         public final TextView mDrinkRating;
         //public final TextView mDrinkColor;
+        public final TextView mDrinkTastes;
         public final ImageView mDrinkpic;
         public final CheckBox mCheck;
 
@@ -62,6 +64,7 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
             mDrinkName = (TextView) view.findViewById(R.id.name);
             mDrinkRating = (TextView) view.findViewById(R.id.rating);
             //mDrinkColor = (TextView) view.findViewById(R.id.color);
+            mDrinkTastes = (TextView) view.findViewById(R.id.tastes);
             mDrinkpic = (ImageView) view.findViewById(R.id.drinkImage);
             mCheck = (CheckBox) view.findViewById(R.id.starCheck);
 
@@ -100,6 +103,8 @@ public class AdapterDrink extends RecyclerView.Adapter<AdapterDrink.AdapterDrink
         holder.mDrinkName.setText(drinkcount.getName());
         holder.mDrinkRating.setText("Rating: "+(drinkcount.getRating()));
         //holder.mDrinkColor.setText("Drink Color: "+drinkcount.getColor());
+        String tastes = android.text.TextUtils.join(",", drinkcount.getTastes());
+        holder.mDrinkTastes.setText(tastes);
         if(url != null){
             Picasso.with(context)
                     .load(url)

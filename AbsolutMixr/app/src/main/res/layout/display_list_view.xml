@@ -45,34 +45,34 @@
             android:id="@+id/name"
             android:layout_width="219dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:hint="Drink Name"
-            android:textSize="28sp"
-            card_view:layout_constraintBottom_toTopOf="@+id/rating"
+            android:textSize="22sp"
             card_view:layout_constraintLeft_toRightOf="@+id/drinkImage"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/rating"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Drink Rating"
-            android:textSize="26sp"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp"
+            android:textSize="15sp"
             card_view:layout_constraintLeft_toRightOf="@+id/drinkImage"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            card_view:layout_constraintTop_toBottomOf="@+id/name" />
 
-        <!--<TextView
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tastes"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="Drink Color"
-            android:id="@+id/color"/>-->
-
+            android:hint="Drink Tastes"
+            android:textSize="15sp"
+            card_view:layout_constraintLeft_toRightOf="@+id/drinkImage"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="0dp"
+            card_view:layout_constraintTop_toBottomOf="@+id/rating" />
 
         <CheckBox
             android:id="@+id/starCheck"
@@ -86,7 +86,9 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp"
             card_view:layout_constraintLeft_toRightOf="@+id/name"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp"
+            card_view:layout_constraintHorizontal_bias="0.785"
+            card_view:layout_constraintVertical_bias="0.488" />
 
 
     </android.support.constraint.ConstraintLayout>
